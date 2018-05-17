@@ -1,0 +1,12 @@
+### JINÉ
+	page parser - handle \r somehow
+
+### NÁPADY
+	enumy by se daly impelmentovat jen jako rozšíření třídy
+		seznam statických atributů by se generoval automaticky podle seznamu jmen
+
+	umožnit dva ekvivalentní zápisy ???
+		MgFoo.bar(foo, otherParameters)
+		foo.bar(otherParameters)
+
+	add support for contextual parameters - no need to pass them as parameter, it is done in the background
