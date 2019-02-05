@@ -1,6 +1,6 @@
 package cz.mg.compiler.entities.a.segments;
 
-import cz.mg.collections.node.TreeNode;
+import cz.mg.temp.node.TreeNode;
 import cz.mg.compiler.Location;
 import cz.mg.compiler.entities.Entity;
 

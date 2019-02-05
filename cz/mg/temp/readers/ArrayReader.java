@@ -1,4 +1,4 @@
-package cz.mg.collections.readers;
+package cz.mg.temp.readers;
 
 public abstract class ArrayReader<T> extends Reader<T> {
     private int position = -1;

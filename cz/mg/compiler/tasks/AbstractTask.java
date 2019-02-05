@@ -1,7 +1,7 @@
 package cz.mg.compiler.tasks;
 
-import cz.mg.collections.node.AbstractTreeNode;
-import cz.mg.collections.node.TreeNode;
+import cz.mg.temp.node.AbstractTreeNode;
+import cz.mg.temp.node.TreeNode;
 
 
 public abstract class AbstractTask<A extends Task, B extends TreeNode> extends AbstractTreeNode<A, B, TreeNode, Object> implements Task<A, B> {

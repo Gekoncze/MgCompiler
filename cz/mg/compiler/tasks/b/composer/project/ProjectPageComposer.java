@@ -1,13 +1,11 @@
 package cz.mg.compiler.tasks.b.composer.project;
 
-import cz.mg.collections.chainlist.ChainList;
+import cz.mg.collections.list.chainlist.ChainList;
 import cz.mg.compiler.entities.a.segments.Line;
 import cz.mg.compiler.entities.a.segments.Page;
 import cz.mg.compiler.entities.a.segments.Word;
 import cz.mg.compiler.entities.b.logical.project.LogicalProjectPage;
 import cz.mg.compiler.entities.a.segments.tokens.KeywordToken;
-import static cz.mg.compiler.entities.a.segments.tokens.KeywordToken.Keyword.PROJECT;
-import static cz.mg.compiler.entities.a.segments.tokens.KeywordToken.Keyword.SOURCE;
 import cz.mg.compiler.entities.a.segments.tokens.Token;
 import cz.mg.compiler.entities.b.logical.project.LogicalProjectName;
 import cz.mg.compiler.entities.b.logical.project.LogicalProjectSourceFile;

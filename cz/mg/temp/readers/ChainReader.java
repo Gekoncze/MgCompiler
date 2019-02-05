@@ -1,7 +1,7 @@
-package cz.mg.collections.readers;
+package cz.mg.temp.readers;
 
-import cz.mg.collections.chainlist.ChainList;
-import cz.mg.collections.chainlist.ChainListItem;
+import cz.mg.collections.list.chainlist.ChainList;
+import cz.mg.collections.list.chainlist.ChainListItem;
 
 
 public abstract class ChainReader<T> extends Reader<T> {
@@ -14,7 +14,7 @@ public abstract class ChainReader<T> extends Reader<T> {
     }
     
     public int size(){
-        return list.size();
+        return list.count();
     }
     
     @Override

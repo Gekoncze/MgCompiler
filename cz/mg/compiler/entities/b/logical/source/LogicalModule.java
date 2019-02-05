@@ -1,6 +1,6 @@
 package cz.mg.compiler.entities.b.logical.source;
 
-import cz.mg.collections.chainlist.ChainList;
+import cz.mg.collections.list.chainlist.ChainList;
 import cz.mg.compiler.Location;
 import cz.mg.compiler.entities.b.logical.Logical;
 

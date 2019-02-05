@@ -1,6 +1,6 @@
 package cz.mg.compiler.tasks.b.composer;
 
-import cz.mg.collections.chainlist.ChainList;
+import cz.mg.collections.list.chainlist.ChainList;
 import cz.mg.compiler.entities.a.segments.Line;
 import cz.mg.compiler.entities.a.segments.Segment;
 import cz.mg.compiler.entities.a.segments.tokens.CommentToken;
@@ -29,7 +29,7 @@ public abstract class Composer<A extends AbstractTask, B extends Composer, C ext
                 else tokens.addLast(token);
             } else if(child instanceof Line){
                 Line line = (Line) child;
-                if(line.getChildren().size() <= 0) continue;
+                if(line.getChildren().count() <= 0) continue;
                 Object firstChild = line.getChildren().getFirst();
                 if(firstChild instanceof CommentToken) new LogicalComment(getOutput(), ((CommentToken) firstChild).getLocation(), ((CommentToken) firstChild).getText());
                 else lines.addLast(line);
@@ -37,8 +37,8 @@ public abstract class Composer<A extends AbstractTask, B extends Composer, C ext
                 throw new RuntimeException();
             }
         }
-        if(tokens.size() > 0) onTokensRead(new TokenReader(tokens, ((Line)getInput()).getLocation()));
-        if(lines.size() > 0) onLinesRead(lines);
+        if(tokens.count() > 0) onTokensRead(new TokenReader(tokens, ((Line)getInput()).getLocation()));
+        if(lines.count() > 0) onLinesRead(lines);
         onReadEnd();
     }
     

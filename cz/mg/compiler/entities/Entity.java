@@ -1,7 +1,7 @@
 package cz.mg.compiler.entities;
 
-import cz.mg.collections.node.AbstractTreeNode;
-import cz.mg.collections.node.TreeNode;
+import cz.mg.temp.node.AbstractTreeNode;
+import cz.mg.temp.node.TreeNode;
 import cz.mg.compiler.Location;
 
 

@@ -1,6 +1,6 @@
 package cz.mg.compiler.tasks.b.composer.project;
 
-import cz.mg.collections.chainlist.ChainList;
+import cz.mg.collections.list.chainlist.ChainList;
 import cz.mg.compiler.entities.a.segments.Line;
 import static cz.mg.compiler.entities.a.segments.tokens.KeywordToken.Keyword.PROJECT;
 import cz.mg.compiler.entities.a.segments.tokens.LiteralToken;

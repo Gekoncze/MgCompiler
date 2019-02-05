@@ -2,11 +2,10 @@ package cz.mg.compiler.tasks.b.composer.source;
 
 import cz.mg.compiler.entities.a.segments.tokens.OperatorToken;
 import cz.mg.compiler.entities.b.logical.source.LogicalUsing;
-import cz.mg.collections.chainlist.ChainList;
+import cz.mg.collections.list.chainlist.ChainList;
 import cz.mg.compiler.entities.a.segments.Line;
 import static cz.mg.compiler.entities.a.segments.tokens.KeywordToken.Keyword.USING;
 import cz.mg.compiler.entities.a.segments.tokens.NameToken;
-import cz.mg.compiler.entities.a.segments.tokens.Token;
 import cz.mg.compiler.tasks.CompileException;
 import cz.mg.compiler.tasks.b.composer.Composer;
 

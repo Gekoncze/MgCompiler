@@ -1,7 +1,7 @@
 package cz.mg.compiler.tasks.b.composer.source.command;
 
-import cz.mg.collections.chainlist.ChainList;
-import cz.mg.collections.chainlist.ChainListItem;
+import cz.mg.collections.list.chainlist.ChainList;
+import cz.mg.collections.list.chainlist.ChainListItem;
 import cz.mg.compiler.Location;
 import cz.mg.compiler.entities.a.segments.Line;
 import cz.mg.compiler.entities.a.segments.Word;
@@ -48,12 +48,12 @@ public class ExpressionCommandComposer extends CommandComposer {
     }
         
     private LogicalCall buildTree(ChainList<Token> parts) {
-		if(parts.size() <= 0) return null; // empty expression
+		if(parts.count() <= 0) return null; // empty expression
 		
 		buildValueCalls(parts);
 		buildAllOperatorCalls(parts);
         
-        if(parts.size() != 1) throw new CompileException(getInput(), "Invalid expression. Remaining tokens: ", parts.toString(", "));
+        if(parts.count() != 1) throw new CompileException(getInput(), "Invalid expression. Remaining tokens: ", parts.toString(", "));
         if(parts.getFirst() instanceof ExpressionToken){
 			return ((ExpressionToken)parts.getFirst()).getCall();
 		} else {
@@ -89,7 +89,7 @@ public class ExpressionCommandComposer extends CommandComposer {
 				case RIGHT_TO_LEFT: buildOperatorCallsRightToLeft(parts, op); break;
 				default: throw new RuntimeException();
 			}
-            if(parts.size() == 1) break;
+            if(parts.count() == 1) break;
         }
 	}
 	

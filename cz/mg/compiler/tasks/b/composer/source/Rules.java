@@ -12,7 +12,7 @@ public class Rules {
     public static final Rule MODULE = new Rule() {
         @Override
         public boolean applicable(Line line) {
-            if(line.getChildren().size() < 1) return false;
+            if(line.getChildren().count() < 1) return false;
             Object first = line.getChildren().getFirst();
             if(!(first instanceof KeywordToken)) return false;
             KeywordToken keywordToken = (KeywordToken) first;
@@ -23,7 +23,7 @@ public class Rules {
     public static final Rule USING = new Rule() {
         @Override
         public boolean applicable(Line line) {
-            if(line.getChildren().size() < 1) return false;
+            if(line.getChildren().count() < 1) return false;
             Object first = line.getChildren().getFirst();
             if(!(first instanceof KeywordToken)) return false;
             KeywordToken keywordToken = (KeywordToken) first;
@@ -34,7 +34,7 @@ public class Rules {
     public static final Rule CLASS = new Rule() {
         @Override
         public boolean applicable(Line line) {
-            if(line.getChildren().size() < 3) return false;
+            if(line.getChildren().count() < 3) return false;
             Object first = line.getChildren().getFirst();
             Object third = line.getChildren().get(2);
             if(!(first instanceof KeywordToken)) return false;
@@ -48,7 +48,7 @@ public class Rules {
     public static final Rule ATTRIBUTE = new Rule() {
         @Override
         public boolean applicable(Line line) {
-            if(line.getChildren().size() < 3) return false;
+            if(line.getChildren().count() < 3) return false;
             Object first = line.getChildren().getFirst();
             Object second = line.getChildren().get(1);
             Object third = line.getChildren().get(2);
@@ -62,7 +62,7 @@ public class Rules {
     public static final Rule FUNCTION = new Rule() {
         @Override
         public boolean applicable(Line line) {
-            if(line.getChildren().size() < 3) return false;
+            if(line.getChildren().count() < 3) return false;
             Object first = line.getChildren().getFirst();
             Object third = line.getChildren().get(2);
             if(!(first instanceof KeywordToken)) return false;
@@ -76,7 +76,7 @@ public class Rules {
     public static final Rule OPERATOR = new Rule() {
         @Override
         public boolean applicable(Line line) {
-            if(line.getChildren().size() < 3) return false;
+            if(line.getChildren().count() < 3) return false;
             Object first = line.getChildren().getFirst();
             Object third = line.getChildren().get(2);
             if(!(first instanceof KeywordToken)) return false;

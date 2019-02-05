@@ -1,6 +1,6 @@
-package cz.mg.collections.node;
+package cz.mg.temp.node;
 
-import cz.mg.collections.chainlist.ChainList;
+import cz.mg.collections.list.chainlist.ChainList;
 import java.util.Iterator;
 
 

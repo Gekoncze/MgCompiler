@@ -1,6 +1,6 @@
 package cz.mg.compiler.tasks.b.composer.source;
 
-import cz.mg.collections.chainlist.ChainList;
+import cz.mg.collections.list.chainlist.ChainList;
 import cz.mg.compiler.tasks.CompileException;
 import cz.mg.compiler.entities.b.logical.source.LogicalAttribute;
 import cz.mg.compiler.entities.a.segments.Line;

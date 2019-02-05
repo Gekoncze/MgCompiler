@@ -1,6 +1,6 @@
 package cz.mg.compiler.tasks.b.composer.source.command;
 
-import cz.mg.collections.chainlist.ChainList;
+import cz.mg.collections.list.chainlist.ChainList;
 import cz.mg.compiler.entities.a.segments.Line;
 import cz.mg.compiler.entities.a.segments.tokens.KeywordToken;
 import cz.mg.compiler.entities.a.segments.tokens.Token;
@@ -24,7 +24,7 @@ public abstract class CommandComposer extends Composer<Composer, Composer, Line,
                         new IfCommandComposer(this, line, getOutput()).run();
                         continue;
                     case ELSE:
-                        if(line.getChildren().size() > 1){
+                        if(line.getChildren().count() > 1){
                             if(line.getChildren().get(1) instanceof KeywordToken){
                                 KeywordToken k = (KeywordToken) line.getChildren().get(1);
                                 switch(k.getKeyword()){

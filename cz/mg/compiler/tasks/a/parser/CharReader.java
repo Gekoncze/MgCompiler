@@ -1,6 +1,6 @@
 package cz.mg.compiler.tasks.a.parser;
 
-import cz.mg.collections.readers.ArrayReader;
+import cz.mg.temp.readers.ArrayReader;
 import cz.mg.compiler.Location;
 import cz.mg.compiler.entities.a.segments.Line;
 import cz.mg.compiler.tasks.CompileException;

@@ -1,7 +1,7 @@
 package cz.mg.compiler.tasks;
 
-import cz.mg.collections.node.AbstractTreeNode;
-import cz.mg.collections.node.TreeNode;
+import cz.mg.temp.node.AbstractTreeNode;
+import cz.mg.temp.node.TreeNode;
 
 
 public class TaskError extends AbstractTreeNode<Task, TreeNode, TreeNode, Object> {

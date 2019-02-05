@@ -56,8 +56,10 @@
 
         implementovat řetězce obecně jako properties ???
 
+### SOON
 
-### AKTUÁLNÍ ÚKOLY
+
+### NOW
 	C translator
             automaticky doplňovat všude volatile
             zajistit správný překlad literálů
@@ -75,10 +77,11 @@
                     možná by se hodilo to obalit do třídy Candidates, kam by se případně mohla ukládat informace s odůvodněním odmítnutí
                     ale kandidáti jsou i ChainList<MgPhysicalCall>, tak asi třeba řešit zvlášť, případně nechat no pokud nebude vadit
 
-	project explorer
-            kontextová nabídka
-                open
-                properties
-            history for back and forward (alt + left, alt + right)
-
-        cleanup!!!
+### DONE
+Moving on
+    moved smples to new mg ide project
+    moved project explorer files to mg ide project
+    moved some collection files temporarily
+    deleted chain list classes, now will be using the one from mg collections
+    changed compiler to use external files instead
+    fixed chain list count method usage
