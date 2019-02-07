@@ -20,7 +20,7 @@ import static cz.mg.compiler.entities.a.segments.tokens.KeywordToken.Keyword.*;
 import cz.mg.compiler.tasks.CompileException;
 
 
-public class LineParser extends AbstractParser<PageParser, Parser, String, Line> {
+public class LineParser extends Parser<PageParser, Parser, String, Line> {
     public LineParser(PageParser parentTask, String input, Line output) {
         super(parentTask, input, output);
     }

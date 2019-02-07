@@ -7,12 +7,12 @@ import cz.mg.compiler.entities.a.segments.tokens.CommentToken;
 import cz.mg.compiler.entities.a.segments.tokens.Token;
 import cz.mg.compiler.entities.b.logical.Logical;
 import cz.mg.compiler.entities.b.logical.source.LogicalComment;
-import cz.mg.compiler.tasks.AbstractTask;
-import cz.mg.compiler.tasks.AbstractTransformTask;
+import cz.mg.compiler.tasks.Task;
+import cz.mg.compiler.tasks.TransformTask;
 import cz.mg.compiler.tasks.b.composer.source.TokenReader;
 
 
-public abstract class Composer<A extends AbstractTask, B extends Composer, C extends Segment, D extends Logical> extends AbstractTransformTask<A, B, C, D> {
+public abstract class Composer<A extends Task, B extends Composer, C extends Segment, D extends Logical> extends TransformTask<A, B, C, D> {
     private final ChainList<Token> tokens = new ChainList<>();
     private final ChainList<Line> lines = new ChainList<>();
     

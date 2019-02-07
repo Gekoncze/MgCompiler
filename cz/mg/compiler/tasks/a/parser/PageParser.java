@@ -10,7 +10,7 @@ import cz.mg.compiler.tasks.CompileException;
 import cz.mg.compiler.tasks.Task;
 
 
-public class PageParser extends AbstractParser<Task, LineParser, Stream, Page> {
+public class PageParser extends Parser<Task, LineParser, Stream, Page> {
     private Segment currentParentSegment = null;
     private int currentParentChildIndentation = 0;
 

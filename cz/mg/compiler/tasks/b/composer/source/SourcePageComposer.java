@@ -8,13 +8,13 @@ import cz.mg.compiler.entities.b.logical.source.LogicalClass;
 import cz.mg.compiler.entities.b.logical.source.LogicalModule;
 import cz.mg.compiler.entities.b.logical.source.LogicalOperator;
 import cz.mg.compiler.entities.b.logical.source.LogicalUsing;
-import cz.mg.compiler.tasks.AbstractTask;
+import cz.mg.compiler.tasks.Task;
 import cz.mg.compiler.tasks.CompileException;
 import cz.mg.compiler.tasks.b.composer.Composer;
 
 
-public class SourcePageComposer extends Composer<AbstractTask, Composer, Page, LogicalSourcePage> {
-    public SourcePageComposer(AbstractTask parentTask, Page input, LogicalSourcePage output) {
+public class SourcePageComposer extends Composer<Task, Composer, Page, LogicalSourcePage> {
+    public SourcePageComposer(Task parentTask, Page input, LogicalSourcePage output) {
         super(parentTask, input, output);
     }
 

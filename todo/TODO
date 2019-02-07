@@ -78,10 +78,7 @@
                     ale kandidáti jsou i ChainList<MgPhysicalCall>, tak asi třeba řešit zvlášť, případně nechat no pokud nebude vadit
 
 ### DONE
-Moving on
-    moved smples to new mg ide project
-    moved project explorer files to mg ide project
-    moved some collection files temporarily
-    deleted chain list classes, now will be using the one from mg collections
-    changed compiler to use external files instead
-    fixed chain list count method usage
+Simplifications
+    using only abstract classes for tree node (sub-)types now, no need interfaces atm
+    renamed TreeNode to Compiler TreeNode and moved it to correct package
+    made CompilerTreeNode extend mg collections tree node

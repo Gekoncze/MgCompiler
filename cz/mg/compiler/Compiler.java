@@ -7,18 +7,15 @@ import cz.mg.compiler.entities.b.logical.project.LogicalProjectPage;
 import cz.mg.compiler.entities.b.logical.project.LogicalProjectSourceFile;
 import cz.mg.compiler.entities.b.logical.source.LogicalSourcePage;
 import cz.mg.compiler.entities.resources.ExternalFile;
-import cz.mg.compiler.entities.resources.InternalFile;
 import cz.mg.compiler.entities.resources.Resources;
 import cz.mg.compiler.entities.resources.Stream;
-import cz.mg.compiler.tasks.AbstractTask;
+import cz.mg.compiler.tasks.Task;
 import cz.mg.compiler.tasks.a.parser.PageParser;
 import cz.mg.compiler.tasks.b.composer.project.ProjectPageComposer;
 import cz.mg.compiler.tasks.b.composer.source.SourcePageComposer;
 
-import java.io.InputStream;
 
-
-public class Compiler extends AbstractTask {
+public class Compiler extends Task {
     private final Resources resources = new Resources(this, null);
     private final Book book = new Book(this, null);
     private final Logic logic = new Logic(this, null);

@@ -1,11 +1,10 @@
 package cz.mg.compiler.entities;
 
-import cz.mg.temp.node.AbstractTreeNode;
 import cz.mg.temp.node.TreeNode;
 import cz.mg.compiler.Location;
 
 
-public abstract class Entity<A extends TreeNode, B extends Entity> extends AbstractTreeNode<A, B, TreeNode, Object> {
+public abstract class Entity<A extends TreeNode, B extends Entity> extends TreeNode<A, B, TreeNode, Object> {
     public Entity(A parent, Location location) {
         super(parent);
         getProperties().addLast(location);

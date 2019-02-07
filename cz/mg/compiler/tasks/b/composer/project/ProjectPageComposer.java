@@ -9,14 +9,14 @@ import cz.mg.compiler.entities.a.segments.tokens.KeywordToken;
 import cz.mg.compiler.entities.a.segments.tokens.Token;
 import cz.mg.compiler.entities.b.logical.project.LogicalProjectName;
 import cz.mg.compiler.entities.b.logical.project.LogicalProjectSourceFile;
-import cz.mg.compiler.tasks.AbstractTask;
+import cz.mg.compiler.tasks.Task;
 import cz.mg.compiler.tasks.CompileException;
 import cz.mg.compiler.tasks.b.composer.Composer;
 import cz.mg.compiler.tasks.b.composer.source.TokenReader;
 
 
-public class ProjectPageComposer extends Composer<AbstractTask, Composer, Page, LogicalProjectPage> {
-    public ProjectPageComposer(AbstractTask parentTask, Page input, LogicalProjectPage output) {
+public class ProjectPageComposer extends Composer<Task, Composer, Page, LogicalProjectPage> {
+    public ProjectPageComposer(Task parentTask, Page input, LogicalProjectPage output) {
         super(parentTask, input, output);
     }
 
