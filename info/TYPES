@@ -1,0 +1,20 @@
+elementary types in cz.mg.types (fixed size in bits)
+    Int8
+    UInt8
+    Int16
+    UInt16
+    Int32
+    UInt32
+    Int64
+    UInt64
+    Float32
+    Float64
+    Bool8
+
+special types in cz.mg.types
+    Address
+        represents an address of an object
+        its size is platform dependent
+
+    Any
+        represents any type of an object

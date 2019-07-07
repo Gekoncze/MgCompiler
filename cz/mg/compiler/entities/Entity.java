@@ -1,19 +1,8 @@
 package cz.mg.compiler.entities;
 
-import cz.mg.temp.node.TreeNode;
-import cz.mg.compiler.Location;
+import cz.mg.compiler.Element;
+import cz.mg.compiler.utilities.debug.Traceable;
 
 
-public abstract class Entity<A extends TreeNode, B extends Entity> extends TreeNode<A, B, TreeNode, Object> {
-    public Entity(A parent, Location location) {
-        super(parent);
-        getProperties().addLast(location);
-    }
-    
-    public Location getLocation(){
-        for(Object property : getProperties()){
-            if(property instanceof Location) return (Location) property;
-        }
-        return null;
-    }
+public abstract class Entity extends Element implements Traceable {
 }

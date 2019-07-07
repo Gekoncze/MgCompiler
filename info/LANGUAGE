@@ -1,0 +1,20 @@
+COMMENTS AND DOCUMENTATION
+    Everything after a hash symbol '#' on given line is a comment.
+    Everything after two hash symbols '##' on given line is a documentation.
+    Documentation belongs to the subsequent language entity definition.
+
+NAMES AND KEWORDS
+    Upper-case words are reserved for keywords.
+    Words with first capital character are reserved for type names.
+    Other words can be used as names.
+
+LANGUAGE ENTITIES
+    Language entities are classes, functions, locations, properties, ...
+    They are stored in a tree-like structure.
+    You can use dot to access child entities of the parent entity.
+    A chain of dot accesses is called a path.
+
+FUNCTIONS
+    Return value cannot be ignored silently.
+    Return value can be ignored explicitly using VOID = call.
+    Assignment operators has optional return value.

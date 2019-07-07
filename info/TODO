@@ -1,0 +1,59 @@
+much later
+    modules
+
+    compiler
+        add healing spots
+            not only separating compilation of each line
+            but also a part until which line is correct and after which is errorneous
+                process line only up until the point where is correct
+                automatically close all brackets and other groups
+            do not add more errors if (probably current task?) already has some
+                because the new ones are most probably caused by the previous ones
+
+later
+    maybe just one error per file ??? or per definition ???
+    translator to c/cpp
+    custom stamps definitions
+
+    project
+        add option to specify target mg language version
+
+    automatické volání konstruktorů destruktorů ???
+        kdy a jak?
+        mohl by být třeba na to command ... declaration command
+
+    an idea - class could be location at the same time
+        this could allow to place "inner" classes and functions in separate files
+        on filesystem level, it could be solved as a folder with the same name as the class (note: no extension)
+
+
+soon
+    resolver
+        first has to resolve stamps, then other
+        aliases has to be stored somehow, or searched by context
+
+        maybe separate step in resolver to fill in context entities ???
+            that would require re-creating context for each entity ...
+            better would be remporary context object that would be filled with all possible entity links
+            but links can be created not only with name ... operators too, and depends on input parameters too
+
+    test
+        types.mg - define all required operators in test file
+
+    language
+            templates !!! or collections ... !
+            exceptions - type for buildin, SAVEPOINT/TRY, CATCH, ROLLBACK, ...
+
+            compilation
+                build stamp definitions
+
+            aggregation as clever pointers
+                option to track normal pointers too in debug mode
+
+now
+    cli
+        add different versions of tree command
+            possibly for each kind of entities / tasks
+            add command to clear output
+            pwd - print square brackets
+            scroll down after issuing command

@@ -1,0 +1,13 @@
+STORAGE
+    & association
+        store reference to data in parent
+
+    &$ (shared) aggregation
+        store reference to data in parent
+        data are owned by the parent
+        data can be owned by multiple parents
+        frees data memory when there is no owner of the data
+        ??? not sure if I'll include it in the language yet ... ???
+
+    $ composition
+        store data in parent object directly

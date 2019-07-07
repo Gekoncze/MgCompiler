@@ -1,0 +1,25 @@
+IS
+    base-type <- derived-type (one way commutable)
+    can add new properties
+    can add new static functions
+    can add new dynamic functions
+
+ALIAS
+    base-type <-> derived-type (two way commutable)
+    can add new static functions
+
+VIEW
+    base-type -> derived-type (one way commutable)
+    can add new static functions
+
+LIKE
+    base-type - derived-type (no way commutable)
+    can add new properties
+    can add new static functions
+    can add new dynamic functions
+
+can be used in datatype definitions
+cannot inherit from different datatype kind (for example class cannot inherit from structure)
+
+note: language entity names are also static variables of corresponding types in cz.mg.language as an alias
+      and so they can be used in code as variables or parameters to operators above

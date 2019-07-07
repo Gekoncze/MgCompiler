@@ -1,0 +1,58 @@
+----------------------------------------------------------------------------------------------------
+
+priority decreases in vertical direction
+entities with the same priority are evaluated as found on the line from left to right
+one underscore is a placeholder for one entity or text part _
+three underscores are a placeholder for multiple entities or text parts ___
+
+----------------------------------------------------------------------------------------------------
+
+COMMENTS AND VALUES
+    #___ "___"
+
+----------------------------------------------------------------------------------------------------
+
+KEYWORD VALUES
+
+KEYWORD OPERATORS
+
+KEYWORD GROUPS
+
+OPERATORS
+
+BRACKETS
+    (___) [___] {___}
+
+ARGUMENTS
+    :___
+
+CHAINS
+    ___,___
+    _._
+
+STAMPS
+    @_  @_[]
+
+TYPES
+    _&  _&$  _$
+
+DECLARATIONS
+
+ARGUMENTS EXPRESSIONS
+    _:
+
+OPERATOR EXPRESSIONS
+    _^_  _!  +_  -_
+    _*_  _/_  _\_  _%_
+    _+_  _-_
+    _AS_
+    _=_  _<_  _>_  _<=_  _>=_  _?_
+    _AND_  _NAND_  _OR_  _NOR_  _XOR_  _NXOR_  _NOT_
+    _&=_  _$=_  _*=_  _/=_  _\=_  _%=_  _+=_  _-=_  _<&>_  _<$>_
+
+----------------------------------------------------------------------------------------------------
+
+UNUSED
+    ~ ' ; |
+
+----------------------------------------------------------------------------------------------------

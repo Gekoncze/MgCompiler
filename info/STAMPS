@@ -1,0 +1,19 @@
+ACCESS
+    @invisible  # language entity is invisible (default)
+    @public  # language entity is visible everywhere
+    @private  # language entity is visible inside of the parent language entity
+    @protected  # language entity is visible only to derived entities
+    @internal  # language entity is visible only inside of the location and in its sub-locations recursively
+    @external  # language entity is visible only outside of the location and in its super-locations recursively
+    @local  # language entity is visible only inside of the location
+
+VARIABLE
+    @readwrite  # variable can be read and wrote to where accessible (default)
+    @readonly  # variable is read only outside of the parent
+    @writeonly  # variable is write only outside of the parent
+    @constant  # variable is read only after its creation (or after it's parent's creation)
+
+OTHER
+    @modify  # allows you to modify inherited entity
+    @privateinheritance  # inherited entities are private
+    @publicentities  # defined entities are public by default
