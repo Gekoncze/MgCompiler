@@ -5,7 +5,7 @@ import cz.mg.collections.list.List;
 import cz.mg.collections.list.chainlist.CachedChainList;
 import cz.mg.collections.list.chainlist.ChainList;
 import cz.mg.compiler.Element;
-import cz.mg.compiler.Child;
+import cz.mg.compiler.annotations.Child;
 import cz.mg.compiler.cli.Utilities;
 
 import java.lang.reflect.Field;

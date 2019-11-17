@@ -1,6 +1,6 @@
 package cz.mg.compiler.entities.logical.language.other;
 
-import cz.mg.compiler.Child;
+import cz.mg.compiler.annotations.Child;
 import cz.mg.compiler.entities.logical.language.calls.Call;
 import cz.mg.compiler.utilities.debug.Text;
 

@@ -1,7 +1,7 @@
 package cz.mg.compiler.entities.structured.parts.brackets;
 
 import cz.mg.collections.list.chainlist.ChainList;
-import cz.mg.compiler.Child;
+import cz.mg.compiler.annotations.Child;
 import cz.mg.compiler.entities.structured.parts.Special;
 import cz.mg.compiler.entities.structured.Part;
 import cz.mg.compiler.entities.structured.parts.groups.UnitedGroup;

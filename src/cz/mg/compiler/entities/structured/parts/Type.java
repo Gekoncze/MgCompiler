@@ -1,6 +1,6 @@
 package cz.mg.compiler.entities.structured.parts;
 
-import cz.mg.compiler.Child;
+import cz.mg.compiler.annotations.Child;
 import cz.mg.compiler.entities.structured.Part;
 
 

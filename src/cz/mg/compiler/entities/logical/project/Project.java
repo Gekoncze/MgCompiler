@@ -1,6 +1,6 @@
 package cz.mg.compiler.entities.logical.project;
 
-import cz.mg.compiler.Child;
+import cz.mg.compiler.annotations.Child;
 import cz.mg.compiler.entities.ToplevelEntity;
 
 

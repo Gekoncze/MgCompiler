@@ -3,7 +3,7 @@ package cz.mg.compiler.entities.logical.language;
 import cz.mg.collections.array.Array;
 import cz.mg.collections.list.chainlist.CachedChainList;
 import cz.mg.collections.list.chainlist.ChainList;
-import cz.mg.compiler.Child;
+import cz.mg.compiler.annotations.Child;
 import cz.mg.compiler.entities.ToplevelEntity;
 import cz.mg.compiler.entities.structured.Part;
 import cz.mg.compiler.entities.structured.parts.Name;

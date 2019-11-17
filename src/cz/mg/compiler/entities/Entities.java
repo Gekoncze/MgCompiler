@@ -1,6 +1,6 @@
 package cz.mg.compiler.entities;
 
-import cz.mg.compiler.Child;
+import cz.mg.compiler.annotations.Child;
 import cz.mg.compiler.entities.structured.StructuredBook;
 import cz.mg.compiler.utilities.debug.Trace;
 import cz.mg.compiler.entities.input.Input;

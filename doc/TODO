@@ -1,15 +1,10 @@
 DONE
-    ...
+Annotations improvements
+    * restricted child and link annotations to fields only
+    * added link annotation
 
 NOW
-    ...
-
-SOON
     improve object model
-        make sure to use reflection, preffered annotations:
-            @child
-            @link
-
         root - compiler
         children:
             errors - list of errors / exceptions
@@ -17,6 +12,7 @@ SOON
             entities - tree of entities
 
     new type of compiler explorer - list based
+        use reflection based on annotations to access nodes
         will support keyboard shortcuts:
             up/down arrows - move between items in current node
             backspace - move to parent node
@@ -26,6 +22,11 @@ SOON
 
         will have top panel with current path
             delimiter will be probably slash
+
+        will have check box - show hidden objects (any unannotated fields)
+
+SOON
+    ...
 
 
 LATER

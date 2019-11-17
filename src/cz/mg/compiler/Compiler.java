@@ -1,5 +1,6 @@
 package cz.mg.compiler;
 
+import cz.mg.compiler.annotations.Child;
 import cz.mg.compiler.entities.Entities;
 import cz.mg.compiler.tasks.MainTask;
 
