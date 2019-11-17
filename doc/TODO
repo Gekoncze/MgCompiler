@@ -1,33 +1,34 @@
-much later
-    modules
+DONE
+    ...
 
-    compiler
-        add healing spots
-            not only separating compilation of each line
-            but also a part until which line is correct and after which is errorneous
-                process line only up until the point where is correct
-                automatically close all brackets and other groups
-            do not add more errors if (probably current task?) already has some
-                because the new ones are most probably caused by the previous ones
+NOW
+    ...
 
-later
-    maybe just one error per file ??? or per definition ???
-    translator to c/cpp
-    custom stamps definitions
+SOON
+    improve object model
+        make sure to use reflection, preffered annotations:
+            @child
+            @link
 
-    project
-        add option to specify target mg language version
+        root - compiler
+        children:
+            errors - list of errors / exceptions
+            tasks - tree of tasks
+            entities - tree of entities
 
-    automatické volání konstruktorů destruktorů ???
-        kdy a jak?
-        mohl by být třeba na to command ... declaration command
+    new type of compiler explorer - list based
+        will support keyboard shortcuts:
+            up/down arrows - move between items in current node
+            backspace - move to parent node
+            context menu button - show context menu for item
+            right/left arrow - show / hide children of selected node
+            enter - move to selected node
 
-    an idea - class could be location at the same time
-        this could allow to place "inner" classes and functions in separate files
-        on filesystem level, it could be solved as a folder with the same name as the class (note: no extension)
+        will have top panel with current path
+            delimiter will be probably slash
 
 
-soon
+LATER
     resolver
         first has to resolve stamps, then other
         aliases has to be stored somehow, or searched by context
@@ -41,19 +42,40 @@ soon
         types.mg - define all required operators in test file
 
     language
-            templates !!! or collections ... !
-            exceptions - type for buildin, SAVEPOINT/TRY, CATCH, ROLLBACK, ...
+        add option to specify target mg language version
+            file based
+            project based
 
-            compilation
-                build stamp definitions
+        templates !!! or collections ... !
+        exceptions - type for buildin, SAVEPOINT/TRY, CATCH, ROLLBACK, ...
 
-            aggregation as clever pointers
-                option to track normal pointers too in debug mode
+        compilation
+            build stamp definitions
 
-now
-    cli
-        add different versions of tree command
-            possibly for each kind of entities / tasks
-            add command to clear output
-            pwd - print square brackets
-            scroll down after issuing command
+        aggregation as clever pointers
+            option to track normal pointers too in debug mode
+
+        automatické volání konstruktorů destruktorů ???
+            kdy a jak?
+
+        modules
+        custom stamps definitions
+
+    translator to c/cpp
+
+    compiler
+        add healing spots
+            not only separating compilation of each line
+            but also a part until which line is correct and after which is errorneous
+                process line only up until the point where is correct
+                automatically close all brackets and other groups
+            do not add more errors if (probably current task?) already has some
+                because the new ones are most probably caused by the previous ones
+
+OPTIONAL
+    language
+        an idea - class could be location at the same time
+            this could allow to place "inner" classes and functions in separate files
+            on filesystem level, it could be solved as a folder with the same name as the class (without the extension)
+
+
