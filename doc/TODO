@@ -1,8 +1,6 @@
 DONE
-Object model improvements + cli removal
-    changed some fields a bit
-    renamed some classes
-    (temporarily ?) removed cli
+Compiler explorer preparations
+    added compiler explorer window with some testing components
 
 NOW
     add missing @Link annotations
@@ -19,7 +17,8 @@ NOW
         will have top panel with current path
             delimiter will be probably slash
 
-        will have check box - show hidden objects (any unannotated fields)
+        will not display unannotated fields by default
+            will have check box - show hidden objects
 
 SOON
     ...

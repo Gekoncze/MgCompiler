@@ -4,6 +4,7 @@ import cz.mg.compiler.utilities.debug.Text;
 import cz.mg.compiler.entities.input.ExternalFileInput;
 import cz.mg.compiler.entities.logical.project.FilePath;
 import cz.mg.compiler.tasks.compiler.CompileProjectTask;
+import cz.mg.compilerexplorer.CompilerExplorer;
 
 
 public class Test {
@@ -16,5 +17,8 @@ public class Test {
         compiler.run();
 
         System.out.println("DONE");
+
+        CompilerExplorer compilerExplorer = new CompilerExplorer(compiler);
+        compilerExplorer.setVisible(true);
     }
 }
