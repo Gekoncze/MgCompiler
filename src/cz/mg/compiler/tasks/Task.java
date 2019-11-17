@@ -4,14 +4,18 @@ import cz.mg.collections.list.List;
 import cz.mg.collections.list.chainlist.CachedChainList;
 import cz.mg.compiler.Element;
 import cz.mg.compiler.annotations.Child;
+import cz.mg.compiler.annotations.Link;
 import cz.mg.compiler.utilities.debug.CompileException;
 
 
 public abstract class Task extends Element {
+    @Link
     private final Task parentTask;
 
     @Child
     private final List<Task> tasks = new CachedChainList<>();
+
+    @Child
     private final List<CompileException> errors = new CachedChainList<>();
 
     public Task(Task parentTask) {

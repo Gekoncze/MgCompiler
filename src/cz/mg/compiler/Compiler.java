@@ -3,17 +3,18 @@ package cz.mg.compiler;
 import cz.mg.compiler.annotations.Child;
 import cz.mg.compiler.entities.Entities;
 import cz.mg.compiler.tasks.MainTask;
+import cz.mg.compiler.tasks.Tasks;
 
 
-public class Compiler extends Element {
+public class Compiler extends Element implements Runnable {
     @Child
     private final Entities entities = new Entities();
 
     @Child
-    private final MainTask mainTask;
+    private final Tasks tasks = new Tasks();
 
     public Compiler(MainTask mainTask) {
-        this.mainTask = mainTask;
+        this.tasks.getTasks().addLast(mainTask);
         mainTask.setEntities(entities);
     }
 
@@ -21,11 +22,12 @@ public class Compiler extends Element {
         return entities;
     }
 
-    public MainTask getMainTask() {
-        return mainTask;
+    public Tasks getTasks() {
+        return tasks;
     }
 
+    @Override
     public void run(){
-        mainTask.tryToRun();
+        tasks.tryToRun();
     }
 }

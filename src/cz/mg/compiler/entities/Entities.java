@@ -1,7 +1,7 @@
 package cz.mg.compiler.entities;
 
 import cz.mg.compiler.annotations.Child;
-import cz.mg.compiler.entities.structured.StructuredBook;
+import cz.mg.compiler.entities.structured.Structure;
 import cz.mg.compiler.utilities.debug.Trace;
 import cz.mg.compiler.entities.input.Input;
 import cz.mg.compiler.entities.logical.Logic;
@@ -17,7 +17,7 @@ public class Entities extends Entity {
     private final Book book = new Book();
 
     @Child
-    private final StructuredBook structuredBook = new StructuredBook();
+    private final Structure structure = new Structure();
 
     @Child
     private final Logic logic = new Logic();
@@ -33,8 +33,8 @@ public class Entities extends Entity {
         return book;
     }
 
-    public StructuredBook getStructuredBook() {
-        return structuredBook;
+    public Structure getStructure() {
+        return structure;
     }
 
     public Logic getLogic() {

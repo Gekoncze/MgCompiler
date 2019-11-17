@@ -3,8 +3,8 @@ package cz.mg.compiler.entities.structured;
 import cz.mg.compiler.utilities.debug.Text;
 
 
-public class StructuredPage extends Block {
-    public StructuredPage(Text content) {
+public class Container extends Block {
+    public Container(Text content) {
         super(content, null, null, null);
     }
 

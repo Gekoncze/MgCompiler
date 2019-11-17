@@ -6,14 +6,14 @@ import cz.mg.compiler.annotations.Child;
 import cz.mg.compiler.entities.ToplevelEntity;
 
 
-public class StructuredBook extends ToplevelEntity {
+public class Structure extends ToplevelEntity {
     @Child
-    private final ChainList<StructuredPage> pages = new CachedChainList<>();
+    private final ChainList<Container> pages = new CachedChainList<>();
 
-    public StructuredBook() {
+    public Structure() {
     }
 
-    public ChainList<StructuredPage> getPages() {
+    public ChainList<Container> getPages() {
         return pages;
     }
 }

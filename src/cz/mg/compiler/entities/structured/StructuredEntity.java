@@ -5,10 +5,10 @@ import cz.mg.compiler.utilities.debug.Trace;
 import cz.mg.compiler.entities.Entity;
 
 
-public abstract class StructureEntity extends Entity {
+public abstract class StructuredEntity extends Entity {
     private final Text content;
 
-    public StructureEntity(Text content) {
+    public StructuredEntity(Text content) {
         this.content = content;
     }
 

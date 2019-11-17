@@ -4,7 +4,7 @@ import cz.mg.compiler.entities.logical.language.Context;
 import cz.mg.compiler.entities.logical.language.Language;
 import cz.mg.compiler.entities.logical.language.Location;
 import cz.mg.compiler.entities.structured.Block;
-import cz.mg.compiler.entities.structured.StructuredPage;
+import cz.mg.compiler.entities.structured.Container;
 import cz.mg.compiler.tasks.Task;
 import cz.mg.compiler.tasks.builder.BlockBuildTask;
 import cz.mg.compiler.tasks.builder.BuildException;
@@ -61,7 +61,7 @@ public class BuildSourceFileTask extends BlockBuildTask {
     private Location location = null;
     private Context context = null;
 
-    public BuildSourceFileTask(Task parentTask, StructuredPage page, Language language) {
+    public BuildSourceFileTask(Task parentTask, Container page, Language language) {
         super(parentTask, page, null);
         this.language = language;
     }

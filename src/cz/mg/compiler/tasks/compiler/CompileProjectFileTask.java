@@ -5,7 +5,7 @@ import cz.mg.compiler.entities.input.ExternalFileInput;
 import cz.mg.compiler.entities.input.InputEntity;
 import cz.mg.compiler.entities.logical.project.FilePath;
 import cz.mg.compiler.entities.logical.project.Project;
-import cz.mg.compiler.entities.structured.StructuredPage;
+import cz.mg.compiler.entities.structured.Container;
 import cz.mg.compiler.entities.text.Page;
 import cz.mg.compiler.tasks.Task;
 import cz.mg.compiler.tasks.builder.project.BuildProjectTask;
@@ -35,8 +35,8 @@ public class CompileProjectFileTask extends CompilerTask {
         entities.getBook().getPages().addLast(page);
         new ParsePageTask(this, page).run();
 
-        StructuredPage structuredPage = new StructuredPage(page.getContent());
-        entities.getStructuredBook().getPages().addLast(structuredPage);
+        Container structuredPage = new Container(page.getContent());
+        entities.getStructure().getPages().addLast(structuredPage);
         new ComposePageTask(this, page, structuredPage).run();
 
         new BuildProjectTask(this, project, structuredPage).run();

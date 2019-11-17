@@ -7,7 +7,7 @@ import cz.mg.compiler.utilities.debug.Text;
 import cz.mg.compiler.entities.structured.parts.Stamp;
 
 
-public class Block extends StructureEntity {
+public class Block extends StructuredEntity {
     @Child
     private final ChainList<Text> documentation;
 

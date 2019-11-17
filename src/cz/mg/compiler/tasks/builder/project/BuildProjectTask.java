@@ -2,7 +2,7 @@ package cz.mg.compiler.tasks.builder.project;
 
 import cz.mg.compiler.entities.logical.project.Project;
 import cz.mg.compiler.entities.structured.Block;
-import cz.mg.compiler.entities.structured.StructuredPage;
+import cz.mg.compiler.entities.structured.Container;
 import cz.mg.compiler.tasks.Task;
 import cz.mg.compiler.tasks.builder.BlockBuildTask;
 import cz.mg.compiler.tasks.builder.utilities.*;
@@ -17,7 +17,7 @@ public class BuildProjectTask extends BlockBuildTask {
 
     private final Project project;
 
-    public BuildProjectTask(Task parentTask, Project project, StructuredPage projectPage) {
+    public BuildProjectTask(Task parentTask, Project project, Container projectPage) {
         super(parentTask, projectPage);
         this.project = project;
     }

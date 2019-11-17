@@ -4,7 +4,7 @@ import cz.mg.collections.Collection;
 import cz.mg.compiler.utilities.debug.Text;
 
 
-public class Part extends StructureEntity {
+public class Part extends StructuredEntity {
     public Part(Text content) {
         super(content);
     }

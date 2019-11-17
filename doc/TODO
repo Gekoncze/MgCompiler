@@ -1,15 +1,11 @@
 DONE
-Annotations improvements
-    * restricted child and link annotations to fields only
-    * added link annotation
+Object model improvements + cli removal
+    changed some fields a bit
+    renamed some classes
+    (temporarily ?) removed cli
 
 NOW
-    improve object model
-        root - compiler
-        children:
-            errors - list of errors / exceptions
-            tasks - tree of tasks
-            entities - tree of entities
+    add missing @Link annotations
 
     new type of compiler explorer - list based
         use reflection based on annotations to access nodes
