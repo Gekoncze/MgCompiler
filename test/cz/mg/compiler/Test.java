@@ -1,6 +1,5 @@
-package test;
+package cz.mg.compiler;
 
-import cz.mg.compiler.Compiler;
 import cz.mg.compiler.cli.Console;
 import cz.mg.compiler.cli.Explorer;
 import cz.mg.compiler.cli.consoles.WindowConsole;
@@ -12,7 +11,7 @@ import cz.mg.compiler.tasks.compiler.CompileProjectTask;
 
 public class Test {
     public static void main(String[] args) {
-        ExternalFileInput.workingDirectory = "/home/me/Plocha/Java/MgCompiler/src/test/project/";
+        ExternalFileInput.workingDirectory = "/home/me/Plocha/Dev/Java/MgCompiler/test/cz/mg/compiler/project/";
 
         System.out.print("Compiling... ");
 
