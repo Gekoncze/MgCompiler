@@ -13,6 +13,8 @@ import cz.mg.compiler.entities.structured.parts.groups.Group;
 import cz.mg.compiler.entities.structured.parts.brackets.CurlyBrackets;
 import cz.mg.compiler.entities.structured.parts.brackets.RoundBrackets;
 import cz.mg.compiler.entities.structured.parts.brackets.SquareBrackets;
+import cz.mg.utilities.ReflectionUtilities;
+
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 
@@ -99,15 +101,15 @@ public abstract class Filter {
     private static final ChainList<Filter> createFilters = new CachedChainList<>();
 
     static {
-        Collection<Field> fields = ReflectionUtilities.getAllFields(Filter.class, true);
+        Collection<Field> fields = ReflectionUtilities.getClassFields(Filter.class);
         for(Field field : fields){
             if(Modifier.isStatic(field.getModifiers())){
                 if(ReflectionUtilities.typeof(field, KeywordFilter.class)){
-                    createFilters.addLast((Filter) ReflectionUtilities.readField(null, field));
+                    createFilters.addLast((Filter) ReflectionUtilities.readObjectField(null, field));
                 }
 
                 if(ReflectionUtilities.typeof(field, PartFilter.class)){
-                    createFilters.addLast((Filter) ReflectionUtilities.readField(null, field));
+                    createFilters.addLast((Filter) ReflectionUtilities.readObjectField(null, field));
                 }
             }
         }

@@ -19,6 +19,6 @@ public class Element {
 
     @Override
     public String toString() {
-        return "[" + id + "] " + getClass().getSimpleName();
+        return getClass().getSimpleName() + "#" + id;
     }
 }

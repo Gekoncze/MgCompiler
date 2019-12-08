@@ -7,16 +7,18 @@ import cz.mg.compiler.entities.structured.parts.Type;
 import cz.mg.compiler.tasks.builder.BuildException;
 import cz.mg.compiler.utilities.debug.PlaceholderText;
 import cz.mg.compiler.utilities.debug.Traceable;
+import cz.mg.utilities.ReflectionUtilities;
+
 import java.lang.reflect.Field;
 
 
 public class BuildUtilities {
     private static void store(Object parent, String parentFieldName, Object task, String taskFieldName){
-        Field parentField = ReflectionUtilities.findField(parent.getClass(), parentFieldName);
-        Field taskField = ReflectionUtilities.findField(task.getClass(), taskFieldName);
+        Field parentField = ReflectionUtilities.findClassField(parent.getClass(), parentFieldName);
+        Field taskField = ReflectionUtilities.findClassField(task.getClass(), taskFieldName);
         boolean parentCollection = ReflectionUtilities.typeof(parentField, cz.mg.collections.list.List.class);
         boolean taskCollection = ReflectionUtilities.typeof(taskField, cz.mg.collections.list.List.class);
-        Object value = ReflectionUtilities.readField(task, taskField);
+        Object value = ReflectionUtilities.readObjectField(task, taskField);
         if(!parentCollection && !taskCollection){
             storeValueInValue(parent, parentField, value);
         } else if(parentCollection && !taskCollection){
@@ -29,7 +31,7 @@ public class BuildUtilities {
     }
 
     public static void store(Object parent, String parentFieldName, Object value){
-        Field parentField = ReflectionUtilities.findField(parent.getClass(), parentFieldName);
+        Field parentField = ReflectionUtilities.findClassField(parent.getClass(), parentFieldName);
         boolean parentCollection = ReflectionUtilities.typeof(parentField, cz.mg.collections.list.List.class);
         boolean taskCollection = ReflectionUtilities.objectof(value, cz.mg.collections.list.List.class);
         if(!parentCollection && !taskCollection){
@@ -44,19 +46,19 @@ public class BuildUtilities {
     }
 
     private static void storeValueInValue(Object parent, Field parentField, Object value){
-        Object oldValue = ReflectionUtilities.readField(parent, parentField);
+        Object oldValue = ReflectionUtilities.readObjectField(parent, parentField);
         if(oldValue != null) throw new BuildException((Traceable) value, "Block has been already defined ", new PlaceholderText((Traceable) oldValue, "here"), ".");
-        ReflectionUtilities.writeField(parent, parentField, value);
+        ReflectionUtilities.writeObjectField(parent, parentField, value);
     }
 
     private static void storeValueInCollection(Object parent, Field parentField, Object value){
-        cz.mg.collections.list.List list = (cz.mg.collections.list.List) ReflectionUtilities.readField(parent, parentField);
+        cz.mg.collections.list.List list = (cz.mg.collections.list.List) ReflectionUtilities.readObjectField(parent, parentField);
         list.addLast(value);
     }
 
     private static void storeCollectionInCollection(Object parent, Field parentField, Object values){
         cz.mg.collections.list.List src = (cz.mg.collections.list.List) values;
-        cz.mg.collections.list.List dst = (cz.mg.collections.list.List) ReflectionUtilities.readField(parent, parentField);
+        cz.mg.collections.list.List dst = (cz.mg.collections.list.List) ReflectionUtilities.readObjectField(parent, parentField);
         for(Object value : src){
             dst.addLast(value);
         }

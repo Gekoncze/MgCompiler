@@ -1,9 +1,10 @@
 package cz.mg.compiler.entities.logical.language;
 
+import cz.mg.compiler.Named;
 import cz.mg.compiler.utilities.debug.Text;
 
 
-public abstract class NamedLanguageEntity extends LanguageEntity {
+public abstract class NamedLanguageEntity extends LanguageEntity implements Named {
     private final Text name;
 
     public NamedLanguageEntity(Text name) {
@@ -11,6 +12,7 @@ public abstract class NamedLanguageEntity extends LanguageEntity {
         this.name = name;
     }
 
+    @Override
     public Text getName() {
         return name;
     }

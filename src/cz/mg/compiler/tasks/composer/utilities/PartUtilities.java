@@ -7,7 +7,7 @@ import cz.mg.compiler.entities.structured.Part;
 import cz.mg.compiler.entities.structured.parts.groups.UnitedGroup;
 import cz.mg.compiler.entities.structured.parts.chains.List;
 import cz.mg.compiler.entities.structured.parts.chains.Path;
-import cz.mg.compiler.tasks.builder.utilities.ReflectionUtilities;
+import cz.mg.utilities.ReflectionUtilities;
 import cz.mg.compiler.tasks.composer.ComposeException;
 
 
