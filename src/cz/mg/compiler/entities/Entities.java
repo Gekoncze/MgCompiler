@@ -1,6 +1,6 @@
 package cz.mg.compiler.entities;
 
-import cz.mg.compiler.annotations.Child;
+import cz.mg.compiler.annotations.Part;
 import cz.mg.compiler.entities.structured.Structure;
 import cz.mg.compiler.utilities.debug.Trace;
 import cz.mg.compiler.entities.input.Input;
@@ -10,19 +10,19 @@ import cz.mg.compiler.entities.text.Book;
 
 
 public class Entities extends Entity {
-    @Child
+    @Part
     private final Input input = new Input();
 
-    @Child
+    @Part
     private final Book book = new Book();
 
-    @Child
+    @Part
     private final Structure structure = new Structure();
 
-    @Child
+    @Part
     private final Logic logic = new Logic();
 
-    @Child
+    @Part
     private final Output output = new Output();
 
     public Input getInput() {

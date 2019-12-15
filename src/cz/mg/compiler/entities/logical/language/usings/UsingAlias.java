@@ -1,14 +1,14 @@
 package cz.mg.compiler.entities.logical.language.usings;
 
 import cz.mg.collections.list.chainlist.ChainList;
-import cz.mg.compiler.annotations.Child;
+import cz.mg.compiler.annotations.Part;
 import cz.mg.compiler.entities.logical.language.links.NamedLink;
 import cz.mg.compiler.utilities.debug.Text;
 import cz.mg.compiler.utilities.debug.Trace;
 
 
 public class UsingAlias extends Using {
-    @Child
+    @Part
     private final ChainList<NamedLink> path;
     private final Text alias;
 

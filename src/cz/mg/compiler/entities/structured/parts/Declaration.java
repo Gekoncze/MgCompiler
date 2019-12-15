@@ -1,14 +1,13 @@
 package cz.mg.compiler.entities.structured.parts;
 
-import cz.mg.compiler.annotations.Child;
-import cz.mg.compiler.entities.structured.Part;
+import cz.mg.compiler.annotations.Part;
 
 
-public class Declaration extends Part {
-    @Child
+public class Declaration extends cz.mg.compiler.entities.structured.Part {
+    @Part
     private final Type type;
 
-    @Child
+    @Part
     private final Name name;
 
     public Declaration(Type type, Name name) {

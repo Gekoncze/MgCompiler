@@ -2,7 +2,7 @@ package cz.mg.compiler.entities.logical.language.definitions;
 
 import cz.mg.collections.list.chainlist.CachedChainList;
 import cz.mg.collections.list.chainlist.ChainList;
-import cz.mg.compiler.annotations.Child;
+import cz.mg.compiler.annotations.Part;
 import cz.mg.compiler.entities.logical.language.NamedLanguageEntity;
 import cz.mg.compiler.entities.logical.language.links.DatatypeDefinitionLink;
 import cz.mg.compiler.entities.logical.language.other.Property;
@@ -12,13 +12,13 @@ import cz.mg.compiler.utilities.debug.Text;
 public abstract class DatatypeDefinition extends NamedLanguageEntity {
     private final Inheritance inheritance;
 
-    @Child
+    @Part
     private final ChainList<DatatypeDefinitionLink> bases = new CachedChainList<>();
 
-    @Child
+    @Part
     private final ChainList<Property> properties = new CachedChainList<>();
 
-    @Child
+    @Part
     private final ChainList<FunctionDefinition> functions = new CachedChainList<>();
 
     public DatatypeDefinition(Text name, Inheritance inheritance) {

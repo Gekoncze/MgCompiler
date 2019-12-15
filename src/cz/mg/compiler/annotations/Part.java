@@ -7,10 +7,10 @@ import java.lang.annotation.Target;
 
 
 /**
- *  Indicates a parent-child relationship.
- *  This is similar to aggregation or composition in UML.
+ *  Indicates a field holding a part that this object is composed of.
+ *  Examples: engine, block, page, ...
  **/
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface Child {
+public @interface Part {
 }

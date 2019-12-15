@@ -7,10 +7,10 @@ import java.lang.annotation.Target;
 
 
 /**
- *  Indicates a field holding reference to another object.
- *  Examples: friend, contact, home, ...
+ *  Indicates a field holding an information about this object.
+ *  Examples: color, name, height, ...
  **/
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface Link {
+public @interface Info {
 }

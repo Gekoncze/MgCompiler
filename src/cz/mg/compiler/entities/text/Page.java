@@ -2,12 +2,12 @@ package cz.mg.compiler.entities.text;
 
 import cz.mg.collections.list.chainlist.CachedChainList;
 import cz.mg.collections.list.chainlist.ChainList;
-import cz.mg.compiler.annotations.Child;
+import cz.mg.compiler.annotations.Part;
 import cz.mg.compiler.utilities.debug.Text;
 
 
 public class Page extends TextEntity {
-    @Child
+    @Part
     private final ChainList<Line> lines = new CachedChainList<>();
 
     public Page(Text content) {

@@ -1,4 +1,4 @@
-package cz.mg.compilerexplorer;
+package cz.mg.compilerexplorer.core;
 
 import cz.mg.collections.list.chainlist.ChainList;
 import cz.mg.collections.list.chainlist.ChainListItem;

@@ -1,9 +1,9 @@
 package cz.mg.compilerexplorer.gui;
 
-import cz.mg.collections.Collection;
 import cz.mg.compiler.Compiler;
-import cz.mg.compilerexplorer.Core;
-import cz.mg.compilerexplorer.Node;
+import cz.mg.compilerexplorer.core.CompilerExplorer;
+import cz.mg.compilerexplorer.core.Node;
+import cz.mg.compilerexplorer.core.State;
 
 import javax.swing.*;
 import java.awt.*;
@@ -16,13 +16,18 @@ public class MainWindow extends JFrame {
     public static final int HEIGHT = 600;
     public static final String TITLE = "Compiler Explorer";
 
-    private final Core core;
-    private final JList<Node> list;
+    private final CompilerExplorer compilerExplorer;
+    private final NodeList listOfParts;
+    private final NodeList listOfInfos;
+    private final NodeList listOfLinks;
+    private final MainPanel mainPanel;
+    private final GridBagConstraintFactory constraintFactory = new GridBagConstraintFactory(8);
 
-    private final KeyAdapter keyAdapter = new KeyAdapter() {
+    private final KeyAdapter listKeyAdapter = new KeyAdapter() {
         @Override
         public void keyPressed(KeyEvent e) {
             if(e.getKeyCode() == KeyEvent.VK_ENTER){
+                NodeList list = (NodeList) e.getComponent();
                 if(list.getSelectedValue() != null){
                     open(list.getSelectedValue());
                 }
@@ -35,49 +40,40 @@ public class MainWindow extends JFrame {
     };
 
     public MainWindow(Compiler compiler) {
-        this.core = new Core(compiler);
+        this.compilerExplorer = new CompilerExplorer(compiler);
 
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setTitle(TITLE);
         setSize(WIDTH, HEIGHT);
         setLocationRelativeTo(null);
+        setLayout(new GridBagLayout());
 
-        GridBagLayout layout = new GridBagLayout();
-        setLayout(layout);
+        this.listOfParts = new NodeList();
+        this.listOfInfos = new NodeList();
+        this.listOfLinks = new NodeList();
 
-        GridBagConstraints constraints = new GridBagConstraints();
-        constraints.gridx = 0;
-        constraints.gridx = 0;
-        constraints.weightx = 1;
-        constraints.weighty = 1;
-        constraints.insets = new Insets(8, 8, 8, 8);
-        constraints.fill = GridBagConstraints.BOTH;
+        this.mainPanel = new MainPanel(listOfParts, listOfInfos, listOfLinks);
+        getContentPane().add(mainPanel, constraintFactory.create());
 
-        this.list = new JList<>();
-        list.setLayoutOrientation(JList.VERTICAL);
-        list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        list.setCellRenderer(new NodeListRenderer());
-        getContentPane().add(list, constraints);
-
-        addKeyListener(keyAdapter);
-        list.addKeyListener(keyAdapter);
+        listOfParts.addKeyListener(listKeyAdapter);
 
         update();
     }
 
     private void update(){
-        Collection<Node> state = core.getState();
-        list.setModel(new NodeListModel(state));
-        if(state.count() > 0) list.setSelectedIndex(0);
+        State state = compilerExplorer.getState();
+        listOfParts.updateState(state.getParts());
+        listOfInfos.updateState(state.getInfos());
+        listOfLinks.updateState(state.getLinks());
     }
 
     private void open(Node node){
-        core.open(node);
+        compilerExplorer.open(node);
         update();
     }
 
     private void back(){
-        core.back();
+        compilerExplorer.back();
         update();
     }
 }

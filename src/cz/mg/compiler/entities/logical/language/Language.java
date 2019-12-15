@@ -3,9 +3,8 @@ package cz.mg.compiler.entities.logical.language;
 import cz.mg.collections.array.Array;
 import cz.mg.collections.list.chainlist.CachedChainList;
 import cz.mg.collections.list.chainlist.ChainList;
-import cz.mg.compiler.annotations.Child;
+import cz.mg.compiler.annotations.Part;
 import cz.mg.compiler.entities.ToplevelEntity;
-import cz.mg.compiler.entities.structured.Part;
 import cz.mg.compiler.entities.structured.parts.Name;
 import cz.mg.compiler.entities.structured.parts.chains.Path;
 import cz.mg.compiler.tasks.builder.BuildException;
@@ -13,7 +12,7 @@ import cz.mg.compiler.utilities.debug.Text;
 
 
 public class Language extends ToplevelEntity {
-    @Child
+    @Part
     private final ChainList<Location> locations = new CachedChainList<>();
 
     public Language() {
@@ -26,7 +25,7 @@ public class Language extends ToplevelEntity {
     public Location createLocation(String stringPath){
         Text textPath = new Text(stringPath, "");
         Array<Text> textPathParts = textPath.splitByEach(".");
-        ChainList<Part> namePath = new ChainList<>();
+        ChainList<cz.mg.compiler.entities.structured.Part> namePath = new ChainList<>();
         for(Text text : textPathParts) namePath.addLast(new Name(text));
         Path pathPart = new Path(namePath);
         return createLocation(pathPart);
@@ -34,7 +33,7 @@ public class Language extends ToplevelEntity {
 
     public Location createLocation(Path path){
         Location currentLocation = null;
-        for(Part part : path.getParts()){
+        for(cz.mg.compiler.entities.structured.Part part : path.getParts()){
             if(part instanceof Name){
                 if(currentLocation == null){
                     currentLocation = createLocation(part.getContent());

@@ -1,16 +1,16 @@
 package cz.mg.compiler;
 
-import cz.mg.compiler.annotations.Child;
+import cz.mg.compiler.annotations.Part;
 import cz.mg.compiler.entities.Entities;
 import cz.mg.compiler.tasks.MainTask;
 import cz.mg.compiler.tasks.Tasks;
 
 
 public class Compiler extends Element implements Runnable {
-    @Child
+    @Part
     private final Entities entities = new Entities();
 
-    @Child
+    @Part
     private final Tasks tasks = new Tasks();
 
     public Compiler(MainTask mainTask) {

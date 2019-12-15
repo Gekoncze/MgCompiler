@@ -1,13 +1,13 @@
 package cz.mg.compiler.entities.logical.language.other;
 
-import cz.mg.compiler.annotations.Child;
+import cz.mg.compiler.annotations.Part;
 import cz.mg.compiler.entities.logical.language.NamedLanguageEntity;
 import cz.mg.compiler.entities.logical.language.links.DatatypeDefinitionLink;
 import cz.mg.compiler.utilities.debug.Text;
 
 
 public class NativeVariable extends NamedLanguageEntity {
-    @Child
+    @Part
     private final DatatypeDefinitionLink datatype;
 
     private final int referenceCount;

@@ -1,18 +1,17 @@
 package cz.mg.compiler.entities.structured.parts;
 
-import cz.mg.compiler.annotations.Child;
-import cz.mg.compiler.entities.structured.Part;
+import cz.mg.compiler.annotations.Part;
 import cz.mg.compiler.entities.structured.parts.chains.List;
 
 
-public class Stamp extends Part {
-    @Child
+public class Stamp extends cz.mg.compiler.entities.structured.Part {
+    @Part
     private final Special special;
 
-    @Child
+    @Part
     private final Name name;
 
-    @Child
+    @Part
     private final List arguments;
 
     public Stamp(Special special, Name name, List arguments) {

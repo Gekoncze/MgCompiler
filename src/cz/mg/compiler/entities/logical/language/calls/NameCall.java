@@ -1,12 +1,12 @@
 package cz.mg.compiler.entities.logical.language.calls;
 
-import cz.mg.compiler.annotations.Child;
+import cz.mg.compiler.annotations.Part;
 import cz.mg.compiler.entities.logical.language.links.NamedLink;
 import cz.mg.compiler.utilities.debug.Trace;
 
 
 public class NameCall extends Call {
-    @Child
+    @Part
     private final NamedLink target;
 
     public NameCall(Trace trace, NamedLink target) {

@@ -1,22 +1,21 @@
 package cz.mg.compiler.entities.structured.parts;
 
 import cz.mg.collections.list.chainlist.ChainList;
-import cz.mg.compiler.annotations.Child;
-import cz.mg.compiler.entities.structured.Part;
+import cz.mg.compiler.annotations.Part;
 import cz.mg.compiler.entities.structured.parts.groups.UnitedGroup;
 
 
-public class OtherGroup extends Part implements UnitedGroup {
-    @Child
-    private final ChainList<Part> parts;
+public class OtherGroup extends cz.mg.compiler.entities.structured.Part implements UnitedGroup {
+    @Part
+    private final ChainList<cz.mg.compiler.entities.structured.Part> parts;
 
-    public OtherGroup(ChainList<Part> parts) {
+    public OtherGroup(ChainList<cz.mg.compiler.entities.structured.Part> parts) {
         super(merge(parts));
         this.parts = parts;
     }
 
     @Override
-    public ChainList<Part> getParts() {
+    public ChainList<cz.mg.compiler.entities.structured.Part> getParts() {
         return parts;
     }
 

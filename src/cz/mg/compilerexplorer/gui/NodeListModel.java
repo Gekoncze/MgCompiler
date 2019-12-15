@@ -2,7 +2,7 @@ package cz.mg.compilerexplorer.gui;
 
 import cz.mg.collections.Collection;
 import cz.mg.collections.array.Array;
-import cz.mg.compilerexplorer.Node;
+import cz.mg.compilerexplorer.core.Node;
 
 import javax.swing.*;
 import javax.swing.event.ListDataListener;

@@ -1,11 +1,11 @@
 package cz.mg.compiler.entities.logical.language.calls;
 
-import cz.mg.compiler.annotations.Child;
+import cz.mg.compiler.annotations.Part;
 import cz.mg.compiler.entities.logical.language.other.Datatype;
 
 
 public class DatatypeCall extends Call {
-    @Child
+    @Part
     private final Datatype datatype;
 
     public DatatypeCall(Datatype datatype) {

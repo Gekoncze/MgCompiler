@@ -1,19 +1,18 @@
 package cz.mg.compiler.entities.structured.parts;
 
 import cz.mg.collections.list.chainlist.ChainList;
-import cz.mg.compiler.annotations.Child;
-import cz.mg.compiler.entities.structured.Part;
+import cz.mg.compiler.annotations.Part;
 import cz.mg.compiler.entities.structured.parts.groups.UnitedGroup;
 
 
-public class Colon extends Part implements UnitedGroup {
-    @Child
+public class Colon extends cz.mg.compiler.entities.structured.Part implements UnitedGroup {
+    @Part
     private final Special colon;
 
-    @Child
-    private final ChainList<Part> parts;
+    @Part
+    private final ChainList<cz.mg.compiler.entities.structured.Part> parts;
 
-    public Colon(ChainList<Part> parts, Special colon) {
+    public Colon(ChainList<cz.mg.compiler.entities.structured.Part> parts, Special colon) {
         super(merge(colon, merge(parts)));
         this.colon = colon;
         this.parts = parts;
@@ -24,7 +23,7 @@ public class Colon extends Part implements UnitedGroup {
     }
 
     @Override
-    public ChainList<Part> getParts() {
+    public ChainList<cz.mg.compiler.entities.structured.Part> getParts() {
         return parts;
     }
 

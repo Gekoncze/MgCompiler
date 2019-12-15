@@ -1,13 +1,13 @@
 package cz.mg.compiler.entities.logical.language.commands;
 
-import cz.mg.compiler.annotations.Child;
+import cz.mg.compiler.annotations.Part;
 import cz.mg.compiler.entities.logical.language.LanguageEntity;
 import cz.mg.compiler.entities.logical.language.calls.Call;
 import cz.mg.compiler.utilities.debug.Trace;
 
 
 public abstract class Command extends LanguageEntity {
-    @Child
+    @Part
     private Call call = null;
 
     public Command(Trace trace) {

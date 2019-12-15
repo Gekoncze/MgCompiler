@@ -1,20 +1,19 @@
 package cz.mg.compiler.entities.structured.parts.chains;
 
 import cz.mg.collections.list.chainlist.ChainList;
-import cz.mg.compiler.annotations.Child;
-import cz.mg.compiler.entities.structured.Part;
+import cz.mg.compiler.annotations.Part;
 
 
-public abstract class Chain extends Part {
-    @Child
-    private final ChainList<Part> parts;
+public abstract class Chain extends cz.mg.compiler.entities.structured.Part {
+    @Part
+    private final ChainList<cz.mg.compiler.entities.structured.Part> parts;
 
-    public Chain(ChainList<Part> parts) {
+    public Chain(ChainList<cz.mg.compiler.entities.structured.Part> parts) {
         super(merge(parts));
         this.parts = parts;
     }
 
-    public ChainList<Part> getParts() {
+    public ChainList<cz.mg.compiler.entities.structured.Part> getParts() {
         return parts;
     }
 

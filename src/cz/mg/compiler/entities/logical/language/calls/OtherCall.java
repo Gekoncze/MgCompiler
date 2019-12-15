@@ -1,12 +1,12 @@
 package cz.mg.compiler.entities.logical.language.calls;
 
-import cz.mg.compiler.annotations.Child;
+import cz.mg.compiler.annotations.Part;
 import cz.mg.compiler.entities.logical.language.links.OtherLink;
 import cz.mg.compiler.utilities.debug.Trace;
 
 
 public class OtherCall extends Call {
-    @Child
+    @Part
     private final OtherLink target;
 
     public OtherCall(Trace trace, OtherLink target) {
