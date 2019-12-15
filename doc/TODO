@@ -1,74 +1,73 @@
-DONE
+### DONE ### -----------------------------------------------------------------------------------------------------------
 
 
-NOW
-    add missing annotations
+### NOW ### ------------------------------------------------------------------------------------------------------------
+add missing annotations
+
+compiler explorer
     make top path editable
+    will support keyboard shortcuts:
+        context menu for additional actions
+        right/left arrow - show / hide children of selected node
 
-    compiler explorer
-        will support keyboard shortcuts:
-            context menu button - show context menu for item
-            right/left arrow - show / hide children of selected node
-            enter - move to selected node
 
-        will have top panel with current path
-            delimiter will be probably slash
+### SOON ### -----------------------------------------------------------------------------------------------------------
+compiler
+    change tasks - store them in variables
+    task list will be just
+        links maybe
+        or non-annotated
+        or just method to return them
+        or taken with reflection when needed
+        or other solution...
 
-        will not display unannotated fields by default
-            will have check box - show hidden objects
 
-    compiler
-        change tasks - store them in variables
-        task list will be just links maybe, or non-annotated, or just method to return them, or other solution...
+### LATER ### ----------------------------------------------------------------------------------------------------------
+resolver
+    first has to resolve stamps, then other
+    aliases has to be stored somehow, or searched by context
 
-SOON
-    ...
+    maybe separate step in resolver to fill in context entities ???
+        that would require re-creating context for each entity ...
+        better would be remporary context object that would be filled with all possible entity links
+        but links can be created not only with name ... operators too, and depends on input parameters too
 
-LATER
-    resolver
-        first has to resolve stamps, then other
-        aliases has to be stored somehow, or searched by context
+test
+    types.mg - define all required operators in test file
 
-        maybe separate step in resolver to fill in context entities ???
-            that would require re-creating context for each entity ...
-            better would be remporary context object that would be filled with all possible entity links
-            but links can be created not only with name ... operators too, and depends on input parameters too
+language
+    add option to specify target mg language version
+        file based
+        project based
 
-    test
-        types.mg - define all required operators in test file
+    templates !!! or collections ... !
+    exceptions - type for buildin, SAVEPOINT/TRY, CATCH, ROLLBACK, ...
 
-    language
-        add option to specify target mg language version
-            file based
-            project based
+    compilation
+        build stamp definitions
 
-        templates !!! or collections ... !
-        exceptions - type for buildin, SAVEPOINT/TRY, CATCH, ROLLBACK, ...
+    aggregation as clever pointers
+        option to track normal pointers too in debug mode
 
-        compilation
-            build stamp definitions
+    automatické volání konstruktorů destruktorů ???
+        kdy a jak?
 
-        aggregation as clever pointers
-            option to track normal pointers too in debug mode
+    modules
+    custom stamps definitions
 
-        automatické volání konstruktorů destruktorů ???
-            kdy a jak?
+translator to c/cpp
 
-        modules
-        custom stamps definitions
+compiler
+    add healing spots
+        not only separating compilation of each line
+        but also a part until which line is correct and after which is errorneous
+            process line only up until the point where is correct
+            automatically close all brackets and other groups
+        do not add more errors if (probably current task?) already has some
+            because the new ones are most probably caused by the previous ones
 
-    translator to c/cpp
 
-    compiler
-        add healing spots
-            not only separating compilation of each line
-            but also a part until which line is correct and after which is errorneous
-                process line only up until the point where is correct
-                automatically close all brackets and other groups
-            do not add more errors if (probably current task?) already has some
-                because the new ones are most probably caused by the previous ones
-
-IDEAS
+### IDEAS ### ----------------------------------------------------------------------------------------------------------
     language
         an idea - class could be location at the same time
             this could allow to place "inner" classes and functions in separate files
