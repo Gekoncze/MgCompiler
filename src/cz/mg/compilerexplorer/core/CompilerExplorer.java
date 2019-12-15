@@ -19,6 +19,14 @@ public class CompilerExplorer {
         this.history = new History(new Node("compiler", compiler));
     }
 
+    public Compiler getCompiler() {
+        return compiler;
+    }
+
+    public History getHistory() {
+        return history;
+    }
+
     public State getState(){
         return new State(
                 getNodes(history.get(), Part.class),
@@ -49,8 +57,10 @@ public class CompilerExplorer {
                 boolean include = field.isAnnotationPresent(annotation);
                 if(include){
                     if(value instanceof Iterable){
+                        int i = 0;
                         for(Object object : (Iterable)value){
-                            nodes.addLast(new Node(name, object));
+                            nodes.addLast(new Node(name + "[" + i + "]", object));
+                            i++;
                         }
                     } else {
                         nodes.addLast(new Node(name, value));

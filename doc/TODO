@@ -2,18 +2,11 @@ DONE
 
 
 NOW
-    improve compiler explorer browse ability
-        display links in separate part
-        display info in separate part
-
     add missing annotations
-    display links separately
+    make top path editable
 
-    new type of compiler explorer - list based
-        use reflection based on annotations to access nodes
+    compiler explorer
         will support keyboard shortcuts:
-            up/down arrows - move between items in current node
-            backspace - move to parent node
             context menu button - show context menu for item
             right/left arrow - show / hide children of selected node
             enter - move to selected node
@@ -23,6 +16,10 @@ NOW
 
         will not display unannotated fields by default
             will have check box - show hidden objects
+
+    compiler
+        change tasks - store them in variables
+        task list will be just links maybe, or non-annotated, or just method to return them, or other solution...
 
 SOON
     ...

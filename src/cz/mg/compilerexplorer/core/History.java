@@ -15,6 +15,10 @@ public class History {
         currentItem = path.getFirstItem();
     }
 
+    public ChainList<Node> getPath() {
+        return path;
+    }
+
     public void open(Node node){
         if(node == currentItem.getData()) return;
         while(currentItem.hasNext()) currentItem.removeNext();
