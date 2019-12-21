@@ -1,17 +1,14 @@
 ### DONE ### -----------------------------------------------------------------------------------------------------------
-
+small compiler explorer improvements
+    made some listeners global
+    added missing forward keyboard shortcut
+    caching last selected item when opening / closing node
 
 
 ### NOW ### ------------------------------------------------------------------------------------------------------------
 tasks
     add missing annotations to fields
     make child tasks into fields
-
-compiler explorer
-    make top path editable
-    will support keyboard shortcuts:
-        context menu for additional actions
-        right/left arrow - show / hide children of selected node
 
 
 ### SOON ### -----------------------------------------------------------------------------------------------------------
@@ -20,6 +17,11 @@ physical entities
 
 
 ### LATER ### ----------------------------------------------------------------------------------------------------------
+compiler explorer
+    will support keyboard shortcuts:
+        context menu for additional actions
+        right/left arrow - show / hide children of selected node
+
 resolver
     first has to resolve stamps, then other
     aliases has to be stored somehow, or searched by context

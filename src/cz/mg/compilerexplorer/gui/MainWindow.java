@@ -26,6 +26,23 @@ public class MainWindow extends JFrame {
     private final JTextField path;
     private final GridBagConstraintFactory constraintFactory = new GridBagConstraintFactory();
 
+    private final KeyAdapter windowKeyAdapter = new KeyAdapter() {
+        @Override
+        public void keyPressed(KeyEvent e) {
+            if(e.getKeyCode() == KeyEvent.VK_BACK_SPACE){
+                back();
+            }
+
+            if(e.getKeyCode() == KeyEvent.VK_LEFT && e.isAltDown()){
+                back();
+            }
+
+            if(e.getKeyCode() == KeyEvent.VK_RIGHT && e.isAltDown()){
+                forward();
+            }
+        }
+    };
+
     private final KeyAdapter listKeyAdapter = new KeyAdapter() {
         @Override
         public void keyPressed(KeyEvent e) {
@@ -36,8 +53,12 @@ public class MainWindow extends JFrame {
                 }
             }
 
-            if(e.getKeyCode() == KeyEvent.VK_BACK_SPACE){
-                back();
+            if(e.getKeyCode() == KeyEvent.VK_UP){
+                cacheSelectedItem(-1);
+            }
+
+            if(e.getKeyCode() == KeyEvent.VK_DOWN){
+                cacheSelectedItem(+1);
             }
         }
     };
@@ -45,11 +66,7 @@ public class MainWindow extends JFrame {
     public MainWindow(Compiler compiler) {
         this.compilerExplorer = new CompilerExplorer(compiler);
 
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setTitle(TITLE);
-        setSize(WIDTH, HEIGHT);
-        setLocationRelativeTo(null);
-        getContentPane().setLayout(new GridBagLayout());
+        setupComponent();
 
         this.path = new JTextField();
         this.path.setEditable(false);
@@ -62,9 +79,30 @@ public class MainWindow extends JFrame {
         );
         getContentPane().add(mainPanel, constraintFactory.create(0, 1, true, true, 0));
 
-        listOfParts.addKeyListener(listKeyAdapter);
-
+        addListeners();
         update();
+    }
+
+    private void setupComponent(){
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setTitle(TITLE);
+        setSize(WIDTH, HEIGHT);
+        setLocationRelativeTo(null);
+        getContentPane().setLayout(new GridBagLayout());
+    }
+
+    private void addListeners(){
+        listOfParts.addKeyListener(listKeyAdapter);
+        addGlobalListeners(getContentPane());
+    }
+
+    private void addGlobalListeners(Component component){
+        component.addKeyListener(windowKeyAdapter);
+        if(component instanceof Container){
+            for(Component child : ((Container)component).getComponents()) {
+                addGlobalListeners(child);
+            }
+        }
     }
 
     private void update(){
@@ -72,6 +110,7 @@ public class MainWindow extends JFrame {
         listOfParts.updateState(state.getParts());
         listOfInfos.updateState(state.getInfos());
         listOfLinks.updateState(state.getLinks());
+        listOfParts.setSelectedIndex(compilerExplorer.getHistory().get().getSelectedChildIndex());
         updatePath();
     }
 
@@ -92,5 +131,14 @@ public class MainWindow extends JFrame {
     private void back(){
         compilerExplorer.back();
         update();
+    }
+
+    private void forward(){
+        compilerExplorer.forward();
+        update();
+    }
+
+    private void cacheSelectedItem(int delta){
+        compilerExplorer.getHistory().get().setSelectedChildIndex(listOfParts.getSelectedIndex() + delta);
     }
 }
