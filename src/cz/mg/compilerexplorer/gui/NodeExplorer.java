@@ -4,13 +4,15 @@ import javax.swing.*;
 import java.awt.*;
 
 
-public class MainPanel extends JPanel {
+public class NodeExplorer extends JPanel {
     public static final int PADDING = 8;
 
     private final GridBagConstraintFactory constraintFactory = new GridBagConstraintFactory();
-    private boolean initialised = false;
+    private final NodeList listOfParts = new NodeList();
+    private final NodeList listOfInfos = new NodeList();
+    private final NodeList listOfLinks = new NodeList();
 
-    public MainPanel(Component leftComponent, Component topRightComponent, Component bottomRightComponent) {
+    public NodeExplorer() {
         setLayout(new GridBagLayout());
 
         JSplitPane horizontalSplitPane = new JSplitPane();
@@ -24,19 +26,31 @@ public class MainPanel extends JPanel {
         add(horizontalSplitPane, constraintFactory.create(0, 0, true, true, PADDING));
         horizontalSplitPane.setRightComponent(verticalSplitPane);
 
-        horizontalSplitPane.setLeftComponent(leftComponent);
+        horizontalSplitPane.setLeftComponent(listOfParts);
 
         JPanel topPanel = new JPanel();
         topPanel.setLayout(new GridBagLayout());
         topPanel.add(new JLabel("Properties"), constraintFactory.create(0, 0, true, false, PADDING));
-        topPanel.add(topRightComponent, constraintFactory.create(0, 1, true, true, PADDING));
+        topPanel.add(listOfInfos, constraintFactory.create(0, 1, true, true, PADDING));
 
         JPanel bottomPanel = new JPanel();
         bottomPanel.setLayout(new GridBagLayout());
         bottomPanel.add(new JLabel("Links"), constraintFactory.create(0, 0, true, false, PADDING));
-        bottomPanel.add(bottomRightComponent, constraintFactory.create(0, 1, true, true, PADDING));
+        bottomPanel.add(listOfLinks, constraintFactory.create(0, 1, true, true, PADDING));
 
         verticalSplitPane.setLeftComponent(topPanel);
         verticalSplitPane.setRightComponent(bottomPanel);
+    }
+
+    public NodeList getListOfParts() {
+        return listOfParts;
+    }
+
+    public NodeList getListOfInfos() {
+        return listOfInfos;
+    }
+
+    public NodeList getListOfLinks() {
+        return listOfLinks;
     }
 }

@@ -2,7 +2,6 @@ package cz.mg.compilerexplorer.core;
 
 import cz.mg.collections.Collection;
 import cz.mg.collections.list.chainlist.ChainList;
-import cz.mg.compiler.Compiler;
 import cz.mg.compiler.annotations.Info;
 import cz.mg.compiler.annotations.Part;
 import cz.mg.compiler.annotations.Link;
@@ -10,17 +9,13 @@ import cz.mg.utilities.ReflectionUtilities;
 import java.lang.reflect.Field;
 
 
-public class CompilerExplorer {
-    private final Compiler compiler;
+public class Explorer {
     private final History history;
+    private final Cache cache;
 
-    public CompilerExplorer(Compiler compiler) {
-        this.compiler = compiler;
-        this.history = new History(new Node("compiler", compiler));
-    }
-
-    public Compiler getCompiler() {
-        return compiler;
+    public Explorer(Node root) {
+        this.history = new History(root);
+        this.cache = new Cache();
     }
 
     public History getHistory() {
@@ -69,5 +64,9 @@ public class CompilerExplorer {
             }
         }
         return nodes;
+    }
+
+    private static Collection<Node> getPath(Node node){
+        throw new UnsupportedOperationException("TODO"); // TODO
     }
 }

@@ -1,16 +1,26 @@
 ### DONE ### -----------------------------------------------------------------------------------------------------------
-minor improvements
-    fixed initial focus to be on the parts list
-    fixed the design of compiler tasks, removed main task
+side by side view and major compiler explorer improvements
+    added cache object for faster retrieval of node parent
 
 
 ### NOW ### ------------------------------------------------------------------------------------------------------------
 compiler explorer
     side by side view - tasks and entities
+    parent vs history path
+        make alt+left/right move in history
+        make backspace move to parent
+            will require search for parent ... that would be non-linear though!
+            might need some cache or something to speed things up
+            make path to be from parent to current item
+    TODO in Explorer.getPath
+    dont forget to invalidate cache on change OR check if returned parent really contains the object
+        of not, clear the cache
 
-tasks
+compiler - tasks
     add missing annotations to fields
     make child tasks into fields
+
+consider moving the cache collections into MgCollections
 
 
 ### SOON ### -----------------------------------------------------------------------------------------------------------
@@ -78,3 +88,4 @@ language
 distinguish "objrects" and "attribute objects" somehow
 different levels of resolution of names - file level resolution, project level resolution
 types with & $ ?
+hierarchical objects - store reference to parent and update when needed
