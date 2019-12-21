@@ -1,11 +1,13 @@
 ### DONE ### -----------------------------------------------------------------------------------------------------------
-small compiler explorer improvements
-    made some listeners global
-    added missing forward keyboard shortcut
-    caching last selected item when opening / closing node
+minor improvements
+    fixed initial focus to be on the parts list
+    fixed the design of compiler tasks, removed main task
 
 
 ### NOW ### ------------------------------------------------------------------------------------------------------------
+compiler explorer
+    side by side view - tasks and entities
+
 tasks
     add missing annotations to fields
     make child tasks into fields
@@ -13,7 +15,7 @@ tasks
 
 ### SOON ### -----------------------------------------------------------------------------------------------------------
 physical entities
-    think of what interpret will be actually using during runtime
+    think of what interpreter will be actually using at runtime
 
 
 ### LATER ### ----------------------------------------------------------------------------------------------------------
@@ -57,6 +59,7 @@ language
 translator to c/cpp
 
 compiler
+    stamp group / types
     add healing spots
         not only separating compilation of each line
         but also a part until which line is correct and after which is errorneous
@@ -75,5 +78,3 @@ language
 distinguish "objrects" and "attribute objects" somehow
 different levels of resolution of names - file level resolution, project level resolution
 types with & $ ?
-stamp group / types
-mg physical entities woud equal those used for interpreter

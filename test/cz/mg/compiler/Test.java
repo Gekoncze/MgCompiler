@@ -13,7 +13,11 @@ public class Test {
 
         System.out.print("Compiling... ");
 
-        Compiler compiler = new Compiler(new CompileProjectTask(new FilePath(new Text("TestProject.mg", ""))));
+        Compiler compiler = new Compiler();
+        compiler.getTasks().getTasks().addLast(new CompileProjectTask(
+                compiler.getEntities(),
+                new FilePath(new Text("TestProject.mg", ""))
+        ));
         compiler.run();
 
         System.out.println("DONE");

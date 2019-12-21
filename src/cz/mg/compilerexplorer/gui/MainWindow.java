@@ -7,8 +7,7 @@ import cz.mg.compilerexplorer.core.State;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
+import java.awt.event.*;
 import java.util.StringJoiner;
 
 
@@ -26,7 +25,7 @@ public class MainWindow extends JFrame {
     private final JTextField path;
     private final GridBagConstraintFactory constraintFactory = new GridBagConstraintFactory();
 
-    private final KeyAdapter windowKeyAdapter = new KeyAdapter() {
+    private final KeyAdapter globalKeyAdapter = new KeyAdapter() {
         @Override
         public void keyPressed(KeyEvent e) {
             if(e.getKeyCode() == KeyEvent.VK_BACK_SPACE){
@@ -63,6 +62,14 @@ public class MainWindow extends JFrame {
         }
     };
 
+    private final WindowAdapter windowAdapter = new WindowAdapter() {
+        @Override
+        public void windowOpened(WindowEvent e) {
+            listOfParts.requestFocus();
+
+        }
+    };
+
     public MainWindow(Compiler compiler) {
         this.compilerExplorer = new CompilerExplorer(compiler);
 
@@ -94,10 +101,11 @@ public class MainWindow extends JFrame {
     private void addListeners(){
         listOfParts.addKeyListener(listKeyAdapter);
         addGlobalListeners(getContentPane());
+        addWindowListener(windowAdapter);
     }
 
     private void addGlobalListeners(Component component){
-        component.addKeyListener(windowKeyAdapter);
+        component.addKeyListener(globalKeyAdapter);
         if(component instanceof Container){
             for(Component child : ((Container)component).getComponents()) {
                 addGlobalListeners(child);

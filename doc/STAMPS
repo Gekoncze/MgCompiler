@@ -1,3 +1,6 @@
+stamps can belong to certain group
+there cannot be two stamps from the same group applied to a compiler object
+
 ACCESS
     @invisible  # language entity is invisible (default)
     @public  # language entity is visible everywhere
