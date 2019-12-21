@@ -9,7 +9,6 @@ public abstract class MainTask extends Task {
     private Entities entities = null;
 
     public MainTask() {
-        super(null);
     }
 
     public Entities getEntities() {

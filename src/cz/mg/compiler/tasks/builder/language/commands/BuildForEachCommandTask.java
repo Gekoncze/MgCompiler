@@ -6,7 +6,6 @@ import cz.mg.compiler.entities.structured.Block;
 import cz.mg.compiler.entities.structured.parts.Declaration;
 import cz.mg.compiler.entities.structured.parts.Expression;
 import cz.mg.compiler.entities.structured.parts.Name;
-import cz.mg.compiler.tasks.Task;
 import cz.mg.compiler.tasks.builder.language.BuildCallTask;
 import static cz.mg.compiler.tasks.builder.utilities.BuildUtilities.store;
 import static cz.mg.compiler.tasks.composer.utilities.PartUtilities.cast;
@@ -15,19 +14,19 @@ import static cz.mg.compiler.tasks.composer.utilities.PartUtilities.cast;
 public class BuildForEachCommandTask extends BuildBlockCommandTask {
     private final boolean named;
 
-    public BuildForEachCommandTask(Task parentTask, Block block, Context context, boolean named) {
-        super(parentTask, block, context);
+    public BuildForEachCommandTask(Block block, Context context, boolean named) {
+        super(block, context);
         this.named = named;
     }
 
     @Override
     protected void build(Block block) {
         Declaration declaration = cast(block.getParts().get(2), Declaration.class);
-        BuildCallTask declarationTask = new BuildCallTask(this, declaration, getContext());
+        BuildCallTask declarationTask = new BuildCallTask(declaration, getContext());
         declarationTask.tryToRun();
 
         Expression expression = cast(block.getParts().get(4), Expression.class);
-        BuildCallTask task = new BuildCallTask(this, expression, getContext());
+        BuildCallTask task = new BuildCallTask(expression, getContext());
         task.tryToRun();
 
         command = new ForEachCommand(block.getTrace());

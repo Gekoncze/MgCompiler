@@ -13,7 +13,6 @@ import cz.mg.compiler.entities.structured.parts.Declaration;
 import cz.mg.compiler.entities.structured.parts.Expression;
 import cz.mg.compiler.entities.structured.parts.Name;
 import cz.mg.compiler.entities.structured.parts.chains.List;
-import cz.mg.compiler.tasks.Task;
 import cz.mg.compiler.tasks.builder.BlockBuildTask;
 import cz.mg.compiler.tasks.builder.utilities.Rules;
 
@@ -24,8 +23,8 @@ import static cz.mg.compiler.tasks.composer.utilities.PartUtilities.*;
 public class BuildVariablesTask extends BlockBuildTask {
     private ChainList<Variable> variables = new CachedChainList<>();
 
-    public BuildVariablesTask(Task parentTask, Block block, Context context) {
-        super(parentTask, block, context);
+    public BuildVariablesTask(Block block, Context context) {
+        super(block, context);
     }
 
     public ChainList<Variable> getVariables() {

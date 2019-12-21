@@ -35,8 +35,7 @@ public class ComposePartsTask extends ComposeTask {
     private final Line line;
     private ChainList<Part> parts;
 
-    public ComposePartsTask(Task parentTask, Line line) {
-        super(parentTask);
+    public ComposePartsTask(Line line) {
         this.line = line;
     }
 

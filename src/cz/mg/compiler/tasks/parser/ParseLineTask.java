@@ -28,8 +28,7 @@ public class ParseLineTask extends ParseTask {
     private final Line line;
     private CharReader reader = null;
 
-    public ParseLineTask(Task parentTask, Line line) {
-        super(parentTask);
+    public ParseLineTask(Line line) {
         this.line = line;
     }
 

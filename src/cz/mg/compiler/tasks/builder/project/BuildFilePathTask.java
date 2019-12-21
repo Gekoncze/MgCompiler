@@ -3,7 +3,6 @@ package cz.mg.compiler.tasks.builder.project;
 import cz.mg.compiler.entities.logical.project.FilePath;
 import cz.mg.compiler.entities.structured.Block;
 import cz.mg.compiler.entities.structured.parts.Value;
-import cz.mg.compiler.tasks.Task;
 import cz.mg.compiler.tasks.builder.BlockBuildTask;
 import cz.mg.compiler.tasks.builder.utilities.Rules;
 
@@ -11,8 +10,8 @@ import cz.mg.compiler.tasks.builder.utilities.Rules;
 public class BuildFilePathTask extends BlockBuildTask {
     private FilePath filePath = null;
 
-    public BuildFilePathTask(Task parentTask, Block block) {
-        super(parentTask, block);
+    public BuildFilePathTask(Block block) {
+        super(block);
     }
 
     public FilePath getFilePath() {

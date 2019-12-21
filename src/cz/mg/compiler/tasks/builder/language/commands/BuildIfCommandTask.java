@@ -13,14 +13,14 @@ import static cz.mg.compiler.tasks.composer.utilities.PartUtilities.cast;
 public class BuildIfCommandTask extends BuildBlockCommandTask {
     private final boolean named;
 
-    public BuildIfCommandTask(Task parentTask, Block block, Context context, boolean named) {
-        super(parentTask, block, context);
+    public BuildIfCommandTask(Block block, Context context, boolean named) {
+        super(block, context);
         this.named = named;
     }
 
     @Override
     protected void build(Block block) {
-        BuildCallTask task = new BuildCallTask(this, block.getParts().get(1), getContext());
+        BuildCallTask task = new BuildCallTask(block.getParts().get(1), getContext());
         task.tryToRun();
         command = new IfCommand(block.getTrace());
         command.setCall(task.getCall());

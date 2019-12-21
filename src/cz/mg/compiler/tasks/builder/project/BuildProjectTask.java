@@ -3,7 +3,6 @@ package cz.mg.compiler.tasks.builder.project;
 import cz.mg.compiler.entities.logical.project.Project;
 import cz.mg.compiler.entities.structured.Block;
 import cz.mg.compiler.entities.structured.Container;
-import cz.mg.compiler.tasks.Task;
 import cz.mg.compiler.tasks.builder.BlockBuildTask;
 import cz.mg.compiler.tasks.builder.utilities.*;
 import static cz.mg.compiler.tasks.builder.utilities.Filter.*;
@@ -17,8 +16,8 @@ public class BuildProjectTask extends BlockBuildTask {
 
     private final Project project;
 
-    public BuildProjectTask(Task parentTask, Project project, Container projectPage) {
-        super(parentTask, projectPage);
+    public BuildProjectTask(Project project, Container projectPage) {
+        super(projectPage);
         this.project = project;
     }
 
@@ -32,7 +31,7 @@ public class BuildProjectTask extends BlockBuildTask {
     }
 
     private void buildSourceFiles(Block block) {
-        BuildSourceFilesTask task = new BuildSourceFilesTask(this, block);
+        BuildSourceFilesTask task = new BuildSourceFilesTask(block);
         task.tryToRun();
         store(project, "sourceFiles", task.getSourceFiles());
     }

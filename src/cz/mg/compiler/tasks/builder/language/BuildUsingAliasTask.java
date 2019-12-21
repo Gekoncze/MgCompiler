@@ -5,7 +5,6 @@ import cz.mg.compiler.entities.logical.language.usings.UsingAlias;
 import cz.mg.compiler.entities.structured.Block;
 import cz.mg.compiler.entities.structured.Part;
 import cz.mg.compiler.entities.structured.parts.Name;
-import cz.mg.compiler.tasks.Task;
 import cz.mg.compiler.utilities.debug.Text;
 
 import static cz.mg.compiler.tasks.composer.utilities.PartUtilities.cast;
@@ -14,8 +13,8 @@ import static cz.mg.compiler.tasks.composer.utilities.PartUtilities.cast;
 public class BuildUsingAliasTask extends BuildUsingTask {
     private UsingAlias using = null;
 
-    public BuildUsingAliasTask(Task parentTask, Block block, Context context) {
-        super(parentTask, block, context);
+    public BuildUsingAliasTask(Block block, Context context) {
+        super(block, context);
     }
 
     public UsingAlias getUsing() {

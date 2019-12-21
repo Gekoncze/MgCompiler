@@ -4,7 +4,6 @@ import cz.mg.compiler.tasks.Task;
 
 
 public abstract class CompilerTask extends Task {
-    public CompilerTask(Task parentTask) {
-        super(parentTask);
+    public CompilerTask() {
     }
 }

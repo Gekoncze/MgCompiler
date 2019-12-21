@@ -10,7 +10,6 @@ import cz.mg.compiler.entities.structured.Part;
 import cz.mg.compiler.entities.structured.parts.*;
 import cz.mg.compiler.entities.structured.parts.Void;
 import cz.mg.compiler.entities.structured.parts.chains.Path;
-import cz.mg.compiler.tasks.Task;
 import cz.mg.compiler.tasks.builder.BuildTask;
 import cz.mg.compiler.utilities.debug.Text;
 import cz.mg.compiler.utilities.debug.Trace;
@@ -24,8 +23,7 @@ public class BuildCallTask extends BuildTask {
     private Call call = null;
     private final ChainList<Variable> declaredVariables = new CachedChainList<>();
 
-    public BuildCallTask(Task parentTask, Part part, Context context) {
-        super(parentTask);
+    public BuildCallTask(Part part, Context context) {
         this.part = part;
         this.context = context;
     }

@@ -5,7 +5,6 @@ import cz.mg.compiler.entities.logical.language.Language;
 import cz.mg.compiler.entities.logical.language.Location;
 import cz.mg.compiler.entities.structured.Block;
 import cz.mg.compiler.entities.structured.Container;
-import cz.mg.compiler.tasks.Task;
 import cz.mg.compiler.tasks.builder.BlockBuildTask;
 import cz.mg.compiler.tasks.builder.BuildException;
 import cz.mg.compiler.tasks.builder.language.natives.BuildNativeFunctionTask;
@@ -61,8 +60,8 @@ public class BuildSourceFileTask extends BlockBuildTask {
     private Location location = null;
     private Context context = null;
 
-    public BuildSourceFileTask(Task parentTask, Container page, Language language) {
-        super(parentTask, page, null);
+    public BuildSourceFileTask(Container page, Language language) {
+        super(page, null);
         this.language = language;
     }
 
@@ -77,7 +76,7 @@ public class BuildSourceFileTask extends BlockBuildTask {
 
     private void buildLocation(Block block) {
         if(location != null) throw new BuildException(block, "Location was already defined ", new PlaceholderText(location, "here"), ".");
-        BuildLocationTask task = new BuildLocationTask(this, block, language);
+        BuildLocationTask task = new BuildLocationTask(block, language);
         task.run();
         location = task.getLocation();
         context = new Context(location);
@@ -90,217 +89,217 @@ public class BuildSourceFileTask extends BlockBuildTask {
 
     private void buildUsingDirect(Block block) {
         checkLocation(block);
-        BuildUsingDirectTask task = new BuildUsingDirectTask(this, block, context);
+        BuildUsingDirectTask task = new BuildUsingDirectTask(block, context);
         task.tryToRun();
         store(context, "usings", task.getUsing());
     }
 
     private void buildUsingAlias(Block block) {
         checkLocation(block);
-        BuildUsingAliasTask task = new BuildUsingAliasTask(this, block, context);
+        BuildUsingAliasTask task = new BuildUsingAliasTask(block, context);
         task.tryToRun();
         store(context, "usings", task.getUsing());
     }
 
     private void buildUsingAll(Block block) {
         checkLocation(block);
-        BuildUsingAllTask task = new BuildUsingAllTask(this, block, context);
+        BuildUsingAllTask task = new BuildUsingAllTask(block, context);
         task.tryToRun();
         store(context, "usings", task.getUsing());
     }
 
     private void buildClass(Block block) {
         checkLocation(block);
-        BuildClassDefinitionTask task = new BuildClassDefinitionTask(this, block, context, null);
+        BuildClassDefinitionTask task = new BuildClassDefinitionTask(block, context, null);
         task.tryToRun();
         store(location, "entities", task.getDefinition());
     }
 
     private void buildClassIs(Block block) {
         checkLocation(block);
-        BuildClassDefinitionTask task = new BuildClassDefinitionTask(this, block, context, Inheritance.IS);
+        BuildClassDefinitionTask task = new BuildClassDefinitionTask(block, context, Inheritance.IS);
         task.tryToRun();
         store(location, "entities", task.getDefinition());
     }
 
     private void buildClassAlias(Block block) {
         checkLocation(block);
-        BuildClassDefinitionTask task = new BuildClassDefinitionTask(this, block, context, Inheritance.ALIAS);
+        BuildClassDefinitionTask task = new BuildClassDefinitionTask(block, context, Inheritance.ALIAS);
         task.tryToRun();
         store(location, "entities", task.getDefinition());
     }
 
     private void buildClassView(Block block) {
         checkLocation(block);
-        BuildClassDefinitionTask task = new BuildClassDefinitionTask(this, block, context, Inheritance.VIEW);
+        BuildClassDefinitionTask task = new BuildClassDefinitionTask(block, context, Inheritance.VIEW);
         task.tryToRun();
         store(location, "entities", task.getDefinition());
     }
 
     private void buildClassLike(Block block) {
         checkLocation(block);
-        BuildClassDefinitionTask task = new BuildClassDefinitionTask(this, block, context, Inheritance.LIKE);
+        BuildClassDefinitionTask task = new BuildClassDefinitionTask(block, context, Inheritance.LIKE);
         task.tryToRun();
         store(location, "entities", task.getDefinition());
     }
 
     private void buildStructure(Block block) {
         checkLocation(block);
-        BuildStructureDefinitionTask task = new BuildStructureDefinitionTask(this, block, context, null);
+        BuildStructureDefinitionTask task = new BuildStructureDefinitionTask(block, context, null);
         task.tryToRun();
         store(location, "entities", task.getDefinition());
     }
 
     private void buildStructureIs(Block block) {
         checkLocation(block);
-        BuildStructureDefinitionTask task = new BuildStructureDefinitionTask(this, block, context, Inheritance.IS);
+        BuildStructureDefinitionTask task = new BuildStructureDefinitionTask(block, context, Inheritance.IS);
         task.tryToRun();
         store(location, "entities", task.getDefinition());
     }
 
     private void buildStructureAlias(Block block) {
         checkLocation(block);
-        BuildStructureDefinitionTask task = new BuildStructureDefinitionTask(this, block, context, Inheritance.ALIAS);
+        BuildStructureDefinitionTask task = new BuildStructureDefinitionTask(block, context, Inheritance.ALIAS);
         task.tryToRun();
         store(location, "entities", task.getDefinition());
     }
 
     private void buildStructureView(Block block) {
         checkLocation(block);
-        BuildStructureDefinitionTask task = new BuildStructureDefinitionTask(this, block, context, Inheritance.VIEW);
+        BuildStructureDefinitionTask task = new BuildStructureDefinitionTask(block, context, Inheritance.VIEW);
         task.tryToRun();
         store(location, "entities", task.getDefinition());
     }
 
     private void buildStructureLike(Block block) {
         checkLocation(block);
-        BuildStructureDefinitionTask task = new BuildStructureDefinitionTask(this, block, context, Inheritance.LIKE);
+        BuildStructureDefinitionTask task = new BuildStructureDefinitionTask(block, context, Inheritance.LIKE);
         task.tryToRun();
         store(location, "entities", task.getDefinition());
     }
 
     private void buildType(Block block) {
         checkLocation(block);
-        BuildTypeDefinitionTask task = new BuildTypeDefinitionTask(this, block, context, null);
+        BuildTypeDefinitionTask task = new BuildTypeDefinitionTask(block, context, null);
         task.tryToRun();
         store(location, "entities", task.getDefinition());
     }
 
     private void buildTypeIs(Block block) {
         checkLocation(block);
-        BuildTypeDefinitionTask task = new BuildTypeDefinitionTask(this, block, context, Inheritance.IS);
+        BuildTypeDefinitionTask task = new BuildTypeDefinitionTask(block, context, Inheritance.IS);
         task.tryToRun();
         store(location, "entities", task.getDefinition());
     }
 
     private void buildTypeAlias(Block block) {
         checkLocation(block);
-        BuildTypeDefinitionTask task = new BuildTypeDefinitionTask(this, block, context, Inheritance.ALIAS);
+        BuildTypeDefinitionTask task = new BuildTypeDefinitionTask(block, context, Inheritance.ALIAS);
         task.tryToRun();
         store(location, "entities", task.getDefinition());
     }
 
     private void buildTypeView(Block block) {
         checkLocation(block);
-        BuildTypeDefinitionTask task = new BuildTypeDefinitionTask(this, block, context, Inheritance.VIEW);
+        BuildTypeDefinitionTask task = new BuildTypeDefinitionTask(block, context, Inheritance.VIEW);
         task.tryToRun();
         store(location, "entities", task.getDefinition());
     }
 
     private void buildTypeLike(Block block) {
         checkLocation(block);
-        BuildTypeDefinitionTask task = new BuildTypeDefinitionTask(this, block, context, Inheritance.LIKE);
+        BuildTypeDefinitionTask task = new BuildTypeDefinitionTask(block, context, Inheritance.LIKE);
         task.tryToRun();
         store(location, "entities", task.getDefinition());
     }
 
     protected void buildFunction(Block block) {
         checkLocation(block);
-        BuildFunctionTask task = new BuildFunctionTask(this, block, getContext(), false, false, false);
+        BuildFunctionTask task = new BuildFunctionTask(block, getContext(), false, false, false);
         task.tryToRun();
         store(location, "entities", task.getFunctionDefinition());
     }
 
     protected void buildFunctionI(Block block) {
         checkLocation(block);
-        BuildFunctionTask task = new BuildFunctionTask(this, block, getContext(), true, false, false);
+        BuildFunctionTask task = new BuildFunctionTask(block, getContext(), true, false, false);
         task.tryToRun();
         store(location, "entities", task.getFunctionDefinition());
     }
 
     protected void buildFunctionO(Block block) {
         checkLocation(block);
-        BuildFunctionTask task = new BuildFunctionTask(this, block, getContext(), false, true, false);
+        BuildFunctionTask task = new BuildFunctionTask(block, getContext(), false, true, false);
         task.tryToRun();
         store(location, "entities", task.getFunctionDefinition());
     }
 
     protected void buildFunctionIO(Block block) {
         checkLocation(block);
-        BuildFunctionTask task = new BuildFunctionTask(this, block, getContext(), true, true, false);
+        BuildFunctionTask task = new BuildFunctionTask(block, getContext(), true, true, false);
         task.tryToRun();
         store(location, "entities", task.getFunctionDefinition());
     }
 
     protected void buildFunctionIOO(Block block) {
         checkLocation(block);
-        BuildFunctionTask task = new BuildFunctionTask(this, block, getContext(), true, true, true);
+        BuildFunctionTask task = new BuildFunctionTask(block, getContext(), true, true, true);
         task.tryToRun();
         store(location, "entities", task.getFunctionDefinition());
     }
 
     private void buildNativeUsing(Block block) {
         checkLocation(block);
-        BuildNativeUsingTask task = new BuildNativeUsingTask(this, block, context);
+        BuildNativeUsingTask task = new BuildNativeUsingTask(block, context);
         task.tryToRun();
         store(context, "usings", task.getUsing());
     }
 
     private void buildNativeType(Block block) {
         checkLocation(block);
-        BuildNativeTypeDefinitionTask task = new BuildNativeTypeDefinitionTask(this, block, context);
+        BuildNativeTypeDefinitionTask task = new BuildNativeTypeDefinitionTask(block, context);
         task.tryToRun();
         store(location, "entities", task.getDefinition());
     }
 
     private void buildNativeStructure(Block block) {
         checkLocation(block);
-        BuildNativeStructureDefinitionTask task = new BuildNativeStructureDefinitionTask(this, block, context);
+        BuildNativeStructureDefinitionTask task = new BuildNativeStructureDefinitionTask(block, context);
         task.tryToRun();
         store(location, "entities", task.getDefinition());
     }
 
     protected void buildNativeFunction(Block block) {
         checkLocation(block);
-        BuildNativeFunctionTask task = new BuildNativeFunctionTask(this, block, getContext(), false, false, false);
+        BuildNativeFunctionTask task = new BuildNativeFunctionTask(block, getContext(), false, false, false);
         task.tryToRun();
         store(location, "entities", task.getFunctionDefinition());
     }
 
     protected void buildNativeFunctionI(Block block) {
         checkLocation(block);
-        BuildNativeFunctionTask task = new BuildNativeFunctionTask(this, block, getContext(), true, false, false);
+        BuildNativeFunctionTask task = new BuildNativeFunctionTask(block, getContext(), true, false, false);
         task.tryToRun();
         store(location, "entities", task.getFunctionDefinition());
     }
 
     protected void buildNativeFunctionO(Block block) {
         checkLocation(block);
-        BuildNativeFunctionTask task = new BuildNativeFunctionTask(this, block, getContext(), false, true, false);
+        BuildNativeFunctionTask task = new BuildNativeFunctionTask(block, getContext(), false, true, false);
         task.tryToRun();
         store(location, "entities", task.getFunctionDefinition());
     }
 
     protected void buildNativeFunctionIO(Block block) {
         checkLocation(block);
-        BuildNativeFunctionTask task = new BuildNativeFunctionTask(this, block, getContext(), true, true, false);
+        BuildNativeFunctionTask task = new BuildNativeFunctionTask(block, getContext(), true, true, false);
         task.tryToRun();
         store(location, "entities", task.getFunctionDefinition());
     }
 
     protected void buildNativeFunctionIOO(Block block) {
         checkLocation(block);
-        BuildNativeFunctionTask task = new BuildNativeFunctionTask(this, block, getContext(), true, true, true);
+        BuildNativeFunctionTask task = new BuildNativeFunctionTask(block, getContext(), true, true, true);
         task.tryToRun();
         store(location, "entities", task.getFunctionDefinition());
     }

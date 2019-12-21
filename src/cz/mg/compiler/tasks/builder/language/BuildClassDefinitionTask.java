@@ -7,7 +7,6 @@ import cz.mg.compiler.entities.structured.Block;
 import cz.mg.compiler.entities.structured.Part;
 import cz.mg.compiler.entities.structured.parts.Name;
 import cz.mg.compiler.entities.structured.parts.chains.List;
-import cz.mg.compiler.tasks.Task;
 import cz.mg.compiler.tasks.builder.utilities.Rules;
 import static cz.mg.compiler.entities.logical.language.definitions.DatatypeDefinition.Inheritance;
 import static cz.mg.compiler.tasks.composer.utilities.PartUtilities.*;
@@ -17,8 +16,8 @@ public class BuildClassDefinitionTask extends BuildDatatypeDefinitionTask {
     private final Inheritance inheritance;
     private ClassDefinition classDefinition;
 
-    public BuildClassDefinitionTask(Task parentTask, Block block, Context context, Inheritance inheritance) {
-        super(parentTask, block, context);
+    public BuildClassDefinitionTask(Block block, Context context, Inheritance inheritance) {
+        super(block, context);
         this.inheritance = inheritance;
     }
 

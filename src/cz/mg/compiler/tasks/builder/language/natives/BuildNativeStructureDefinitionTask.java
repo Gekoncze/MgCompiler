@@ -4,7 +4,6 @@ import cz.mg.compiler.entities.logical.language.Context;
 import cz.mg.compiler.entities.logical.language.natives.NativeStructureDefinition;
 import cz.mg.compiler.entities.structured.Block;
 import cz.mg.compiler.entities.structured.parts.Name;
-import cz.mg.compiler.tasks.Task;
 import cz.mg.compiler.tasks.builder.utilities.Rules;
 import static cz.mg.compiler.tasks.composer.utilities.PartUtilities.cast;
 
@@ -12,8 +11,8 @@ import static cz.mg.compiler.tasks.composer.utilities.PartUtilities.cast;
 public class BuildNativeStructureDefinitionTask extends BuildNativeDatatypeDefinitionTask {
     private NativeStructureDefinition structureDefinition;
 
-    public BuildNativeStructureDefinitionTask(Task parentTask, Block block, Context context) {
-        super(parentTask, block, context);
+    public BuildNativeStructureDefinitionTask(Block block, Context context) {
+        super(block, context);
     }
 
     @Override

@@ -1,8 +1,11 @@
 ### DONE ### -----------------------------------------------------------------------------------------------------------
 
 
+
 ### NOW ### ------------------------------------------------------------------------------------------------------------
-add missing annotations
+tasks
+    add missing annotations to fields
+    make child tasks into fields
 
 compiler explorer
     make top path editable
@@ -12,14 +15,8 @@ compiler explorer
 
 
 ### SOON ### -----------------------------------------------------------------------------------------------------------
-compiler
-    change tasks - store them in variables
-    task list will be just
-        links maybe
-        or non-annotated
-        or just method to return them
-        or taken with reflection when needed
-        or other solution...
+physical entities
+    think of what interpret will be actually using during runtime
 
 
 ### LATER ### ----------------------------------------------------------------------------------------------------------
@@ -68,10 +65,13 @@ compiler
 
 
 ### IDEAS ### ----------------------------------------------------------------------------------------------------------
-    language
-        an idea - class could be location at the same time
-            this could allow to place "inner" classes and functions in separate files
-            on filesystem level, it could be solved as a folder with the same name as the class (without the extension)
+language
+    an idea - class could be location at the same time
+        this could allow to place "inner" classes and functions in separate files
+        on filesystem level, it could be solved as a folder with the same name as the class (without the extension)
 
-    distinguish "objrects" and "attribute objects" somehow
-    different levels of resolution of names - file level resolution, project level resolution
+distinguish "objrects" and "attribute objects" somehow
+different levels of resolution of names - file level resolution, project level resolution
+types with & $ ?
+stamp group / types
+mg physical entities woud equal those used for interpreter

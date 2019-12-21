@@ -4,15 +4,14 @@ import cz.mg.compiler.entities.logical.language.Context;
 import cz.mg.compiler.entities.logical.language.commands.ContinueCommand;
 import cz.mg.compiler.entities.structured.Block;
 import cz.mg.compiler.entities.structured.parts.Name;
-import cz.mg.compiler.tasks.Task;
 import static cz.mg.compiler.tasks.composer.utilities.PartUtilities.cast;
 
 
 public class BuildContinueCommandTask extends BuildCommandTask {
     private final boolean name;
 
-    public BuildContinueCommandTask(Task parentTask, Block block, Context context, boolean name) {
-        super(parentTask, block, context);
+    public BuildContinueCommandTask(Block block, Context context, boolean name) {
+        super(block, context);
         this.name = name;
     }
 

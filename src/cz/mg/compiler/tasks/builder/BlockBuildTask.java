@@ -4,7 +4,6 @@ import cz.mg.compiler.entities.logical.language.Context;
 import cz.mg.compiler.entities.logical.language.Documentation;
 import cz.mg.compiler.entities.logical.language.Stamps;
 import cz.mg.compiler.entities.structured.Block;
-import cz.mg.compiler.tasks.Task;
 import cz.mg.compiler.tasks.builder.utilities.Rules;
 
 
@@ -14,14 +13,12 @@ public abstract class BlockBuildTask extends BuildTask {
     private Stamps stamps = null;
     private Documentation documentation = null;
 
-    public BlockBuildTask(Task parentTask, Block block, Context context) {
-        super(parentTask);
+    public BlockBuildTask(Block block, Context context) {
         this.block = block;
         this.context = context;
     }
 
-    public BlockBuildTask(Task parentTask, Block block) {
-        super(parentTask);
+    public BlockBuildTask(Block block) {
         this.block = block;
         this.context = null;
     }
@@ -67,13 +64,13 @@ public abstract class BlockBuildTask extends BuildTask {
     }
 
     private Stamps buildStamps(Block block, Context context){
-        BuildStampsTask task = new BuildStampsTask(this, block, context);
+        BuildStampsTask task = new BuildStampsTask(block, context);
         task.tryToRun();
         return task.getStamps();
     }
 
     private Documentation buildDocumentation(Block block, Context context){
-        BuildDocumentationTask task = new BuildDocumentationTask(this, block, context);
+        BuildDocumentationTask task = new BuildDocumentationTask(block, context);
         task.tryToRun();
         return task.getDocumentation();
     }

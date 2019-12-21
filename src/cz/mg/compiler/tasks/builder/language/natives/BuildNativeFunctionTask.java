@@ -12,7 +12,6 @@ import cz.mg.compiler.entities.structured.parts.Declaration;
 import cz.mg.compiler.entities.structured.parts.Name;
 import cz.mg.compiler.entities.structured.parts.Operator;
 import cz.mg.compiler.entities.structured.parts.chains.List;
-import cz.mg.compiler.tasks.Task;
 import cz.mg.compiler.tasks.builder.BlockBuildTask;
 import cz.mg.compiler.tasks.builder.utilities.Rules;
 import cz.mg.compiler.utilities.debug.Text;
@@ -26,8 +25,8 @@ public class BuildNativeFunctionTask extends BlockBuildTask {
     private final boolean operator;
     private NativeFunctionDefinition functionDefinition = null;
 
-    public BuildNativeFunctionTask(Task parentTask, Block block, Context context, boolean input, boolean output, boolean operator) {
-        super(parentTask, block, context);
+    public BuildNativeFunctionTask(Block block, Context context, boolean input, boolean output, boolean operator) {
+        super(block, context);
         this.input = input;
         this.output = output;
         this.operator = operator;

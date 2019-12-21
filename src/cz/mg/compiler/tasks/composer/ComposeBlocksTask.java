@@ -6,7 +6,6 @@ import cz.mg.compiler.entities.structured.Block;
 import cz.mg.compiler.entities.structured.Part;
 import cz.mg.compiler.entities.structured.parts.Stamp;
 import cz.mg.compiler.entities.text.Line;
-import cz.mg.compiler.tasks.Task;
 import cz.mg.compiler.utilities.debug.Text;
 import cz.mg.compiler.utilities.readers.LineReader;
 import static cz.mg.compiler.tasks.composer.utilities.PartUtilities.cast;
@@ -20,8 +19,7 @@ public class ComposeBlocksTask extends ComposeTask {
     private ChainList<Text> documentation = new CachedChainList<>();
     private ChainList<Stamp> stamps = new CachedChainList<>();
 
-    public ComposeBlocksTask(Task parentTask, LineReader lineReader, ChainList<Block> parent, int indentation) {
-        super(parentTask);
+    public ComposeBlocksTask(LineReader lineReader, ChainList<Block> parent, int indentation) {
         this.lineReader = lineReader;
         this.parent = parent;
         this.indentation = indentation;
@@ -67,7 +65,7 @@ public class ComposeBlocksTask extends ComposeTask {
         checkValidIndentation(line);
         harvestComments(line);
 
-        ComposePartsTask task = new ComposePartsTask(this, line);
+        ComposePartsTask task = new ComposePartsTask(line);
         task.tryToRun();
         ChainList<Part> parts = task.getParts();
 
@@ -108,6 +106,6 @@ public class ComposeBlocksTask extends ComposeTask {
         Block block = new Block(line.getContent(), parts, documentation, stamps);
         parent.addLast(block);
         positiveReset();
-        new ComposeBlocksTask(this, lineReader, block.getBlocks(), indentation + 1).run();
+        new ComposeBlocksTask(lineReader, block.getBlocks(), indentation + 1).run();
     }
 }

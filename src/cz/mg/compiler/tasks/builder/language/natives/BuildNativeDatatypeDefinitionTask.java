@@ -24,42 +24,42 @@ public abstract class BuildNativeDatatypeDefinitionTask extends BlockBuildTask {
     protected final Rules rulesLeft = new Rules(RULE_F1, RULE_F2, RULE_F3, RULE_F4, RULE_F5, RULE_P1);
     protected final Rules rulesRight = new Rules(RULE_F1, RULE_F2, RULE_F3, RULE_F4, RULE_F5);
 
-    public BuildNativeDatatypeDefinitionTask(Task parentTask, Block block, Context context) {
-        super(parentTask, block, context);
+    public BuildNativeDatatypeDefinitionTask(Block block, Context context) {
+        super(block, context);
     }
 
     protected void buildNativeFunction(Block block) {
-        BuildNativeFunctionTask task = new BuildNativeFunctionTask(this, block, getContext(), false, false, false);
+        BuildNativeFunctionTask task = new BuildNativeFunctionTask(block, getContext(), false, false, false);
         task.tryToRun();
         store(getDefinition(), "functions", task.getFunctionDefinition());
     }
 
     protected void buildNativeFunctionI(Block block) {
-        BuildNativeFunctionTask task = new BuildNativeFunctionTask(this, block, getContext(), true, false, false);
+        BuildNativeFunctionTask task = new BuildNativeFunctionTask(block, getContext(), true, false, false);
         task.tryToRun();
         store(getDefinition(), "functions", task.getFunctionDefinition());
     }
 
     protected void buildNativeFunctionO(Block block) {
-        BuildNativeFunctionTask task = new BuildNativeFunctionTask(this, block, getContext(), false, true, false);
+        BuildNativeFunctionTask task = new BuildNativeFunctionTask(block, getContext(), false, true, false);
         task.tryToRun();
         store(getDefinition(), "functions", task.getFunctionDefinition());
     }
 
     protected void buildNativeFunctionIO(Block block) {
-        BuildNativeFunctionTask task = new BuildNativeFunctionTask(this, block, getContext(), true, true, false);
+        BuildNativeFunctionTask task = new BuildNativeFunctionTask(block, getContext(), true, true, false);
         task.tryToRun();
         store(getDefinition(), "functions", task.getFunctionDefinition());
     }
 
     protected void buildNativeFunctionIOO(Block block) {
-        BuildNativeFunctionTask task = new BuildNativeFunctionTask(this, block, getContext(), true, true, true);
+        BuildNativeFunctionTask task = new BuildNativeFunctionTask(block, getContext(), true, true, true);
         task.tryToRun();
         store(getDefinition(), "functions", task.getFunctionDefinition());
     }
 
     protected void buildProperties(Block block) {
-        BuildVariablesTask task = new BuildVariablesTask(this, block, getContext());
+        BuildVariablesTask task = new BuildVariablesTask(block, getContext());
         task.tryToRun();
         store(getDefinition(), "properties", task.getVariables());
     }

@@ -11,7 +11,6 @@ import cz.mg.compiler.entities.structured.Part;
 import cz.mg.compiler.entities.structured.parts.Stamp;
 import cz.mg.compiler.entities.structured.parts.Value;
 import cz.mg.compiler.entities.structured.parts.chains.List;
-import cz.mg.compiler.tasks.Task;
 import cz.mg.compiler.utilities.debug.Text;
 import cz.mg.compiler.utilities.debug.Trace;
 import static cz.mg.compiler.tasks.composer.utilities.PartUtilities.*;
@@ -22,8 +21,7 @@ public class BuildStampsTask extends BuildTask {
     private final Context context;
     private Stamps stamps = null;
 
-    public BuildStampsTask(Task parentTask, Block block, Context context) {
-        super(parentTask);
+    public BuildStampsTask(Block block, Context context) {
         this.block = block;
         this.context = context;
     }

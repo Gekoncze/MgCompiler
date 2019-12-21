@@ -12,7 +12,6 @@ import cz.mg.compiler.entities.structured.Block;
 import cz.mg.compiler.entities.structured.Part;
 import cz.mg.compiler.entities.structured.parts.*;
 import cz.mg.compiler.entities.structured.parts.chains.List;
-import cz.mg.compiler.tasks.Task;
 import cz.mg.compiler.tasks.builder.BlockBuildTask;
 import cz.mg.compiler.tasks.builder.BuildException;
 import cz.mg.compiler.tasks.builder.utilities.Rules;
@@ -23,8 +22,8 @@ import static cz.mg.compiler.tasks.composer.utilities.PartUtilities.*;
 public class BuildPropertiesTask extends BlockBuildTask {
     private ChainList<Property> properties = new CachedChainList<>();
 
-    public BuildPropertiesTask(Task parentTask, Block block, Context context) {
-        super(parentTask, block, context);
+    public BuildPropertiesTask(Block block, Context context) {
+        super(block, context);
     }
 
     public ChainList<Property> getProperties() {
@@ -82,7 +81,7 @@ public class BuildPropertiesTask extends BlockBuildTask {
     }
 
     private Call buildInitializer(Expression expression){
-        BuildCallTask task = new BuildCallTask(this, expression, getContext());
+        BuildCallTask task = new BuildCallTask(expression, getContext());
         task.tryToRun();
         return task.getCall();
     }

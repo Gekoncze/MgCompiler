@@ -4,32 +4,14 @@ import cz.mg.collections.list.List;
 import cz.mg.collections.list.chainlist.CachedChainList;
 import cz.mg.compiler.Element;
 import cz.mg.compiler.annotations.Info;
-import cz.mg.compiler.annotations.Part;
-import cz.mg.compiler.annotations.Link;
 import cz.mg.compiler.utilities.debug.CompileException;
 
 
 public abstract class Task extends Element {
-    @Link
-    private final Task parentTask;
-
-    @Part
-    private final List<Task> tasks = new CachedChainList<>();
-
     @Info
     private final List<CompileException> errors = new CachedChainList<>();
 
-    public Task(Task parentTask) {
-        this.parentTask = parentTask;
-        if(parentTask != null) parentTask.tasks.addLast(this);
-    }
-
-    public final Task getParentTask() {
-        return parentTask;
-    }
-
-    public final List<Task> getTasks() {
-        return tasks;
+    public Task() {
     }
 
     public final List<CompileException> getErrors() {
@@ -53,12 +35,6 @@ public abstract class Task extends Element {
             if(!e.isConsumed()) errors.addLast(e);
             e.consume();
         }
-    }
-
-    public final List<CompileException> getAllErrors(){
-        List<CompileException> allErrors = new CachedChainList<>(getErrors());
-        for(Task task : tasks) allErrors.addCollectionLast(task.getAllErrors());
-        return allErrors;
     }
 
     protected abstract void onRun();

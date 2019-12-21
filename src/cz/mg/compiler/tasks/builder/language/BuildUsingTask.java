@@ -8,15 +8,14 @@ import cz.mg.compiler.entities.structured.Block;
 import cz.mg.compiler.entities.structured.Part;
 import cz.mg.compiler.entities.structured.parts.Name;
 import cz.mg.compiler.entities.structured.parts.chains.Path;
-import cz.mg.compiler.tasks.Task;
 import cz.mg.compiler.tasks.builder.BlockBuildTask;
 import cz.mg.compiler.tasks.builder.utilities.Rules;
 import static cz.mg.compiler.tasks.composer.utilities.PartUtilities.*;
 
 
 public abstract class BuildUsingTask extends BlockBuildTask {
-    public BuildUsingTask(Task parentTask, Block block, Context context) {
-        super(parentTask, block, context);
+    public BuildUsingTask(Block block, Context context) {
+        super(block, context);
     }
 
     @Override

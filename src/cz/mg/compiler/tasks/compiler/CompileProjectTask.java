@@ -18,14 +18,14 @@ public class CompileProjectTask extends MainTask {
     @Override
     protected void onRun() {
         Project project = getEntities().getLogic().getProject();
-        new CompileProjectFileTask(this, projectFilePath, project, getEntities()).run();
+        new CompileProjectFileTask(projectFilePath, project, getEntities()).run();
 
         if(project.getSourceFiles() != null){
             Language language = getEntities().getLogic().getLanguage();
             BuildinStamps.addBuildinStamps(language);
             BuildinTypes.addBuildinTypes(language);
             for(FilePath filePath : project.getSourceFiles().getFiles()){
-                new CompileSourceFileTask(this, filePath, language, getEntities()).run();
+                new CompileSourceFileTask(filePath, language, getEntities()).run();
             }
         }
     }

@@ -12,7 +12,6 @@ import cz.mg.compiler.entities.structured.parts.Declaration;
 import cz.mg.compiler.entities.structured.parts.Name;
 import cz.mg.compiler.entities.structured.parts.Operator;
 import cz.mg.compiler.entities.structured.parts.chains.List;
-import cz.mg.compiler.tasks.Task;
 import cz.mg.compiler.utilities.debug.Text;
 import static cz.mg.compiler.tasks.builder.utilities.BuildUtilities.*;
 import static cz.mg.compiler.tasks.composer.utilities.PartUtilities.*;
@@ -24,8 +23,8 @@ public class BuildFunctionTask extends BuildCommandContainerTask {
     private final boolean operator;
     private FunctionDefinition functionDefinition = null;
 
-    public BuildFunctionTask(Task parentTask, Block block, Context context, boolean input, boolean output, boolean operator) {
-        super(parentTask, block, context);
+    public BuildFunctionTask(Block block, Context context, boolean input, boolean output, boolean operator) {
+        super(block, context);
         this.input = input;
         this.output = output;
         this.operator = operator;

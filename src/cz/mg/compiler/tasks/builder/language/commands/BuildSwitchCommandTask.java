@@ -4,7 +4,6 @@ import cz.mg.compiler.entities.logical.language.Context;
 import cz.mg.compiler.entities.logical.language.commands.SwitchCommand;
 import cz.mg.compiler.entities.structured.Block;
 import cz.mg.compiler.entities.structured.parts.Name;
-import cz.mg.compiler.tasks.Task;
 import cz.mg.compiler.tasks.builder.language.BuildCallTask;
 import cz.mg.compiler.tasks.builder.utilities.Pattern;
 import cz.mg.compiler.tasks.builder.utilities.Rule;
@@ -23,8 +22,8 @@ public class BuildSwitchCommandTask extends BuildBlockCommandTask {
 
     private final boolean named;
 
-    public BuildSwitchCommandTask(Task parentTask, Block block, Context context, boolean named) {
-        super(parentTask, block, context);
+    public BuildSwitchCommandTask(Block block, Context context, boolean named) {
+        super(block, context);
         this.named = named;
     }
 
@@ -35,7 +34,7 @@ public class BuildSwitchCommandTask extends BuildBlockCommandTask {
 
     @Override
     protected void build(Block block) {
-        BuildCallTask task = new BuildCallTask(this, block.getParts().get(1), getContext());
+        BuildCallTask task = new BuildCallTask(block.getParts().get(1), getContext());
         task.tryToRun();
         command = new SwitchCommand(block.getTrace());
         command.setCall(task.getCall());

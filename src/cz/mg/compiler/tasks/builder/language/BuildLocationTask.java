@@ -4,7 +4,6 @@ import cz.mg.compiler.entities.logical.language.Language;
 import cz.mg.compiler.entities.logical.language.Location;
 import cz.mg.compiler.entities.structured.Block;
 import cz.mg.compiler.entities.structured.parts.chains.Path;
-import cz.mg.compiler.tasks.Task;
 import cz.mg.compiler.tasks.builder.BlockBuildTask;
 import cz.mg.compiler.tasks.builder.utilities.Rules;
 
@@ -15,8 +14,8 @@ public class BuildLocationTask extends BlockBuildTask {
     private final Language language;
     private Location location = null;
 
-    public BuildLocationTask(Task parentTask, Block block, Language language) {
-        super(parentTask, block, null);
+    public BuildLocationTask(Block block, Language language) {
+        super(block, null);
         this.language = language;
     }
 

@@ -2,7 +2,6 @@ package cz.mg.compiler.tasks.builder.project;
 
 import cz.mg.compiler.entities.logical.project.SourceFiles;
 import cz.mg.compiler.entities.structured.Block;
-import cz.mg.compiler.tasks.Task;
 import cz.mg.compiler.tasks.builder.BlockBuildTask;
 import cz.mg.compiler.tasks.builder.utilities.Pattern;
 import cz.mg.compiler.tasks.builder.utilities.Rule;
@@ -17,8 +16,8 @@ public class BuildSourceFilesTask extends BlockBuildTask {
 
     private SourceFiles sourceFiles;
 
-    public BuildSourceFilesTask(Task parentTask, Block block) {
-        super(parentTask, block);
+    public BuildSourceFilesTask(Block block) {
+        super(block);
     }
 
     public SourceFiles getSourceFiles() {
@@ -36,7 +35,7 @@ public class BuildSourceFilesTask extends BlockBuildTask {
     }
 
     private void buildFilePath(Block block){
-        BuildFilePathTask task = new BuildFilePathTask(this, block);
+        BuildFilePathTask task = new BuildFilePathTask(block);
         task.tryToRun();
         if(task.getFilePath() != null) sourceFiles.getFiles().addLast(task.getFilePath());
     }
