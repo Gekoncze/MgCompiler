@@ -11,6 +11,7 @@ public class History {
     private ChainListItem<Node> currentItem;
 
     public History(Node node) {
+        if(node == null) throw new IllegalArgumentException();
         path.addLast(node);
         currentItem = path.getFirstItem();
     }
@@ -20,6 +21,7 @@ public class History {
     }
 
     public void open(Node node){
+        if(node == null) return;
         if(node == currentItem.getData()) return;
         while(currentItem.hasNext()) currentItem.removeNext();
         path.addLast(node);
