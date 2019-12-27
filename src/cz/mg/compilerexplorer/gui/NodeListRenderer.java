@@ -25,14 +25,7 @@ public class NodeListRenderer extends JLabel implements ListCellRenderer<Node> {
         return this;
     }
 
-    private static String nodeToString(Node node) {
+    public static String nodeToString(Node node) {
         return node.getElement().getClass().getSimpleName() + " " + node.getName();
-    }
-
-    @Deprecated
-    private static String sanitize(String s){
-        if(s.contains("\n")) s = s.substring(0, s.indexOf("\n"));
-        if(s.length() > 100) s = s.substring(0, 100);
-        return s;
     }
 }

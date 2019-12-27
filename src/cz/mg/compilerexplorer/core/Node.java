@@ -4,7 +4,6 @@ package cz.mg.compilerexplorer.core;
 public class Node {
     private final String name;
     private final Object element;
-    private int selectedChildIndex = 0;
 
     public Node(String name, Object element) {
         this.name = name;
@@ -19,11 +18,15 @@ public class Node {
         return element;
     }
 
-    public int getSelectedChildIndex() {
-        return selectedChildIndex;
+    @Override
+    public boolean equals(Object o) {
+        if(!(o instanceof Node)) return false;
+        Node node = (Node) o;
+        return node.getElement() == getElement();
     }
 
-    public void setSelectedChildIndex(int selectedChildIndex) {
-        this.selectedChildIndex = selectedChildIndex;
+    @Override
+    public int hashCode() {
+        return element.hashCode();
     }
 }

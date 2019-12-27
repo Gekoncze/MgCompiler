@@ -42,4 +42,8 @@ public class OrderedHashMap<A, B> {
     public Collection<B> getValues(){
         return map.values();
     }
+
+    public boolean hasKey(A key){
+        return map.containsKey(key);
+    }
 }

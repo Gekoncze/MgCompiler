@@ -1,10 +1,11 @@
 ### DONE ### -----------------------------------------------------------------------------------------------------------
-side by side view and major compiler explorer improvements
-    added cache object for faster retrieval of node parent
 
 
 ### NOW ### ------------------------------------------------------------------------------------------------------------
 compiler explorer
+    check
+        last selection still works?
+
     side by side view - tasks and entities
     parent vs history path
         make alt+left/right move in history
@@ -89,3 +90,5 @@ distinguish "objrects" and "attribute objects" somehow
 different levels of resolution of names - file level resolution, project level resolution
 types with & $ ?
 hierarchical objects - store reference to parent and update when needed
+symbolic links insted of / along with references
+    will store absolute or relative path (integers) to given object

@@ -1,47 +1,28 @@
 package cz.mg.compilerexplorer.gui;
 
-import cz.mg.compilerexplorer.core.Explorer;
-
-import javax.swing.*;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
+import cz.mg.compiler.entities.Entity;
+import cz.mg.compiler.tasks.Task;
+import cz.mg.compiler.tasks.Tasks;
+import cz.mg.compilerexplorer.core.Node;
 
 
 public class TaskExplorer extends NodeExplorer {
-    private final Explorer explorer;
-    private final JTextField path;
+    private EntityExplorer entityExplorer = null;
 
-
-    private final KeyAdapter keyAdapter = new KeyAdapter() {
-        @Override
-        public void keyPressed(KeyEvent e) {
-            if(e.getKeyCode() == KeyEvent.VK_ENTER){
-                NodeList list = (NodeList) e.getComponent();
-                if(list.getSelectedValue() != null){
-                    open(list.getSelectedValue());
-                }
-            }
-
-            if(e.getKeyCode() == KeyEvent.VK_UP){
-                cacheSelectedItem(-1);
-            }
-
-            if(e.getKeyCode() == KeyEvent.VK_DOWN){
-                cacheSelectedItem(+1);
-            }
-        }
-    };
-
-    public TaskExplorer() {
-        getListOfParts().addKeyListener(keyAdapter);
+    public TaskExplorer(Tasks tasks) {
+        super(new Node("", tasks));
     }
 
-    private void update(){
-        State state = explorer.getState();
-        listOfParts.updateState(state.getParts());
-        listOfInfos.updateState(state.getInfos());
-        listOfLinks.updateState(state.getLinks());
-        listOfParts.setSelectedIndex(explorer.getHistory().get().getSelectedChildIndex());
-        updatePath();
+    public void setEntityExplorer(EntityExplorer entityExplorer) {
+        this.entityExplorer = entityExplorer;
+    }
+
+    @Override
+    public void openLink(Node node) {
+        if(node.getElement() instanceof Entity){
+            entityExplorer.open(node);
+        } else if(node.getElement() instanceof Task){
+            open(node);
+        }
     }
 }

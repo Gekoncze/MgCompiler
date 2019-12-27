@@ -9,7 +9,7 @@ public class CacheMap<A, B> extends OrderedHashMap<A, B> {
 
     @Override
     public void put(A a, B b){
-        put(a, b);
+        super.put(a, b);
         if(count() > limit) remove(getKeys().getFirst());
     }
 }
