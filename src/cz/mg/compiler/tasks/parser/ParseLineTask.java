@@ -1,11 +1,12 @@
 package cz.mg.compiler.tasks.parser;
 
+import cz.mg.compiler.annotations.Info;
+import cz.mg.compiler.annotations.Link;
 import cz.mg.compiler.entities.text.Line;
 import cz.mg.compiler.entities.text.Token;
 import cz.mg.compiler.entities.text.tokens.SpecialToken;
 import cz.mg.compiler.entities.text.tokens.ValueToken;
 import cz.mg.compiler.entities.text.tokens.WordToken;
-import cz.mg.compiler.tasks.Task;
 import cz.mg.compiler.utilities.debug.Text;
 import cz.mg.compiler.utilities.readers.CharReader;
 
@@ -25,7 +26,10 @@ public class ParseLineTask extends ParseTask {
             '~', '°', ';', '\'', '|', '?',
     };
 
+    @Link
     private final Line line;
+
+    @Info
     private CharReader reader = null;
 
     public ParseLineTask(Line line) {

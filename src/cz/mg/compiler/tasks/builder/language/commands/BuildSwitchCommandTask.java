@@ -1,5 +1,7 @@
 package cz.mg.compiler.tasks.builder.language.commands;
 
+import cz.mg.compiler.annotations.Info;
+import cz.mg.compiler.annotations.Part;
 import cz.mg.compiler.entities.logical.language.Context;
 import cz.mg.compiler.entities.logical.language.commands.SwitchCommand;
 import cz.mg.compiler.entities.structured.Block;
@@ -20,7 +22,11 @@ public class BuildSwitchCommandTask extends BuildBlockCommandTask {
             new Rule(new Pattern(ELSE), this::buildElseCommand)
     );
 
+    @Info
     private final boolean named;
+
+    @Part
+    private BuildCallTask buildCallTask;
 
     public BuildSwitchCommandTask(Block block, Context context, boolean named) {
         super(block, context);
@@ -34,11 +40,11 @@ public class BuildSwitchCommandTask extends BuildBlockCommandTask {
 
     @Override
     protected void build(Block block) {
-        BuildCallTask task = new BuildCallTask(block.getParts().get(1), getContext());
-        task.tryToRun();
+        buildCallTask = new BuildCallTask(block.getParts().get(1), getContext());
+        buildCallTask.tryToRun();
         command = new SwitchCommand(block.getTrace());
-        command.setCall(task.getCall());
-        store(command, "declaredVariables", task.getDeclaredVariables());
+        command.setCall(buildCallTask.getCall());
+        store(command, "declaredVariables", buildCallTask.getDeclaredVariables());
 
         if(named){
             Name name = cast(block.getParts().get(3), Name.class);

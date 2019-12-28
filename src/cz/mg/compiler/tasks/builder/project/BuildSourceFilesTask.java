@@ -1,5 +1,8 @@
 package cz.mg.compiler.tasks.builder.project;
 
+import cz.mg.collections.list.chainlist.ChainList;
+import cz.mg.compiler.annotations.Link;
+import cz.mg.compiler.annotations.Part;
 import cz.mg.compiler.entities.logical.project.SourceFiles;
 import cz.mg.compiler.entities.structured.Block;
 import cz.mg.compiler.tasks.builder.BlockBuildTask;
@@ -14,7 +17,11 @@ public class BuildSourceFilesTask extends BlockBuildTask {
             new Rule(new Pattern(_VALUE_), this::buildFilePath)
     );
 
+    @Link
     private SourceFiles sourceFiles;
+
+    @Part
+    private final ChainList<BuildFilePathTask> buildFilePathTasks = new ChainList<>();
 
     public BuildSourceFilesTask(Block block) {
         super(block);
@@ -36,6 +43,7 @@ public class BuildSourceFilesTask extends BlockBuildTask {
 
     private void buildFilePath(Block block){
         BuildFilePathTask task = new BuildFilePathTask(block);
+        buildFilePathTasks.addLast(task);
         task.tryToRun();
         if(task.getFilePath() != null) sourceFiles.getFiles().addLast(task.getFilePath());
     }

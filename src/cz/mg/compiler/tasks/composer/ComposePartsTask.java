@@ -3,6 +3,7 @@ package cz.mg.compiler.tasks.composer;
 import cz.mg.collections.list.chainlist.CachedChainList;
 import cz.mg.collections.list.chainlist.ChainList;
 import cz.mg.collections.list.chainlist.ChainListItem;
+import cz.mg.compiler.annotations.Link;
 import cz.mg.compiler.entities.structured.Part;
 import cz.mg.compiler.entities.structured.parts.*;
 import cz.mg.compiler.entities.structured.parts.groups.Group;
@@ -32,7 +33,10 @@ public class ComposePartsTask extends ComposeTask {
     private static final ComposeParts ARGUMENTS_EXPRESSIONS = new ComposeArgumentsExpressions();
     private static final ComposeParts OPERATOR_EXPRESSIONS = new ComposeOperatorExpressions();
 
+    @Link
     private final Line line;
+
+    @Link
     private ChainList<Part> parts;
 
     public ComposePartsTask(Line line) {

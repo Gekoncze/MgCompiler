@@ -1,5 +1,6 @@
 package cz.mg.compiler.tasks.builder.project;
 
+import cz.mg.compiler.annotations.Link;
 import cz.mg.compiler.entities.logical.project.FilePath;
 import cz.mg.compiler.entities.structured.Block;
 import cz.mg.compiler.entities.structured.parts.Value;
@@ -8,6 +9,7 @@ import cz.mg.compiler.tasks.builder.utilities.Rules;
 
 
 public class BuildFilePathTask extends BlockBuildTask {
+    @Link
     private FilePath filePath = null;
 
     public BuildFilePathTask(Block block) {

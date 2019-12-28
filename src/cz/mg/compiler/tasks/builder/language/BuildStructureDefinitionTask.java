@@ -1,5 +1,6 @@
 package cz.mg.compiler.tasks.builder.language;
 
+import cz.mg.compiler.annotations.Link;
 import cz.mg.compiler.entities.logical.language.Context;
 import cz.mg.compiler.entities.logical.language.definitions.StructureDefinition;
 import cz.mg.compiler.entities.logical.language.links.ClassDefinitionLink;
@@ -11,7 +12,10 @@ import static cz.mg.compiler.tasks.composer.utilities.PartUtilities.cast;
 
 
 public class BuildStructureDefinitionTask extends BuildDatatypeDefinitionTask {
+    @Link
     private final Inheritance inheritance;
+
+    @Link
     private StructureDefinition structureDefinition;
 
     public BuildStructureDefinitionTask(Block block, Context context, Inheritance inheritance) {
