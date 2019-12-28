@@ -2,6 +2,8 @@ package cz.mg.compiler.tasks.builder.language.natives;
 
 import cz.mg.collections.list.chainlist.CachedChainList;
 import cz.mg.collections.list.chainlist.ChainList;
+import cz.mg.compiler.annotations.Info;
+import cz.mg.compiler.annotations.Link;
 import cz.mg.compiler.entities.logical.language.Context;
 import cz.mg.compiler.entities.logical.language.natives.NativeFunctionDefinition;
 import cz.mg.compiler.entities.logical.language.other.Datatype;
@@ -20,9 +22,16 @@ import static cz.mg.compiler.tasks.composer.utilities.PartUtilities.*;
 
 
 public class BuildNativeFunctionTask extends BlockBuildTask {
+    @Info
     private final boolean input;
+
+    @Info
     private final boolean output;
+
+    @Info
     private final boolean operator;
+
+    @Link
     private NativeFunctionDefinition functionDefinition = null;
 
     public BuildNativeFunctionTask(Block block, Context context, boolean input, boolean output, boolean operator) {

@@ -1,5 +1,7 @@
 package cz.mg.compiler.tasks.compiler;
 
+import cz.mg.compiler.annotations.Link;
+import cz.mg.compiler.annotations.Part;
 import cz.mg.compiler.entities.Entities;
 import cz.mg.compiler.entities.input.ExternalFileInput;
 import cz.mg.compiler.entities.input.InputEntity;
@@ -13,9 +15,26 @@ import cz.mg.compiler.tasks.parser.ParsePageTask;
 
 
 public class CompileSourceFileTask extends CompilerTask {
+    @Link
     private final FilePath filePath;
+
+    @Link
     private final Language language;
+
+    @Link
     private final Entities entities;
+
+    @Part
+    private LoadSourceTask loadSourceTask;
+
+    @Part
+    private ParsePageTask parsePageTask;
+
+    @Part
+    private ComposePageTask composePageTask;
+
+    @Part
+    private BuildSourceFileTask buildSourceFileTask;
 
     public CompileSourceFileTask(FilePath filePath, Language language, Entities entities) {
         this.filePath = filePath;
@@ -27,16 +46,20 @@ public class CompileSourceFileTask extends CompilerTask {
     protected void onRun() {
         InputEntity source = new ExternalFileInput(filePath.getPath());
         entities.getInput().getInputs().addLast(source);
-        new LoadSourceTask(source).run();
+        loadSourceTask = new LoadSourceTask(source);
+        loadSourceTask.run();
 
         Page page = new Page(source.getText());
         entities.getBook().getPages().addLast(page);
-        new ParsePageTask(page).run();
+        parsePageTask = new ParsePageTask(page);
+        parsePageTask.run();
 
         Container structuredPage = new Container(page.getContent());
         entities.getStructure().getPages().addLast(structuredPage);
-        new ComposePageTask(page, structuredPage).run();
+        composePageTask = new ComposePageTask(page, structuredPage);
+        composePageTask.run();
 
-        new BuildSourceFileTask(structuredPage, language).run();
+        buildSourceFileTask = new BuildSourceFileTask(structuredPage, language);
+        buildSourceFileTask.run();
     }
 }

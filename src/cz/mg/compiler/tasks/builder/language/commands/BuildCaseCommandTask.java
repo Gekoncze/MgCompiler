@@ -1,5 +1,6 @@
 package cz.mg.compiler.tasks.builder.language.commands;
 
+import cz.mg.compiler.annotations.Info;
 import cz.mg.compiler.entities.logical.language.Context;
 import cz.mg.compiler.entities.logical.language.commands.CaseCommand;
 import cz.mg.compiler.entities.structured.Block;
@@ -11,6 +12,7 @@ import static cz.mg.compiler.tasks.composer.utilities.PartUtilities.cast;
 
 
 public class BuildCaseCommandTask extends BuildBlockCommandTask {
+    @Info
     private final boolean named;
 
     public BuildCaseCommandTask(Block block, Context context, boolean named) {

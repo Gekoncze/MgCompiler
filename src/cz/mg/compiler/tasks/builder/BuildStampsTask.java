@@ -2,6 +2,7 @@ package cz.mg.compiler.tasks.builder;
 
 import cz.mg.collections.list.chainlist.CachedChainList;
 import cz.mg.collections.list.chainlist.ChainList;
+import cz.mg.compiler.annotations.Link;
 import cz.mg.compiler.entities.logical.language.Context;
 import cz.mg.compiler.entities.logical.language.Stamps;
 import cz.mg.compiler.entities.logical.language.calls.ValueCall;
@@ -17,8 +18,13 @@ import static cz.mg.compiler.tasks.composer.utilities.PartUtilities.*;
 
 
 public class BuildStampsTask extends BuildTask {
+    @Link
     private final Block block;
+
+    @Link
     private final Context context;
+
+    @Link
     private Stamps stamps = null;
 
     public BuildStampsTask(Block block, Context context) {

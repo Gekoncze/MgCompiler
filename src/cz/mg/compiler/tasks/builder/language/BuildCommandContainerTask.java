@@ -1,8 +1,11 @@
 package cz.mg.compiler.tasks.builder.language;
 
+import cz.mg.collections.list.chainlist.ChainList;
+import cz.mg.compiler.annotations.Part;
 import cz.mg.compiler.entities.logical.language.Context;
 import cz.mg.compiler.entities.structured.Block;
 import cz.mg.compiler.tasks.builder.BlockBuildTask;
+import cz.mg.compiler.tasks.builder.BuildTask;
 import cz.mg.compiler.tasks.builder.language.commands.*;
 import cz.mg.compiler.tasks.builder.utilities.Pattern;
 import cz.mg.compiler.tasks.builder.utilities.Rule;
@@ -34,6 +37,9 @@ public abstract class BuildCommandContainerTask extends BlockBuildTask {
             new Rule(new Pattern(SWITCH, _ANY_VALUE_, ALIAS, _NAME_), this::buildNamedSwitchCommand)
     );
 
+    @Part
+    private final ChainList<BuildTask> buildTasks = new ChainList<>();
+
     public BuildCommandContainerTask(Block block, Context context) {
         super(block, context);
     }
@@ -50,6 +56,7 @@ public abstract class BuildCommandContainerTask extends BlockBuildTask {
 
     protected void buildPlainCommand(Block block) {
         BuildPlainCommandTask task = new BuildPlainCommandTask(block, getContext());
+        buildTasks.addLast(task);
         task.tryToRun();
         store(getParent(), "commands", task.getCommand());
         store(getParent(), "declaredVariables", task.getDeclaredVariables());
@@ -57,120 +64,140 @@ public abstract class BuildCommandContainerTask extends BlockBuildTask {
 
     protected void buildIfCommand(Block block) {
         BuildIfCommandTask task = new BuildIfCommandTask(block, getContext(), false);
+        buildTasks.addLast(task);
         task.tryToRun();
         store(getParent(), "commands", task.getCommand());
     }
 
     protected void buildNamedIfCommand(Block block) {
         BuildIfCommandTask task = new BuildIfCommandTask(block, getContext(), true);
+        buildTasks.addLast(task);
         task.tryToRun();
         store(getParent(), "commands", task.getCommand());
     }
 
     protected void buildElseIfCommand(Block block) {
         BuildElseIfCommandTask task = new BuildElseIfCommandTask(block, getContext(), false);
+        buildTasks.addLast(task);
         task.tryToRun();
         store(getParent(), "commands", task.getCommand());
     }
 
     protected void buildNamedElseIfCommand(Block block) {
         BuildElseIfCommandTask task = new BuildElseIfCommandTask(block, getContext(), true);
+        buildTasks.addLast(task);
         task.tryToRun();
         store(getParent(), "commands", task.getCommand());
     }
 
     protected void buildElseCommand(Block block) {
         BuildElseCommandTask task = new BuildElseCommandTask(block, getContext(), false);
+        buildTasks.addLast(task);
         task.tryToRun();
         store(getParent(), "commands", task.getCommand());
     }
 
     protected void buildNamedElseCommand(Block block) {
         BuildElseCommandTask task = new BuildElseCommandTask(block, getContext(), true);
+        buildTasks.addLast(task);
         task.tryToRun();
         store(getParent(), "commands", task.getCommand());
     }
 
     protected void buildForEachCommand(Block block) {
         BuildForEachCommandTask task = new BuildForEachCommandTask(block, getContext(), false);
+        buildTasks.addLast(task);
         task.tryToRun();
         store(getParent(), "commands", task.getCommand());
     }
 
     protected void buildNamedForEachCommand(Block block) {
         BuildForEachCommandTask task = new BuildForEachCommandTask(block, getContext(), true);
+        buildTasks.addLast(task);
         task.tryToRun();
         store(getParent(), "commands", task.getCommand());
     }
 
     protected void buildWhileCommand(Block block) {
         BuildWhileCommandTask task = new BuildWhileCommandTask(block, getContext(), false);
+        buildTasks.addLast(task);
         task.tryToRun();
         store(getParent(), "commands", task.getCommand());
     }
 
     protected void buildNamedWhileCommand(Block block) {
         BuildWhileCommandTask task = new BuildWhileCommandTask(block, getContext(), true);
+        buildTasks.addLast(task);
         task.tryToRun();
         store(getParent(), "commands", task.getCommand());
     }
 
     protected void buildContinueCommand(Block block) {
         BuildContinueCommandTask task = new BuildContinueCommandTask(block, getContext(), false);
+        buildTasks.addLast(task);
         task.tryToRun();
         store(getParent(), "commands", task.getCommand());
     }
 
     protected void buildContinueNameCommand(Block block) {
         BuildContinueCommandTask task = new BuildContinueCommandTask(block, getContext(), true);
+        buildTasks.addLast(task);
         task.tryToRun();
         store(getParent(), "commands", task.getCommand());
     }
 
     protected void buildBreakCommand(Block block) {
         BuildBreakCommandTask task = new BuildBreakCommandTask(block, getContext(), false);
+        buildTasks.addLast(task);
         task.tryToRun();
         store(getParent(), "commands", task.getCommand());
     }
 
     protected void buildBreakNameCommand(Block block) {
         BuildBreakCommandTask task = new BuildBreakCommandTask(block, getContext(), true);
+        buildTasks.addLast(task);
         task.tryToRun();
         store(getParent(), "commands", task.getCommand());
     }
 
     protected void buildReturnCommand(Block block) {
         BuildReturnCommandTask task = new BuildReturnCommandTask(block, getContext(), false);
+        buildTasks.addLast(task);
         task.tryToRun();
         store(getParent(), "commands", task.getCommand());
     }
 
     protected void buildReturnExpressionCommand(Block block) {
         BuildReturnCommandTask task = new BuildReturnCommandTask(block, getContext(), true);
+        buildTasks.addLast(task);
         task.tryToRun();
         store(getParent(), "commands", task.getCommand());
     }
 
     private void buildSwitchCommand(Block block) {
         BuildSwitchCommandTask task = new BuildSwitchCommandTask(block, getContext(), false);
+        buildTasks.addLast(task);
         task.tryToRun();
         store(getParent(), "commands", task.getCommand());
     }
 
     private void buildNamedSwitchCommand(Block block) {
         BuildSwitchCommandTask task = new BuildSwitchCommandTask(block, getContext(), true);
+        buildTasks.addLast(task);
         task.tryToRun();
         store(getParent(), "commands", task.getCommand());
     }
 
     protected void buildCaseCommand(Block block) {
         BuildCaseCommandTask task = new BuildCaseCommandTask(block, getContext(), false);
+        buildTasks.addLast(task);
         task.tryToRun();
         store(getParent(), "commands", task.getCommand());
     }
 
     protected void buildNamedCaseCommand(Block block) {
         BuildCaseCommandTask task = new BuildCaseCommandTask(block, getContext(), true);
+        buildTasks.addLast(task);
         task.tryToRun();
         store(getParent(), "commands", task.getCommand());
     }

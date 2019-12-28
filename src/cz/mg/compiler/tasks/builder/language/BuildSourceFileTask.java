@@ -1,5 +1,8 @@
 package cz.mg.compiler.tasks.builder.language;
 
+import cz.mg.collections.list.chainlist.ChainList;
+import cz.mg.compiler.annotations.Link;
+import cz.mg.compiler.annotations.Part;
 import cz.mg.compiler.entities.logical.language.Context;
 import cz.mg.compiler.entities.logical.language.Language;
 import cz.mg.compiler.entities.logical.language.Location;
@@ -7,6 +10,7 @@ import cz.mg.compiler.entities.structured.Block;
 import cz.mg.compiler.entities.structured.Container;
 import cz.mg.compiler.tasks.builder.BlockBuildTask;
 import cz.mg.compiler.tasks.builder.BuildException;
+import cz.mg.compiler.tasks.builder.BuildTask;
 import cz.mg.compiler.tasks.builder.language.natives.BuildNativeFunctionTask;
 import cz.mg.compiler.tasks.builder.language.natives.BuildNativeStructureDefinitionTask;
 import cz.mg.compiler.tasks.builder.language.natives.BuildNativeTypeDefinitionTask;
@@ -56,9 +60,17 @@ public class BuildSourceFileTask extends BlockBuildTask {
             new Rule(new Pattern(NATIVE, FUNCTION, _NAME_, INPUT, _DECLARATION_LIST_, OUTPUT, _DECLARATION_, OPERATOR, _OPERATOR_), this::buildNativeFunctionIOO)
     );
 
+    @Link
     private final Language language;
+
+    @Link
     private Location location = null;
+
+    @Link
     private Context context = null;
+
+    @Part
+    private final ChainList<BuildTask> buildTasks = new ChainList<>();
 
     public BuildSourceFileTask(Container page, Language language) {
         super(page, null);
@@ -77,6 +89,7 @@ public class BuildSourceFileTask extends BlockBuildTask {
     private void buildLocation(Block block) {
         if(location != null) throw new BuildException(block, "Location was already defined ", new PlaceholderText(location, "here"), ".");
         BuildLocationTask task = new BuildLocationTask(block, language);
+        buildTasks.addLast(task);
         task.run();
         location = task.getLocation();
         context = new Context(location);
@@ -90,6 +103,7 @@ public class BuildSourceFileTask extends BlockBuildTask {
     private void buildUsingDirect(Block block) {
         checkLocation(block);
         BuildUsingDirectTask task = new BuildUsingDirectTask(block, context);
+        buildTasks.addLast(task);
         task.tryToRun();
         store(context, "usings", task.getUsing());
     }
@@ -97,6 +111,7 @@ public class BuildSourceFileTask extends BlockBuildTask {
     private void buildUsingAlias(Block block) {
         checkLocation(block);
         BuildUsingAliasTask task = new BuildUsingAliasTask(block, context);
+        buildTasks.addLast(task);
         task.tryToRun();
         store(context, "usings", task.getUsing());
     }
@@ -104,6 +119,7 @@ public class BuildSourceFileTask extends BlockBuildTask {
     private void buildUsingAll(Block block) {
         checkLocation(block);
         BuildUsingAllTask task = new BuildUsingAllTask(block, context);
+        buildTasks.addLast(task);
         task.tryToRun();
         store(context, "usings", task.getUsing());
     }
@@ -111,6 +127,7 @@ public class BuildSourceFileTask extends BlockBuildTask {
     private void buildClass(Block block) {
         checkLocation(block);
         BuildClassDefinitionTask task = new BuildClassDefinitionTask(block, context, null);
+        buildTasks.addLast(task);
         task.tryToRun();
         store(location, "entities", task.getDefinition());
     }
@@ -118,6 +135,7 @@ public class BuildSourceFileTask extends BlockBuildTask {
     private void buildClassIs(Block block) {
         checkLocation(block);
         BuildClassDefinitionTask task = new BuildClassDefinitionTask(block, context, Inheritance.IS);
+        buildTasks.addLast(task);
         task.tryToRun();
         store(location, "entities", task.getDefinition());
     }
@@ -125,6 +143,7 @@ public class BuildSourceFileTask extends BlockBuildTask {
     private void buildClassAlias(Block block) {
         checkLocation(block);
         BuildClassDefinitionTask task = new BuildClassDefinitionTask(block, context, Inheritance.ALIAS);
+        buildTasks.addLast(task);
         task.tryToRun();
         store(location, "entities", task.getDefinition());
     }
@@ -132,6 +151,7 @@ public class BuildSourceFileTask extends BlockBuildTask {
     private void buildClassView(Block block) {
         checkLocation(block);
         BuildClassDefinitionTask task = new BuildClassDefinitionTask(block, context, Inheritance.VIEW);
+        buildTasks.addLast(task);
         task.tryToRun();
         store(location, "entities", task.getDefinition());
     }
@@ -139,6 +159,7 @@ public class BuildSourceFileTask extends BlockBuildTask {
     private void buildClassLike(Block block) {
         checkLocation(block);
         BuildClassDefinitionTask task = new BuildClassDefinitionTask(block, context, Inheritance.LIKE);
+        buildTasks.addLast(task);
         task.tryToRun();
         store(location, "entities", task.getDefinition());
     }
@@ -146,6 +167,7 @@ public class BuildSourceFileTask extends BlockBuildTask {
     private void buildStructure(Block block) {
         checkLocation(block);
         BuildStructureDefinitionTask task = new BuildStructureDefinitionTask(block, context, null);
+        buildTasks.addLast(task);
         task.tryToRun();
         store(location, "entities", task.getDefinition());
     }
@@ -153,6 +175,7 @@ public class BuildSourceFileTask extends BlockBuildTask {
     private void buildStructureIs(Block block) {
         checkLocation(block);
         BuildStructureDefinitionTask task = new BuildStructureDefinitionTask(block, context, Inheritance.IS);
+        buildTasks.addLast(task);
         task.tryToRun();
         store(location, "entities", task.getDefinition());
     }
@@ -160,6 +183,7 @@ public class BuildSourceFileTask extends BlockBuildTask {
     private void buildStructureAlias(Block block) {
         checkLocation(block);
         BuildStructureDefinitionTask task = new BuildStructureDefinitionTask(block, context, Inheritance.ALIAS);
+        buildTasks.addLast(task);
         task.tryToRun();
         store(location, "entities", task.getDefinition());
     }
@@ -167,6 +191,7 @@ public class BuildSourceFileTask extends BlockBuildTask {
     private void buildStructureView(Block block) {
         checkLocation(block);
         BuildStructureDefinitionTask task = new BuildStructureDefinitionTask(block, context, Inheritance.VIEW);
+        buildTasks.addLast(task);
         task.tryToRun();
         store(location, "entities", task.getDefinition());
     }
@@ -174,6 +199,7 @@ public class BuildSourceFileTask extends BlockBuildTask {
     private void buildStructureLike(Block block) {
         checkLocation(block);
         BuildStructureDefinitionTask task = new BuildStructureDefinitionTask(block, context, Inheritance.LIKE);
+        buildTasks.addLast(task);
         task.tryToRun();
         store(location, "entities", task.getDefinition());
     }
@@ -181,6 +207,7 @@ public class BuildSourceFileTask extends BlockBuildTask {
     private void buildType(Block block) {
         checkLocation(block);
         BuildTypeDefinitionTask task = new BuildTypeDefinitionTask(block, context, null);
+        buildTasks.addLast(task);
         task.tryToRun();
         store(location, "entities", task.getDefinition());
     }
@@ -188,6 +215,7 @@ public class BuildSourceFileTask extends BlockBuildTask {
     private void buildTypeIs(Block block) {
         checkLocation(block);
         BuildTypeDefinitionTask task = new BuildTypeDefinitionTask(block, context, Inheritance.IS);
+        buildTasks.addLast(task);
         task.tryToRun();
         store(location, "entities", task.getDefinition());
     }
@@ -195,6 +223,7 @@ public class BuildSourceFileTask extends BlockBuildTask {
     private void buildTypeAlias(Block block) {
         checkLocation(block);
         BuildTypeDefinitionTask task = new BuildTypeDefinitionTask(block, context, Inheritance.ALIAS);
+        buildTasks.addLast(task);
         task.tryToRun();
         store(location, "entities", task.getDefinition());
     }
@@ -202,6 +231,7 @@ public class BuildSourceFileTask extends BlockBuildTask {
     private void buildTypeView(Block block) {
         checkLocation(block);
         BuildTypeDefinitionTask task = new BuildTypeDefinitionTask(block, context, Inheritance.VIEW);
+        buildTasks.addLast(task);
         task.tryToRun();
         store(location, "entities", task.getDefinition());
     }
@@ -209,6 +239,7 @@ public class BuildSourceFileTask extends BlockBuildTask {
     private void buildTypeLike(Block block) {
         checkLocation(block);
         BuildTypeDefinitionTask task = new BuildTypeDefinitionTask(block, context, Inheritance.LIKE);
+        buildTasks.addLast(task);
         task.tryToRun();
         store(location, "entities", task.getDefinition());
     }
@@ -216,6 +247,7 @@ public class BuildSourceFileTask extends BlockBuildTask {
     protected void buildFunction(Block block) {
         checkLocation(block);
         BuildFunctionTask task = new BuildFunctionTask(block, getContext(), false, false, false);
+        buildTasks.addLast(task);
         task.tryToRun();
         store(location, "entities", task.getFunctionDefinition());
     }
@@ -223,6 +255,7 @@ public class BuildSourceFileTask extends BlockBuildTask {
     protected void buildFunctionI(Block block) {
         checkLocation(block);
         BuildFunctionTask task = new BuildFunctionTask(block, getContext(), true, false, false);
+        buildTasks.addLast(task);
         task.tryToRun();
         store(location, "entities", task.getFunctionDefinition());
     }
@@ -230,6 +263,7 @@ public class BuildSourceFileTask extends BlockBuildTask {
     protected void buildFunctionO(Block block) {
         checkLocation(block);
         BuildFunctionTask task = new BuildFunctionTask(block, getContext(), false, true, false);
+        buildTasks.addLast(task);
         task.tryToRun();
         store(location, "entities", task.getFunctionDefinition());
     }
@@ -237,6 +271,7 @@ public class BuildSourceFileTask extends BlockBuildTask {
     protected void buildFunctionIO(Block block) {
         checkLocation(block);
         BuildFunctionTask task = new BuildFunctionTask(block, getContext(), true, true, false);
+        buildTasks.addLast(task);
         task.tryToRun();
         store(location, "entities", task.getFunctionDefinition());
     }
@@ -244,6 +279,7 @@ public class BuildSourceFileTask extends BlockBuildTask {
     protected void buildFunctionIOO(Block block) {
         checkLocation(block);
         BuildFunctionTask task = new BuildFunctionTask(block, getContext(), true, true, true);
+        buildTasks.addLast(task);
         task.tryToRun();
         store(location, "entities", task.getFunctionDefinition());
     }
@@ -251,6 +287,7 @@ public class BuildSourceFileTask extends BlockBuildTask {
     private void buildNativeUsing(Block block) {
         checkLocation(block);
         BuildNativeUsingTask task = new BuildNativeUsingTask(block, context);
+        buildTasks.addLast(task);
         task.tryToRun();
         store(context, "usings", task.getUsing());
     }
@@ -258,6 +295,7 @@ public class BuildSourceFileTask extends BlockBuildTask {
     private void buildNativeType(Block block) {
         checkLocation(block);
         BuildNativeTypeDefinitionTask task = new BuildNativeTypeDefinitionTask(block, context);
+        buildTasks.addLast(task);
         task.tryToRun();
         store(location, "entities", task.getDefinition());
     }
@@ -265,6 +303,7 @@ public class BuildSourceFileTask extends BlockBuildTask {
     private void buildNativeStructure(Block block) {
         checkLocation(block);
         BuildNativeStructureDefinitionTask task = new BuildNativeStructureDefinitionTask(block, context);
+        buildTasks.addLast(task);
         task.tryToRun();
         store(location, "entities", task.getDefinition());
     }
@@ -272,6 +311,7 @@ public class BuildSourceFileTask extends BlockBuildTask {
     protected void buildNativeFunction(Block block) {
         checkLocation(block);
         BuildNativeFunctionTask task = new BuildNativeFunctionTask(block, getContext(), false, false, false);
+        buildTasks.addLast(task);
         task.tryToRun();
         store(location, "entities", task.getFunctionDefinition());
     }
@@ -279,6 +319,7 @@ public class BuildSourceFileTask extends BlockBuildTask {
     protected void buildNativeFunctionI(Block block) {
         checkLocation(block);
         BuildNativeFunctionTask task = new BuildNativeFunctionTask(block, getContext(), true, false, false);
+        buildTasks.addLast(task);
         task.tryToRun();
         store(location, "entities", task.getFunctionDefinition());
     }
@@ -286,6 +327,7 @@ public class BuildSourceFileTask extends BlockBuildTask {
     protected void buildNativeFunctionO(Block block) {
         checkLocation(block);
         BuildNativeFunctionTask task = new BuildNativeFunctionTask(block, getContext(), false, true, false);
+        buildTasks.addLast(task);
         task.tryToRun();
         store(location, "entities", task.getFunctionDefinition());
     }
@@ -293,6 +335,7 @@ public class BuildSourceFileTask extends BlockBuildTask {
     protected void buildNativeFunctionIO(Block block) {
         checkLocation(block);
         BuildNativeFunctionTask task = new BuildNativeFunctionTask(block, getContext(), true, true, false);
+        buildTasks.addLast(task);
         task.tryToRun();
         store(location, "entities", task.getFunctionDefinition());
     }
@@ -300,6 +343,7 @@ public class BuildSourceFileTask extends BlockBuildTask {
     protected void buildNativeFunctionIOO(Block block) {
         checkLocation(block);
         BuildNativeFunctionTask task = new BuildNativeFunctionTask(block, getContext(), true, true, true);
+        buildTasks.addLast(task);
         task.tryToRun();
         store(location, "entities", task.getFunctionDefinition());
     }

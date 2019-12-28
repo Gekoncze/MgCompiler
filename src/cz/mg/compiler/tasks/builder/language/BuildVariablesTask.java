@@ -2,6 +2,7 @@ package cz.mg.compiler.tasks.builder.language;
 
 import cz.mg.collections.list.chainlist.CachedChainList;
 import cz.mg.collections.list.chainlist.ChainList;
+import cz.mg.compiler.annotations.Link;
 import cz.mg.compiler.entities.logical.language.Context;
 import cz.mg.compiler.entities.logical.language.Documentation;
 import cz.mg.compiler.entities.logical.language.Stamps;
@@ -21,6 +22,7 @@ import static cz.mg.compiler.tasks.composer.utilities.PartUtilities.*;
 
 
 public class BuildVariablesTask extends BlockBuildTask {
+    @Link
     private ChainList<Variable> variables = new CachedChainList<>();
 
     public BuildVariablesTask(Block block, Context context) {

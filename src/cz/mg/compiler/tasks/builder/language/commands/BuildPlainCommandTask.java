@@ -1,5 +1,6 @@
 package cz.mg.compiler.tasks.builder.language.commands;
 
+import cz.mg.compiler.annotations.Part;
 import cz.mg.compiler.entities.logical.language.Context;
 import cz.mg.compiler.entities.logical.language.commands.PlainCommand;
 import cz.mg.compiler.entities.structured.Block;
@@ -12,12 +13,15 @@ public class BuildPlainCommandTask extends BuildCommandTask {
         super(block, context);
     }
 
+    @Part
+    private BuildCallTask buildCallTask;
+
     @Override
     protected void build(Block block) {
-        BuildCallTask task = new BuildCallTask(block.getParts().get(0), getContext());
-        task.tryToRun();
+        buildCallTask = new BuildCallTask(block.getParts().get(0), getContext());
+        buildCallTask.tryToRun();
         command = new PlainCommand(block.getTrace());
-        command.setCall(task.getCall());
-        store(this, "declaredVariables", task.getDeclaredVariables());
+        command.setCall(buildCallTask.getCall());
+        store(this, "declaredVariables", buildCallTask.getDeclaredVariables());
     }
 }

@@ -2,6 +2,7 @@ package cz.mg.compiler.tasks.builder.language;
 
 import cz.mg.collections.list.chainlist.CachedChainList;
 import cz.mg.collections.list.chainlist.ChainList;
+import cz.mg.compiler.annotations.Link;
 import cz.mg.compiler.entities.logical.language.Context;
 import cz.mg.compiler.entities.logical.language.calls.*;
 import cz.mg.compiler.entities.logical.language.links.*;
@@ -18,9 +19,16 @@ import static cz.mg.compiler.tasks.composer.utilities.PartUtilities.*;
 
 
 public class BuildCallTask extends BuildTask {
+    @Link
     private final Part part;
+
+    @Link
     private Context context;
+
+    @Link
     private Call call = null;
+
+    @Link
     private final ChainList<Variable> declaredVariables = new CachedChainList<>();
 
     public BuildCallTask(Part part, Context context) {

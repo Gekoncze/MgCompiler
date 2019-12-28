@@ -1,5 +1,7 @@
 package cz.mg.compiler.tasks.builder;
 
+import cz.mg.compiler.annotations.Link;
+import cz.mg.compiler.annotations.Part;
 import cz.mg.compiler.entities.logical.language.Context;
 import cz.mg.compiler.entities.logical.language.Documentation;
 import cz.mg.compiler.entities.logical.language.Stamps;
@@ -8,10 +10,23 @@ import cz.mg.compiler.tasks.builder.utilities.Rules;
 
 
 public abstract class BlockBuildTask extends BuildTask {
+    @Link
     private final Block block;
+
+    @Link
     private final Context context;
+
+    @Link
     private Stamps stamps = null;
+
+    @Link
     private Documentation documentation = null;
+
+    @Part
+    private BuildStampsTask buildStampsTask;
+
+    @Part
+    private BuildDocumentationTask buildDocumentationTask;
 
     public BlockBuildTask(Block block, Context context) {
         this.block = block;
@@ -64,14 +79,14 @@ public abstract class BlockBuildTask extends BuildTask {
     }
 
     private Stamps buildStamps(Block block, Context context){
-        BuildStampsTask task = new BuildStampsTask(block, context);
-        task.tryToRun();
-        return task.getStamps();
+        buildStampsTask = new BuildStampsTask(block, context);
+        buildStampsTask.tryToRun();
+        return buildStampsTask.getStamps();
     }
 
     private Documentation buildDocumentation(Block block, Context context){
-        BuildDocumentationTask task = new BuildDocumentationTask(block, context);
-        task.tryToRun();
-        return task.getDocumentation();
+        buildDocumentationTask = new BuildDocumentationTask(block, context);
+        buildDocumentationTask.tryToRun();
+        return buildDocumentationTask.getDocumentation();
     }
 }

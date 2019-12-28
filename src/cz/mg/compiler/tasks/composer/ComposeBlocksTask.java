@@ -2,6 +2,8 @@ package cz.mg.compiler.tasks.composer;
 
 import cz.mg.collections.list.chainlist.CachedChainList;
 import cz.mg.collections.list.chainlist.ChainList;
+import cz.mg.compiler.annotations.Info;
+import cz.mg.compiler.annotations.Link;
 import cz.mg.compiler.entities.structured.Block;
 import cz.mg.compiler.entities.structured.Part;
 import cz.mg.compiler.entities.structured.parts.Stamp;
@@ -12,12 +14,23 @@ import static cz.mg.compiler.tasks.composer.utilities.PartUtilities.cast;
 
 
 public class ComposeBlocksTask extends ComposeTask {
+    @Info
     private final LineReader lineReader;
+
+    @Link
     private final ChainList<Block> parent;
+
+    @Info
     private final int indentation;
 
+    @Link
     private ChainList<Text> documentation = new CachedChainList<>();
+
+    @Link
     private ChainList<Stamp> stamps = new CachedChainList<>();
+
+    @cz.mg.compiler.annotations.Part
+    private ChainList<ComposeTask> composeTasks = new ChainList<>();
 
     public ComposeBlocksTask(LineReader lineReader, ChainList<Block> parent, int indentation) {
         this.lineReader = lineReader;
@@ -66,6 +79,7 @@ public class ComposeBlocksTask extends ComposeTask {
         harvestComments(line);
 
         ComposePartsTask task = new ComposePartsTask(line);
+        composeTasks.addLast(task);
         task.tryToRun();
         ChainList<Part> parts = task.getParts();
 
@@ -106,6 +120,7 @@ public class ComposeBlocksTask extends ComposeTask {
         Block block = new Block(line.getContent(), parts, documentation, stamps);
         parent.addLast(block);
         positiveReset();
-        new ComposeBlocksTask(lineReader, block.getBlocks(), indentation + 1).run();
+        composeTasks.addLast(new ComposeBlocksTask(lineReader, block.getBlocks(), indentation + 1));
+        composeTasks.getLast().run();
     }
 }

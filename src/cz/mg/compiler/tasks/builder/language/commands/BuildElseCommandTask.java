@@ -1,5 +1,6 @@
 package cz.mg.compiler.tasks.builder.language.commands;
 
+import cz.mg.compiler.annotations.Info;
 import cz.mg.compiler.entities.logical.language.Context;
 import cz.mg.compiler.entities.logical.language.commands.ElseCommand;
 import cz.mg.compiler.entities.structured.Block;
@@ -8,6 +9,7 @@ import static cz.mg.compiler.tasks.composer.utilities.PartUtilities.cast;
 
 
 public class BuildElseCommandTask extends BuildBlockCommandTask {
+    @Info
     private final boolean named;
 
     public BuildElseCommandTask(Block block, Context context, boolean named) {

@@ -2,6 +2,7 @@ package cz.mg.compiler.tasks.builder.language;
 
 import cz.mg.collections.list.chainlist.CachedChainList;
 import cz.mg.collections.list.chainlist.ChainList;
+import cz.mg.compiler.annotations.Link;
 import cz.mg.compiler.entities.logical.language.Context;
 import cz.mg.compiler.entities.logical.language.Documentation;
 import cz.mg.compiler.entities.logical.language.Stamps;
@@ -20,7 +21,11 @@ import static cz.mg.compiler.tasks.composer.utilities.PartUtilities.*;
 
 
 public class BuildPropertiesTask extends BlockBuildTask {
-    private ChainList<Property> properties = new CachedChainList<>();
+    @Link
+    private final ChainList<Property> properties = new CachedChainList<>();
+
+    @cz.mg.compiler.annotations.Part
+    private final ChainList<BuildCallTask> buildCallTasks = new ChainList<>();
 
     public BuildPropertiesTask(Block block, Context context) {
         super(block, context);
@@ -82,6 +87,7 @@ public class BuildPropertiesTask extends BlockBuildTask {
 
     private Call buildInitializer(Expression expression){
         BuildCallTask task = new BuildCallTask(expression, getContext());
+        buildCallTasks.addLast(task);
         task.tryToRun();
         return task.getCall();
     }

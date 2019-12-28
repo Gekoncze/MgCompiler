@@ -1,6 +1,8 @@
 package cz.mg.compiler.tasks.compiler;
 
+import cz.mg.collections.list.chainlist.ChainList;
 import cz.mg.compiler.annotations.Link;
+import cz.mg.compiler.annotations.Part;
 import cz.mg.compiler.entities.Entities;
 import cz.mg.compiler.entities.logical.language.Language;
 import cz.mg.compiler.entities.logical.project.FilePath;
@@ -17,6 +19,12 @@ public class CompileProjectTask extends Task {
     @Link
     private final FilePath projectFilePath;
 
+    @Part
+    private CompileProjectFileTask compileProjectFileTask;
+
+    @Part
+    private final ChainList<CompileSourceFileTask> compileSourceFileTasks = new ChainList<>();
+
     public CompileProjectTask(Entities entities, FilePath projectFilePath) {
         this.entities = entities;
         this.projectFilePath = projectFilePath;
@@ -25,14 +33,16 @@ public class CompileProjectTask extends Task {
     @Override
     protected void onRun() {
         Project project = entities.getLogic().getProject();
-        new CompileProjectFileTask(projectFilePath, project, entities).run();
+        compileProjectFileTask = new CompileProjectFileTask(projectFilePath, project, entities);
+        compileProjectFileTask.run();
 
         if(project.getSourceFiles() != null){
             Language language = entities.getLogic().getLanguage();
             BuildinStamps.addBuildinStamps(language);
             BuildinTypes.addBuildinTypes(language);
             for(FilePath filePath : project.getSourceFiles().getFiles()){
-                new CompileSourceFileTask(filePath, language, entities).run();
+                compileSourceFileTasks.addLast(new CompileSourceFileTask(filePath, language, entities));
+                compileSourceFileTasks.getLast().run();
             }
         }
     }

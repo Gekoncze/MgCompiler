@@ -1,5 +1,7 @@
 package cz.mg.compiler.tasks.builder.language.commands;
 
+import cz.mg.compiler.annotations.Info;
+import cz.mg.compiler.annotations.Part;
 import cz.mg.compiler.entities.logical.language.Context;
 import cz.mg.compiler.entities.logical.language.commands.WhileCommand;
 import cz.mg.compiler.entities.structured.Block;
@@ -10,7 +12,11 @@ import static cz.mg.compiler.tasks.composer.utilities.PartUtilities.cast;
 
 
 public class BuildWhileCommandTask extends BuildBlockCommandTask {
+    @Info
     private final boolean named;
+
+    @Part
+    private BuildCallTask buildConditionTask;
 
     public BuildWhileCommandTask(Block block, Context context, boolean named) {
         super(block, context);
@@ -19,11 +25,11 @@ public class BuildWhileCommandTask extends BuildBlockCommandTask {
 
     @Override
     protected void build(Block block) {
-        BuildCallTask task = new BuildCallTask(block.getParts().get(1), getContext());
-        task.tryToRun();
+        buildConditionTask = new BuildCallTask(block.getParts().get(1), getContext());
+        buildConditionTask.tryToRun();
         command = new WhileCommand(block.getTrace());
-        command.setCall(task.getCall());
-        store(command, "declaredVariables", task.getDeclaredVariables());
+        command.setCall(buildConditionTask.getCall());
+        store(command, "declaredVariables", buildConditionTask.getDeclaredVariables());
 
         if(named){
             Name name = cast(block.getParts().get(3), Name.class);

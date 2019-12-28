@@ -1,5 +1,6 @@
 package cz.mg.compiler.tasks.builder.language.natives;
 
+import cz.mg.compiler.annotations.Link;
 import cz.mg.compiler.entities.logical.language.Context;
 import cz.mg.compiler.entities.logical.language.natives.NativeTypeDefinition;
 import cz.mg.compiler.entities.structured.Block;
@@ -9,6 +10,7 @@ import static cz.mg.compiler.tasks.composer.utilities.PartUtilities.*;
 
 
 public class BuildNativeTypeDefinitionTask extends BuildNativeDatatypeDefinitionTask {
+    @Link
     private NativeTypeDefinition typeDefinition;
 
     public BuildNativeTypeDefinitionTask(Block block, Context context) {

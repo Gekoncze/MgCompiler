@@ -1,20 +1,22 @@
 package cz.mg.compiler.tasks;
 
 import cz.mg.collections.list.chainlist.ChainList;
+import cz.mg.compiler.annotations.Part;
 
 
 public class Tasks extends Task {
-    private final ChainList<Task> tasks = new ChainList<>();
+    @Part
+    private final ChainList<Task> mainTasks = new ChainList<>();
 
     public Tasks() {
     }
 
-    public ChainList<Task> getTasks() {
-        return tasks;
+    public ChainList<Task> getMainTasks() {
+        return mainTasks;
     }
 
     @Override
     protected void onRun() {
-        for(Task task : tasks) task.run();
+        for(Task task : mainTasks) task.run();
     }
 }
