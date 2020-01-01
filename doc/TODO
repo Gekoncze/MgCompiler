@@ -2,23 +2,75 @@
 
 
 ### NOW ### ------------------------------------------------------------------------------------------------------------
-
-
-### SOON ### -----------------------------------------------------------------------------------------------------------
-physical entities
-    think of what interpreter will be actually using at runtime
-
-
-### LATER ### ----------------------------------------------------------------------------------------------------------
 resolver
-    first has to resolve stamps, then other
     aliases has to be stored somehow, or searched by context
 
     maybe separate step in resolver to fill in context entities ???
         that would require re-creating context for each entity ...
-        better would be remporary context object that would be filled with all possible entity links
+        better would be temporary context object that would be filled with all possible entity links
         but links can be created not only with name ... operators too, and depends on input parameters too
 
+export to c
+    implement simple mg to c translation
+    think of possible entities to create
+    think of possible tasks to create
+
+    needs to implement only the most basic mg functionality
+        class/object definition
+            as a structure with related functions
+            structure in separate file
+            function headers in separate file
+            function implementation in separate file
+
+        function definition
+            might need to first create elementary calls
+
+
+
+
+### SOON ### -----------------------------------------------------------------------------------------------------------
+resolver
+    support for custom stamps
+        needs to resolve them in the first pass
+        in second will resolve everything else
+
+physical entities
+    will need to save them as binary
+
+    think of what interpreter will be actually using at runtime
+        object definition, function definition, thread, instruction, command
+
+    instruction
+        its an elementary command (not necessarily equal to cpu instruction)
+        all executable should be just a bunch of instructions with input and output
+        dot operator is actually hidden instruction
+
+    our language requirements
+        good balance of mixed raw and dynamic behaviour
+        while keeping the thing as simple as possible
+        primarly would be dynamic and for special cases raw support
+        every object sould have its parent
+        objects should not be destroyed when there is dynamic reference to them (there can stil be a raw one though)
+            instead they should be either moved to trash or an error should be thrown
+
+        how to acomplish mixed raw and dynamic:
+            for special cases, use @raw stamp for variable (or even a class? in case of c structures)
+            or add special sign to the variable, like $
+            also, for raws need to specify if padded or packed
+
+    there could be more types of variables
+        raw - just holding reference to the object
+        extended - holding reference to the object + to its parent or type
+
+    each object should have its parent who is responsible for freeing them when needed
+        moving to trash that will take care of them
+        should be able to check if can or cannot free it (needs counter for each object)
+        an idea: moving objets to trash and checking out this trach with a command to free memory
+                 only free when there is no more references to that object
+
+
+
+### LATER ### ----------------------------------------------------------------------------------------------------------
 test
     types.mg - define all required operators in test file
 

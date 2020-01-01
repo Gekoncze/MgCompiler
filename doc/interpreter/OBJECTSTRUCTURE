@@ -1,0 +1,93 @@
+This document explains the inner structure of mg objects.
+It also compares existing object structures.
+
+Assumption: all objects of certain class/type use the same inner structure type
+
+Common structure types:
+    raw
+        can only hold data
+        has no inner structure
+        cannot use dynamic access dot operator
+        could theoretically use static type access operator as a syntactical sugar
+        address identity
+        can only be strict typed
+    structured
+        composed of raw data
+        can in some cases be treated like raw data
+        parts accessed with static offset (constant time)
+        supports single inheritance (subclass data always follows superclass data)
+        address identity
+        can only be strict typed
+    extended structured
+        can hold additional runtime metadata
+            reference to its actual type/class
+            reference count (who uses that object)
+            reference to parent object (who owns that object)
+        it just wraps structure inside
+        supports single inheritance
+        can be implemented using structure inheritance
+        can only be strict typed
+    dynamic
+        inner data structure not known at compile time (possibly hash map)
+        can hold various kinds of information
+        supports multiple inheritance
+        fields and methods are identified by their string name
+            or alternatively with an id assigned to the name globally (load time assignment)
+        can be both strict and duck typed
+        access for objects has linear or pseudo-constant complexity!
+    logically structured - will probably use in mg as default
+        each class of inheritance would have its own data structured
+        those data could be located anywhere inside the object
+        the type would have a table containing offsets for each data structure
+        supports multiple inheritance
+        can only be strict typed
+
+Important note: structured data can be one of:
+    packed (optimized for memory)
+    stuffed (optimized for speed)
+
+the key principle is the exchangeability - you can exchange one object with another
+this should be transparent for the programmer:
+    can I work with this object in this way, as if it was this kind of object?
+    can also ask if certain object is of certin type
+        IS it Named object? Then do some stuff...
+
+it might be useful to store both identity and address for an object separately
+    in this case, reference would consist of two parts
+        pointer to identity data
+            does not depend on the context
+        pointer to actual class data (cache)
+            depends on the context - can be changed using a cast
+    this might speed up things a bit
+
+
+SUPER TYPE 1
+    ...
+
+SUPER TYPE N
+    ...
+
+ACTUAL TYPE
+    list of super types
+        actually list of pairs [super type address, super type data offset]
+
+OBJECT
+    # identity data
+        pointer to actual class
+        number of references
+    # super class 1 data
+        ...
+    # super class N data
+        ...
+
+accessing object field strategy:
+        <type data> address = getDataStructureAddress(<dynamic> <identity data> address, <static> type address)
+        <field data> address = getFieldAddress = <dynamic> <type data> address + <static> field offset
+
+what would be a fitting name for the group of objects with the same "type"
+    maybe just object definition
+
+in the language itself, programmer wouldnt care how the inner structure would be handled
+he would just put some requirements - by using certain calls and functions
+then he would decide with stamps how he wants it actually to be implemented where needed
+OR in project settigns

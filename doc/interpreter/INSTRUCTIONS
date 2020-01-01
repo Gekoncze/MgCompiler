@@ -1,0 +1,5 @@
+INSTRUCTION getTypeDataAddress INPUT Address object, Address type OUTPUT Address typeData
+INSTRUCTION getTypeFieldAddress INPUT Address typeData, Offset offset OUTPUT Address object
+INSTRUCTION copy INPUT Address src, Address dst, Number size
+INSTRUCTION createFunction INPUT Address function OUTPUT Address functionInstance
+INSTRUCTION initFunctionParameter ??? TODO
