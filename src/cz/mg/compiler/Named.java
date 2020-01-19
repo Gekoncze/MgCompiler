@@ -1,8 +1,8 @@
 package cz.mg.compiler;
 
-import cz.mg.compiler.utilities.debug.Text;
+import cz.mg.collections.text.ReadonlyText;
 
 
 public interface Named {
-    public Text getName();
+    public ReadonlyText getName();
 }

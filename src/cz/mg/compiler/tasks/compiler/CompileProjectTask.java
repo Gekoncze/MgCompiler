@@ -4,7 +4,7 @@ import cz.mg.collections.list.chainlist.ChainList;
 import cz.mg.compiler.annotations.Link;
 import cz.mg.compiler.annotations.Part;
 import cz.mg.compiler.entities.Entities;
-import cz.mg.compiler.entities.logical.language.Language;
+import cz.mg.compiler.entities.logical.mg.LogicalMg;
 import cz.mg.compiler.entities.logical.project.FilePath;
 import cz.mg.compiler.entities.logical.project.Project;
 import cz.mg.compiler.tasks.Task;
@@ -37,11 +37,11 @@ public class CompileProjectTask extends Task {
         compileProjectFileTask.run();
 
         if(project.getSourceFiles() != null){
-            Language language = entities.getLogic().getLanguage();
-            BuildinStamps.addBuildinStamps(language);
-            BuildinTypes.addBuildinTypes(language);
+            LogicalMg logicalMg = entities.getLogic().getLogicalMg();
+            BuildinStamps.addBuildinStamps(logicalMg);
+            BuildinTypes.addBuildinTypes(logicalMg);
             for(FilePath filePath : project.getSourceFiles().getFiles()){
-                compileSourceFileTasks.addLast(new CompileSourceFileTask(filePath, language, entities));
+                compileSourceFileTasks.addLast(new CompileSourceFileTask(filePath, logicalMg, entities));
                 compileSourceFileTasks.getLast().run();
             }
         }

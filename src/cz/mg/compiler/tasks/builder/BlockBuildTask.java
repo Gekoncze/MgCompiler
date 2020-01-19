@@ -2,9 +2,9 @@ package cz.mg.compiler.tasks.builder;
 
 import cz.mg.compiler.annotations.Link;
 import cz.mg.compiler.annotations.Part;
-import cz.mg.compiler.entities.logical.language.Context;
-import cz.mg.compiler.entities.logical.language.Documentation;
-import cz.mg.compiler.entities.logical.language.Stamps;
+import cz.mg.compiler.entities.logical.mg.Context;
+import cz.mg.compiler.entities.logical.mg.Documentation;
+import cz.mg.compiler.entities.logical.mg.Stamps;
 import cz.mg.compiler.entities.structured.Block;
 import cz.mg.compiler.tasks.builder.utilities.Rules;
 

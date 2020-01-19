@@ -1,8 +1,8 @@
 package cz.mg.compiler.tasks.builder.language.commands;
 
 import cz.mg.compiler.annotations.Info;
-import cz.mg.compiler.entities.logical.language.Context;
-import cz.mg.compiler.entities.logical.language.commands.BreakCommand;
+import cz.mg.compiler.entities.logical.mg.Context;
+import cz.mg.compiler.entities.logical.mg.commands.BreakCommand;
 import cz.mg.compiler.entities.structured.Block;
 import cz.mg.compiler.entities.structured.parts.Name;
 import static cz.mg.compiler.tasks.composer.utilities.PartUtilities.cast;

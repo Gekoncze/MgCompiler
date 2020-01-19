@@ -5,4 +5,6 @@ import cz.mg.compiler.utilities.debug.Traceable;
 
 
 public abstract class Entity extends Element implements Traceable {
+    public Entity() {
+    }
 }

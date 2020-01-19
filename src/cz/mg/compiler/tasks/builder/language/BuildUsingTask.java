@@ -2,8 +2,8 @@ package cz.mg.compiler.tasks.builder.language;
 
 import cz.mg.collections.list.chainlist.CachedChainList;
 import cz.mg.collections.list.chainlist.ChainList;
-import cz.mg.compiler.entities.logical.language.Context;
-import cz.mg.compiler.entities.logical.language.links.NamedLink;
+import cz.mg.compiler.entities.logical.mg.Context;
+import cz.mg.compiler.entities.logical.mg.links.NamedLink;
 import cz.mg.compiler.entities.structured.Block;
 import cz.mg.compiler.entities.structured.Part;
 import cz.mg.compiler.entities.structured.parts.Name;

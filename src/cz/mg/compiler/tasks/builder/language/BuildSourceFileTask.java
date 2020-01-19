@@ -3,9 +3,9 @@ package cz.mg.compiler.tasks.builder.language;
 import cz.mg.collections.list.chainlist.ChainList;
 import cz.mg.compiler.annotations.Link;
 import cz.mg.compiler.annotations.Part;
-import cz.mg.compiler.entities.logical.language.Context;
-import cz.mg.compiler.entities.logical.language.Language;
-import cz.mg.compiler.entities.logical.language.Location;
+import cz.mg.compiler.entities.logical.mg.Context;
+import cz.mg.compiler.entities.logical.mg.LogicalMg;
+import cz.mg.compiler.entities.logical.mg.Location;
 import cz.mg.compiler.entities.structured.Block;
 import cz.mg.compiler.entities.structured.Container;
 import cz.mg.compiler.tasks.builder.BlockBuildTask;
@@ -21,7 +21,7 @@ import cz.mg.compiler.tasks.builder.utilities.Rules;
 import cz.mg.compiler.utilities.debug.PlaceholderText;
 import static cz.mg.compiler.tasks.builder.utilities.BuildUtilities.*;
 import static cz.mg.compiler.tasks.builder.utilities.Filter.*;
-import static cz.mg.compiler.entities.logical.language.definitions.DatatypeDefinition.Inheritance;
+import static cz.mg.compiler.entities.logical.mg.definitions.DatatypeDefinition.Inheritance;
 
 
 public class BuildSourceFileTask extends BlockBuildTask {
@@ -61,7 +61,7 @@ public class BuildSourceFileTask extends BlockBuildTask {
     );
 
     @Link
-    private final Language language;
+    private final LogicalMg logicalMg;
 
     @Link
     private Location location = null;
@@ -72,9 +72,9 @@ public class BuildSourceFileTask extends BlockBuildTask {
     @Part
     private final ChainList<BuildTask> buildTasks = new ChainList<>();
 
-    public BuildSourceFileTask(Container page, Language language) {
+    public BuildSourceFileTask(Container page, LogicalMg logicalMg) {
         super(page, null);
-        this.language = language;
+        this.logicalMg = logicalMg;
     }
 
     @Override
@@ -88,7 +88,7 @@ public class BuildSourceFileTask extends BlockBuildTask {
 
     private void buildLocation(Block block) {
         if(location != null) throw new BuildException(block, "Location was already defined ", new PlaceholderText(location, "here"), ".");
-        BuildLocationTask task = new BuildLocationTask(block, language);
+        BuildLocationTask task = new BuildLocationTask(block, logicalMg);
         buildTasks.addLast(task);
         task.run();
         location = task.getLocation();

@@ -1,8 +1,8 @@
 package cz.mg.compiler.tasks.builder.language.natives;
 
 import cz.mg.compiler.annotations.Link;
-import cz.mg.compiler.entities.logical.language.Context;
-import cz.mg.compiler.entities.logical.language.natives.NativeTypeDefinition;
+import cz.mg.compiler.entities.logical.mg.Context;
+import cz.mg.compiler.entities.logical.mg.natives.NativeTypeDefinition;
 import cz.mg.compiler.entities.structured.Block;
 import cz.mg.compiler.entities.structured.parts.Name;
 import cz.mg.compiler.tasks.builder.utilities.Rules;

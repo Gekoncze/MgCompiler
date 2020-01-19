@@ -1,8 +1,8 @@
 package cz.mg.compiler.tasks.builder.utilities;
 
-import cz.mg.compiler.entities.logical.language.Context;
-import cz.mg.compiler.entities.logical.language.links.DatatypeDefinitionLink;
-import cz.mg.compiler.entities.logical.language.other.Datatype;
+import cz.mg.compiler.entities.logical.mg.Context;
+import cz.mg.compiler.entities.logical.mg.links.DatatypeDefinitionLink;
+import cz.mg.compiler.entities.logical.mg.other.Datatype;
 import cz.mg.compiler.entities.structured.parts.Type;
 import cz.mg.compiler.tasks.builder.BuildException;
 import cz.mg.compiler.utilities.debug.PlaceholderText;

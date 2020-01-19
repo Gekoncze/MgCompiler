@@ -1,13 +1,13 @@
 package cz.mg.compiler.tasks.builder.language;
 
 import cz.mg.compiler.annotations.Link;
-import cz.mg.compiler.entities.logical.language.Context;
-import cz.mg.compiler.entities.logical.language.definitions.StructureDefinition;
-import cz.mg.compiler.entities.logical.language.links.ClassDefinitionLink;
+import cz.mg.compiler.entities.logical.mg.Context;
+import cz.mg.compiler.entities.logical.mg.definitions.StructureDefinition;
+import cz.mg.compiler.entities.logical.mg.links.ClassDefinitionLink;
 import cz.mg.compiler.entities.structured.Block;
 import cz.mg.compiler.entities.structured.parts.Name;
 import cz.mg.compiler.tasks.builder.utilities.Rules;
-import static cz.mg.compiler.entities.logical.language.definitions.DatatypeDefinition.Inheritance;
+import static cz.mg.compiler.entities.logical.mg.definitions.DatatypeDefinition.Inheritance;
 import static cz.mg.compiler.tasks.composer.utilities.PartUtilities.cast;
 
 

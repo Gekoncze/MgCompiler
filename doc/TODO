@@ -1,7 +1,23 @@
 ### DONE ### -----------------------------------------------------------------------------------------------------------
 
 
+
 ### NOW ### ------------------------------------------------------------------------------------------------------------
+c writer
+    implement writer for c entities
+    think of possible tasks to create
+
+    class/object definition
+        as a structure with related functions in multiple files
+        structure in separate file
+        function headers in separate file
+        function implementation in separate file
+
+mg to c converter
+    convert mg runtime or logical entities to c entities?
+
+
+### SOON ### -----------------------------------------------------------------------------------------------------------
 resolver
     aliases has to be stored somehow, or searched by context
 
@@ -10,32 +26,9 @@ resolver
         better would be temporary context object that would be filled with all possible entity links
         but links can be created not only with name ... operators too, and depends on input parameters too
 
-export to c
-    implement simple mg to c translation
-    think of possible entities to create
-    think of possible tasks to create
-
-    needs to implement only the most basic mg functionality
-        class/object definition
-            as a structure with related functions
-            structure in separate file
-            function headers in separate file
-            function implementation in separate file
-
-        function definition
-            might need to first create elementary calls
-
-
-
-
-### SOON ### -----------------------------------------------------------------------------------------------------------
-resolver
-    support for custom stamps
-        needs to resolve them in the first pass
-        in second will resolve everything else
-
-physical entities
-    will need to save them as binary
+runtime entities
+    function calls will have only variables as parameter
+    there will be anonymous variables (for more complicated expressions)
 
     think of what interpreter will be actually using at runtime
         object definition, function definition, thread, instruction, command
@@ -45,32 +38,38 @@ physical entities
         all executable should be just a bunch of instructions with input and output
         dot operator is actually hidden instruction
 
-    our language requirements
-        good balance of mixed raw and dynamic behaviour
-        while keeping the thing as simple as possible
-        primarly would be dynamic and for special cases raw support
-        every object sould have its parent
-        objects should not be destroyed when there is dynamic reference to them (there can stil be a raw one though)
-            instead they should be either moved to trash or an error should be thrown
-
-        how to acomplish mixed raw and dynamic:
-            for special cases, use @raw stamp for variable (or even a class? in case of c structures)
-            or add special sign to the variable, like $
-            also, for raws need to specify if padded or packed
-
-    there could be more types of variables
-        raw - just holding reference to the object
-        extended - holding reference to the object + to its parent or type
-
-    each object should have its parent who is responsible for freeing them when needed
-        moving to trash that will take care of them
-        should be able to check if can or cannot free it (needs counter for each object)
-        an idea: moving objets to trash and checking out this trach with a command to free memory
-                 only free when there is no more references to that object
-
-
 
 ### LATER ### ----------------------------------------------------------------------------------------------------------
+resolver
+    support for custom stamps
+        needs to resolve them in the first pass
+        in second will resolve everything else
+
+mg, interpreter and physical entities
+    save physical entities as binary
+    our language requirements
+            good balance of mixed raw and dynamic behaviour
+            while keeping the thing as simple as possible
+            primarly would be dynamic and for special cases raw support
+            every object sould have its parent
+            objects should not be destroyed when there is dynamic reference to them (there can stil be a raw one though)
+                instead they should be either moved to trash or an error should be thrown
+
+            how to acomplish mixed raw and dynamic:
+                for special cases, use @raw stamp for variable (or even a class? in case of c structures)
+                or add special sign to the variable, like $
+                also, for raws need to specify if padded or packed
+
+        there could be more types of variables
+            raw - just holding reference to the object
+            extended - holding reference to the object + to its parent or type
+
+        each object should have its parent who is responsible for freeing them when needed
+            moving to trash that will take care of them
+            should be able to check if can or cannot free it (needs counter for each object)
+            an idea: moving objets to trash and checking out this trach with a command to free memory
+                     only free when there is no more references to that object
+
 test
     types.mg - define all required operators in test file
 
@@ -93,6 +92,7 @@ language
 
     modules
     custom stamps definitions
+    stamp or keyword for static / nonstatic variable / function?
 
 translator to c/cpp
 
@@ -119,3 +119,5 @@ types with & $ ?
 hierarchical objects - store reference to parent and update when needed
 symbolic links insted of / along with references
     will store absolute or relative path (integers) to given object
+
+explorer - find usages of an entity

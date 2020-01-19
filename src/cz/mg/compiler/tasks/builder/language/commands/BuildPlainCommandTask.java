@@ -1,8 +1,8 @@
 package cz.mg.compiler.tasks.builder.language.commands;
 
 import cz.mg.compiler.annotations.Part;
-import cz.mg.compiler.entities.logical.language.Context;
-import cz.mg.compiler.entities.logical.language.commands.PlainCommand;
+import cz.mg.compiler.entities.logical.mg.Context;
+import cz.mg.compiler.entities.logical.mg.commands.PlainCommand;
 import cz.mg.compiler.entities.structured.Block;
 import cz.mg.compiler.tasks.builder.language.BuildCallTask;
 import static cz.mg.compiler.tasks.builder.utilities.BuildUtilities.*;

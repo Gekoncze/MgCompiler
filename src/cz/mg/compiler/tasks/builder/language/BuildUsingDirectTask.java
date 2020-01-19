@@ -1,8 +1,8 @@
 package cz.mg.compiler.tasks.builder.language;
 
 import cz.mg.compiler.annotations.Link;
-import cz.mg.compiler.entities.logical.language.Context;
-import cz.mg.compiler.entities.logical.language.usings.UsingDirect;
+import cz.mg.compiler.entities.logical.mg.Context;
+import cz.mg.compiler.entities.logical.mg.usings.UsingDirect;
 import cz.mg.compiler.entities.structured.Block;
 
 

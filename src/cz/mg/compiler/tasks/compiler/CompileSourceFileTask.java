@@ -5,7 +5,7 @@ import cz.mg.compiler.annotations.Part;
 import cz.mg.compiler.entities.Entities;
 import cz.mg.compiler.entities.input.ExternalFileInput;
 import cz.mg.compiler.entities.input.InputEntity;
-import cz.mg.compiler.entities.logical.language.Language;
+import cz.mg.compiler.entities.logical.mg.LogicalMg;
 import cz.mg.compiler.entities.logical.project.FilePath;
 import cz.mg.compiler.entities.structured.Container;
 import cz.mg.compiler.entities.text.Page;
@@ -19,7 +19,7 @@ public class CompileSourceFileTask extends CompilerTask {
     private final FilePath filePath;
 
     @Link
-    private final Language language;
+    private final LogicalMg logicalMg;
 
     @Link
     private final Entities entities;
@@ -36,9 +36,9 @@ public class CompileSourceFileTask extends CompilerTask {
     @Part
     private BuildSourceFileTask buildSourceFileTask;
 
-    public CompileSourceFileTask(FilePath filePath, Language language, Entities entities) {
+    public CompileSourceFileTask(FilePath filePath, LogicalMg logicalMg, Entities entities) {
         this.filePath = filePath;
-        this.language = language;
+        this.logicalMg = logicalMg;
         this.entities = entities;
     }
 
@@ -59,7 +59,7 @@ public class CompileSourceFileTask extends CompilerTask {
         composePageTask = new ComposePageTask(page, structuredPage);
         composePageTask.run();
 
-        buildSourceFileTask = new BuildSourceFileTask(structuredPage, language);
+        buildSourceFileTask = new BuildSourceFileTask(structuredPage, logicalMg);
         buildSourceFileTask.run();
     }
 }

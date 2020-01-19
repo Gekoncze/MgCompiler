@@ -1,9 +1,9 @@
 package cz.mg.compiler.tasks.compiler.utilities;
 
 import cz.mg.collections.array.Array;
-import cz.mg.compiler.entities.logical.language.Language;
-import cz.mg.compiler.entities.logical.language.Location;
-import cz.mg.compiler.entities.logical.language.definitions.StampDefinition;
+import cz.mg.compiler.entities.logical.mg.LogicalMg;
+import cz.mg.compiler.entities.logical.mg.Location;
+import cz.mg.compiler.entities.logical.mg.definitions.StampDefinition;
 import cz.mg.compiler.utilities.debug.Text;
 
 
@@ -25,8 +25,8 @@ public class BuildinStamps {
     public static final StampDefinition PRIVATEINHERITANCE = new StampDefinition(new Text("privateinheritance", ""));
     public static final StampDefinition PUBLICENTITIES = new StampDefinition(new Text("privateinheritance", ""));
 
-    public static void addBuildinStamps (Language language){
-        Location location = language.createLocation("cz.mg.stamps");
+    public static void addBuildinStamps (LogicalMg logicalMg){
+        Location location = logicalMg.createLocation("cz.mg.stamps");
         location.getEntities().addCollectionLast(new Array<>(
                 INVISIBLE,
                 PUBLIC,
