@@ -1,8 +1,5 @@
 ### DONE ### -----------------------------------------------------------------------------------------------------------
-Major IO redesign
-Added text and binary input and output tasks
-Added text and binary input and output task factories
-Adapted existing code
+IO polishment + basic cwriter structure
 
 
 ### NOW ### ------------------------------------------------------------------------------------------------------------
@@ -18,6 +15,7 @@ c writer
 
 mg to c converter
     convert mg runtime or logical entities to c entities?
+    or convert to locigal c entities and then those to c entities ?
 
 
 ### SOON ### -----------------------------------------------------------------------------------------------------------
@@ -124,3 +122,4 @@ symbolic links insted of / along with references
     will store absolute or relative path (integers) to given object
 
 explorer - find usages of an entity
+consider various "big picture" inputs, for example load entities from text source file vs from binary compiled file
