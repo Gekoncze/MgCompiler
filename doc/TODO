@@ -1,5 +1,8 @@
 ### DONE ### -----------------------------------------------------------------------------------------------------------
-
+Major IO redesign
+Added text and binary input and output tasks
+Added text and binary input and output task factories
+Adapted existing code
 
 
 ### NOW ### ------------------------------------------------------------------------------------------------------------

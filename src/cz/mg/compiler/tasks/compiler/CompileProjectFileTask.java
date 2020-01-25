@@ -1,22 +1,26 @@
 package cz.mg.compiler.tasks.compiler;
 
+import cz.mg.compiler.annotations.Info;
 import cz.mg.compiler.annotations.Link;
 import cz.mg.compiler.annotations.Part;
 import cz.mg.compiler.entities.Entities;
-import cz.mg.compiler.entities.input.ExternalFileInput;
-import cz.mg.compiler.entities.input.InputEntity;
-import cz.mg.compiler.entities.logical.project.FilePath;
 import cz.mg.compiler.entities.logical.project.Project;
 import cz.mg.compiler.entities.structured.Container;
 import cz.mg.compiler.entities.text.Page;
 import cz.mg.compiler.tasks.builder.project.BuildProjectTask;
 import cz.mg.compiler.tasks.composer.ComposePageTask;
+import cz.mg.compiler.tasks.input.text.TextInputTask;
+import cz.mg.compiler.tasks.input.text.factory.TextInputFactory;
 import cz.mg.compiler.tasks.parser.ParsePageTask;
+import cz.mg.compiler.utilities.debug.Text;
 
 
 public class CompileProjectFileTask extends CompilerTask {
-    @Link
-    private final FilePath filePath;
+    @Info
+    private final Text url;
+
+    @Info
+    private final TextInputFactory inputFactory;
 
     @Link
     private final Project project;
@@ -25,7 +29,7 @@ public class CompileProjectFileTask extends CompilerTask {
     private final Entities entities;
 
     @Part
-    private LoadSourceTask loadSourceTask;
+    private TextInputTask inputTask;
 
     @Part
     private ParsePageTask parsePageTask;
@@ -36,20 +40,19 @@ public class CompileProjectFileTask extends CompilerTask {
     @Part
     private BuildProjectTask buildProjectTask;
 
-    public CompileProjectFileTask(FilePath filePath, Project project, Entities entities) {
-        this.filePath = filePath;
+    public CompileProjectFileTask(Text url, TextInputFactory inputFactory, Project project, Entities entities) {
+        this.url = url;
+        this.inputFactory = inputFactory;
         this.project = project;
         this.entities = entities;
     }
 
     @Override
     protected void onRun() {
-        InputEntity source = new ExternalFileInput(filePath.getPath());
-        entities.getInput().getInputs().addLast(source);
-        loadSourceTask = new LoadSourceTask(source);
-        loadSourceTask.run();
+        inputTask = inputFactory.create(url);
+        inputTask.run();
 
-        Page page = new Page(source.getText());
+        Page page = new Page(inputTask.getText());
         entities.getBook().getPages().addLast(page);
         parsePageTask = new ParsePageTask(page);
         parsePageTask.run();
